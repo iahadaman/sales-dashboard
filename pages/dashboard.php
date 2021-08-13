@@ -207,7 +207,7 @@ require_once '../partials/header.php';?>
 
                 <!-- DATA TABLE START  -->  
 
-                <div class="col-md-12 col-sm-12 mt-3">
+                <!-- <div class="col-md-12 col-sm-12 mt-3">
                      <h5 class="mb-3">Client Information</h5>
                      <div class="table-style px-4 table-responsive">
                      <table class="table table-condensed">
@@ -266,7 +266,16 @@ require_once '../partials/header.php';?>
                         </tbody>
                       </table>
                       </div>
-                </div>
+                </div> -->
+                <div class="col-md-12 col-sm-12 mt-3">
+                <h5 class="mb-3">Client Information</h5>
+	                     	<div class="component-table-style table-responsive" style="padding: 20px">
+
+	                     		 <!-- DATA COMINGN FROM AJAX BY ID-->
+
+	                     		<div id="manageLimitedClientsData"></div>  		                    		                                       
+	                      	</div>
+                		</div>
 
                 <div class="col-md-12 col-sm-12 text-right mt-2 pr-4">   
                  <a href="#">View All</a>                         

@@ -171,6 +171,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	check_session();
 	getClientsData();
+	getLimitedClientsData();
 	getProjectsData();
 });
 
@@ -296,6 +297,18 @@ function getClientsData()
 			data: { type: 3, readAllclients: readAllclients },
 			success: function(data, status){
 				$('#manageClientsData').html(data);
+			}
+		});
+}
+function getLimitedClientsData()
+{
+ 	let readAllclients= "readAllclients";
+	$.ajax({
+			type: 'POST',
+			url: 'admin-backend.php',
+			data: { type: 17, readAllclients: readAllclients },
+			success: function(data, status){
+				$('#manageLimitedClientsData').html(data);
 			}
 		});
 }

@@ -100,7 +100,7 @@ if($_POST['type']==3){
 	                          </tr>
 	                        </thead>	                       
 	                        <tbody id="clientsTable">';       
-    	$getAllClients = mysqli_query($con, "SELECT * FROM webtrixpro_users WHERE user_isAdmin !=1 ORDER BY user_id desc");
+    	$getAllClients = mysqli_query($con, "SELECT * FROM webtrixpro_users WHERE user_isAdmin !=1 ORDER BY user_id desc LIMIT 8");
    		 while($allclients = mysqli_fetch_array($getAllClients)){
 
 	     $allClientData .= '<tr>
@@ -116,6 +116,8 @@ if($_POST['type']==3){
 	    echo $allClientData;         
 	}
 }
+
+
 
 //Display Record in Update CLIENT Modal
 
@@ -237,7 +239,7 @@ if($_POST['type']==8){
 	    $allProjectData .= '<div class="inprogress-card col-lg-4 col-md-6 col-sm-6 mt-4">
 
                   <div class="progress-box">
-                  <a class="design" href="project-detail.php?'.$allProjects['project_id'].'">
+                  <a class="design" href="project-detail.php?id='.$allProjects['project_id'].'">
                    <div class="progress-bg2"> </div>
                   </div>';
                   if($_POST['readAllprojects'] == "Completed")
@@ -539,5 +541,36 @@ if($_POST['type']==13){
 		$query = "SELECT * FROM webtrixpro_projects WHERE project_label = 'Completed'";
 		$result = mysqli_query($con, $query);
 		echo mysqli_num_rows($result); 
+	}
+
+	// Get Limited Clients
+	if($_POST['type']==17){
+		if(isset($_POST['readAllclients'])) {
+			 $allClientData = ' <table class="table table-condensed">
+								<thead>
+								  <tr>
+									<th style="padding: 15px;" class="roboto_regular">Image</th>
+									<th style="padding: 15px;" class="roboto_regular">Full Name</th>
+									<th style="padding: 15px;" class="roboto_regular">Company Name</th>
+									<th style="padding: 15px;" class="roboto_regular">Email Address</th>
+									<th style="padding: 15px;" class="roboto_regular">Actions</th>                         
+								  </tr>
+								</thead>	                       
+								<tbody id="clientsTable">';       
+			$getAllClients = mysqli_query($con, "SELECT * FROM webtrixpro_users WHERE user_isAdmin !=1 ORDER BY user_id desc");
+				while($allclients = mysqli_fetch_array($getAllClients)){
+	
+			 $allClientData .= '<tr>
+									<td style="padding: 10px;"><div style="background-image: url('.$allclients['user_profile'].'); height: 30px; width: 30px; background-position: center; background-size: cover; border-radius: 30px;"></div>
+									<td style="padding: 10px;font-family: Roboto;" class="roboto">'.$allclients['user_name'].'</td>
+									<td style="padding: 10px;" class="roboto">'.$allclients['user_company'].'</td>
+									<td style="padding: 10px;" class="roboto">'.$allclients['user_email'].'</td>
+									<td style="padding: 10px;"><a type="button" class="edit_client_data" id="'.$allclients['user_id'].'" href="" class="roboto_regular"><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" class="delete_client_data" id="'.$allclients['user_id'].'" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+								</tr>';           
+			}
+	
+			$allClientData .='</tbody></table>';
+			echo $allClientData;         
+		}
 	}
 ?>
