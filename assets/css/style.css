@@ -1,0 +1,1069 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap');
+
+html, body{
+	background: #F8F8F8;
+	font-family: 'Open Sans', sans-serif;
+    color: #454545;
+    font-size: 14px;
+}
+
+/* ---------------------------------------------------
+    LOGIN PAGE STYLE
+----------------------------------------------------- */
+
+.logo-style img{
+    width: 186px;
+    height: 60px;
+    display: block!important;
+}
+.login-box {
+    padding-left: 30px;
+    padding-right: 30px;
+	background: #FFFFFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: 500px!important; 
+    border-radius: 10px;
+    border: 1px solid #F3F3F3;
+   -moz-box-shadow: inset 0 0 10px #F3F3F3;
+   -webkit-box-shadow: inset 0 0 10px #F3F3F3;
+    box-shadow: inset 0 0 10px #F3F3F3;
+}
+label, ul li a, ul li a:hover {
+	color: #3F3F3F;
+}
+.btn-style, .btn-style:hover{
+    background-color: #43B049;
+    width: 150px;
+    height: 40px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+.login-box a, .login-box a:hover{
+    text-decoration: none;
+    color: #3F3F3F;
+}
+.login-box p{
+    color: #8A8A8A;
+}
+.login-box input{
+    padding:20px;
+   /* color: #D2D2D2;*/
+    font-size: 12px;
+}
+.login-box input:focus{
+    box-shadow: inset 0 0 10px #F3F3F3;
+    border: 1px solid #D2D2D2!important;
+}
+.login-box .alert-danger{
+    padding-left:20px;
+    font-size: 12px;
+}
+.login-box .alert-success{
+    padding-left:20px;
+    font-size: 12px;
+    color: #1EA74D;
+    background-color: rgba(30, 167, 77, 0.1);
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+#sidebar {
+    min-width: 251px;
+    max-width: 251px;
+    background: #FFFFFF;
+    transition: all 0.3s;
+    border: 1px solid #F3F3F3;
+}
+.dashboard-logo img{
+    width: 156px;
+    height: 69px;
+}
+#sidebar .sidebar-header {
+    padding-left: 20%;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    background: #ffffff;
+}
+#sidebar ul li a {
+    padding: 10px 10px 10px 72px;
+    font-size: 14px;
+    display: block;
+    color: #454545;
+
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+}
+
+#sidebar.active {
+    min-width: 180px;
+    max-width: 180px;
+}
+#sidebar.active .dashboard-logo img{
+    width: 130px;
+    height: 50px;
+    padding-left: 10px!important;
+}
+
+#sidebar.active .sidebar-header {
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    background: #ffffff;
+}
+#sidebar.active ul li a {
+    padding-left: 10px!important;
+    text-align: left;
+    font-size: 14px;
+}
+
+#sidebar.active ul li a i {
+    margin-right: 0;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/*#sidebar ul li.active>a,
+li a[aria-expanded="true"] {
+    color: #1EA74D;
+    background-color: rgba(30, 167, 77, 0.1);
+    border-right: 4px solid #1EA74D!important;
+}
+*/
+
+li a:hover{
+    color: #1EA74D!important;
+    text-decoration: none;
+    background-color: rgba(30, 167, 77, 0.1)!important;
+}
+li a:focus {
+    color: #1EA74D!important;
+    text-decoration: none;
+    transition: all 0.3s;
+    background-color: rgba(30, 167, 77, 0.1);
+    border-right: 4px solid #1EA74D!important;
+}
+
+/* ---------------------------------------------------
+    NAVBAR STYLE
+----------------------------------------------------- */
+
+.dropdown-menu a:hover{
+     color: #1EA74D!important;
+    text-decoration: none;
+    background-color: rgba(30, 167, 77, 0.1)!important;
+}
+button.btn-color, .btn-color:hover{
+    color: white;
+    background: #1EA74D;
+}
+
+.nav-item a{
+    color: #454545!important;
+    text-decoration: none;
+}
+
+.navbar {
+    padding: 7px 7px;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+.nav-link{
+    display: inline!important;
+}
+a.nav-link{
+    padding: 0px 1px!important;
+}
+i,
+span {
+    display: block;
+}
+.profile-name{
+    font-size: 13px;
+}
+.role-style{
+     font-size: 11px;    
+     margin-left: 1px;  
+     color: #A9A7A7;
+}
+span.role-style{
+    margin-top: -8px!important;
+}
+.greeting p{
+    padding-left: 10px;
+}
+
+/* ---------------------------------------------------
+    CARD STYLE
+----------------------------------------------------- */
+
+#card{
+    margin-left: 10px;
+    margin-right: 0px;
+}
+.card-box
+{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+    z-index: 10;
+}
+.card-box:after {
+    background-color: #FFFFFF;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 16px;
+    left: 3px;
+    right: 12px;
+    bottom: 3px;
+    z-index: -1;
+}
+
+.card-image{
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 76px;
+}
+.card-bg1{
+    background: #FFE28C;
+}
+.card-bg2{
+      background: #A7DAFF;
+}
+.card-bg3{
+    background: #A8D7E0;
+} 
+
+.card-image img{
+    width: 38px;
+    height: 38px;
+}
+.card-content p{   
+    margin-top: 26px;
+    font-size: 14px;
+}
+.card-content p strong{   
+   font-size: 20px;
+   font-weight: 600;
+}
+.card-box .card-icon svg{
+    position: absolute;
+    right: 35px;
+    top: 40%;
+    width: 28px;
+    height: 37px;
+}
+
+/* ---------------------------------------------------
+    RECENT PROJECT CARD SECTION
+----------------------------------------------------- */
+/*a.inprogress-card-link{
+     
+  text-decoration: none;
+}*/
+.design, .design:hover, .design:visited{
+    color: inherit;
+    text-decoration: none;
+}
+
+.inprogress-card
+{
+    padding-bottom: 176px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+}
+.inprogress-card:after {     
+    background-color: #FFFFFF;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 33px;
+    left: 10px;
+    right: 16px;
+    bottom: 0px;
+    z-index: -1;
+    border-radius: 5px;
+    border: 1px solid #E4E4E4;
+    box-shadow: 0 0 5px #E4E4E4;
+}
+
+.inprogress-card:hover::after {     
+    box-shadow: 0 0 10px #1EA74D;
+    border: 1px solid #1EA74D;
+    cursor: pointer;
+}
+.progress-report{
+    border-top-left-radius: 5px;
+    background-color: #2E5CAE;
+    position: absolute;
+    top: 34px;
+    left: 10px;
+    font-size: 11px;
+    color: #FFFFFF;
+    padding: 7px 20px 7px 20px;
+    box-shadow: inset 0 0 1px #2E5CAE;
+}
+.completed-progress-report{
+    border-top-left-radius: 5px;
+    background-color: #1EA74D;
+    position: absolute;
+    top: 34px;
+    left: 10px;
+    font-size: 11px;
+    color: #FFFFFF;
+   padding: 7px 20px 7px 20px;
+  box-shadow: inset 0 0 1px #2E5CAE;
+}
+.progress-box{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.progress-bg2{   
+    width: 67px;
+    height: 67px;
+    background-color: #C4C4C4;
+    display: -webkit-inline-box;
+    border-radius: 5px;
+}
+.progress-content{
+    position: absolute;
+    top: 94px;
+    left: 35px;
+}
+.progress-content p{
+      font-size: 12px;
+}
+.progress-content p strong{
+      font-size: 15px;
+}
+.progress-next-content{
+    position: absolute;
+    top: 94px;
+    right: 38px;
+}
+.progress-next-content p{
+      font-size: 12px;
+}
+.progress-next-content span a{
+    text-decoration: none;
+    font-size: 12px;
+    color: #BFBFBF;
+}
+.progress-next-content p strong{
+    font-size: 15px;
+}
+.progress-next-content p .platform{
+    display: none;
+}
+.progress-next-content p .platform:nth-child(-n+2){
+    display: block;
+}
+
+/*.progress-next-content p .platform:nth-of-type(2)
+{
+    display: block;
+    text-indent: -9999px;
+    line-height: 0; 
+}
+.progress-next-content p .platform:nth-of-type(2):after {
+   display: block;
+   content: '+ 1';
+   text-indent: 0;
+   display: block;
+   line-height: initial;
+   position: absolute;
+   top: 35px;
+}*/
+.combinePlatform
+{
+   position: absolute;
+   top: 35px;
+   display: block;
+}
+
+.btn-big
+{
+    font-size: 16px;
+    margin-top: 47px;
+    height: 103px;
+}
+.next-progress-cards{
+    position: relative;
+    top: 7px;
+    float: right;
+}
+
+
+
+/* ---------------------------------------------------
+    DATA TABLE STYLE IN DASHBOARD
+----------------------------------------------------- */
+
+.table-style{
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #E4E4E4;
+}
+.table-style thead tr th{
+    border-bottom: 2px solid #454545;
+    border-top: none;
+    color: #454545;
+    font-size: 14px
+    }
+tbody td img{
+   border-radius: 50%;
+    width: 26px;
+    height: 23px;
+    margin-top: -5px;
+}
+table{
+    font-size: 13px;
+}
+table tr td{
+    color: #454545;
+}
+table a{
+    text-decoration: none;
+    color: #BFBFBF;
+}
+table a:hover{
+    text-decoration: none;
+    color: #BFBFBF;
+}
+
+/* ---------------------------------------------------
+    Project Details Page
+----------------------------------------------------- */
+button.btn-edit, button.btn-edit:hover{
+    margin-top: -4px;
+    background-color: #ECECEC;
+    border: none!important;
+    width: 119px;
+    height: 29px;
+    border-radius: 3px;
+    color: #454545;
+    outline: 0 !important;
+  
+}
+button.btn-edit .fa-edit{
+  color: #454545;
+}
+button.btn-delete, button.btn-delete:hover{
+    margin-right: 12px;
+    margin-top: -4px;
+    background-color: #FC5A69;
+    border-radius: 3px;
+    border: none;
+    width: 119px;
+    height: 29px;
+    color: #FFFFFF;
+
+}
+.project-detail-box{
+    width: 160px;
+    height: 160px;
+    background-color: #C4C4C4;
+    display: inline-block;
+    border-radius: 3px;
+}
+.project-detail-content {
+    display: inline-block;
+    position: relative;
+    left: 23px;
+    top: -20px;
+    
+}
+#content-section p{
+    font-size: 12px;
+}
+#content-section button{
+      font-size: 13px;
+}
+
+#content-section  p strong{
+      font-size: 15px;
+}
+.project-detail-section p strong{
+     font-weight: 600!important;
+}
+.profile-image-style img{
+    border-radius: 50%;
+    width: 21px;
+    height: 17px;
+}
+.link-style{
+    color: #6BC58A;
+}
+.link-style a{
+    text-decoration: none;
+    color: #6BC58A;
+}
+.small-card{
+    padding: 26px 28px 24px 28px;
+    z-index: 10;
+    position: relative;
+    margin-bottom: 15px;
+
+}
+.small-card:after{
+    position: absolute;
+    border: 1px solid #6BC58A;
+    content: '';
+    z-index: -1;
+    top: 3px;
+    left: 1px;
+    right: 0px;
+    bottom: 0px;
+
+}
+.small-card h6.main-heading{
+    margin-left: -7px;
+    color: rgba(69,69,69,0.86)!important;
+    font-weight: bold;   
+    font-family: 'Arimo', sans-serif;
+}
+.sub-small-card{
+   padding-bottom: 0px;
+    margin-top: 20px;
+    padding-left: 10px;
+    margin-left: -18px;
+    margin-right: -18px;
+    border-radius: 5px;
+    border: 1px solid #F3F3F3;
+    box-shadow: inset 0 0 10px #f3f3f3;
+}
+.small-card span{
+    font-weight: 1000;
+}
+.sub-small-card h6{
+    padding-top: 9px;
+    font-size: 11px;
+    font-weight: bold;
+    color: rgba(69,69,69,0.86)!important;
+}
+
+#content-section .sub-small-card p{
+    margin-bottom: 0px;
+    font-size: 10px;
+    color: #A9A7A7;
+}
+.sub-small-card a{
+
+    font-size: 10px;
+    text-decoration: underline;
+}
+.sub-small-card a.delete, a.delete:hover{
+    color: #FF6363;
+    text-decoration: none;
+}
+.sub-small-card a.edit, a.edit:hover{
+    color: #828282;
+    text-decoration: none;
+}
+.image-bg{
+    background-color: #6BC58A;
+    width: 46px;
+    height: 46px;
+    position: absolute;
+    top: 4px;
+    right: 20px;
+}
+.image-bg img {
+    top: 17%;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    position: absolute;
+    left: 17%;
+} 
+.new-p{
+    right: 20px;
+    bottom: 10px;
+    position: absolute;
+}
+.new-p p{
+    background-color: rgba(107, 197, 138, 0.36);
+    padding-left: 12px;
+    border-radius: 10px;
+    color: #1EA74D!important;
+    padding-right: 12px;
+}
+.card-end a.edit{
+    position: absolute;
+    bottom: 4px;
+    left: 62px;
+}
+.card-end a.delete{
+    position: absolute;
+    bottom: 4px;
+}
+.small-card-link a{
+    left: -6px;
+    top: 20px;
+    position: relative;
+    font-size: 10px;
+    text-decoration: underline;
+    color: #1EA74D;
+}
+
+
+/* ---------------------------------------------------
+    Account Setting Page
+----------------------------------------------------- */
+
+.setting-image button{
+    width: 131px;
+    margin-top: 10px;
+    
+}
+.setting-image .project-detail-box{
+    margin-top: 6px;
+    width: 130px;
+    height: 130px;
+    background-color: #C4C4C4;
+    border-radius: 3px;
+}
+.account-style label{
+ font-size: 12px;
+}
+.account-style .form-group input{
+ font-size: 14px!important;
+ background-color: #FAFAFA;
+ border:1px solid #DBDBDB;
+}
+.account-style .form-group input:focus{
+ box-shadow: inset 0 0 5px #DBDBDB;
+}
+.account-style button{
+    width: 131px;
+    margin-top: 50px;
+}
+
+
+/* ---------------------------------------------------
+    Project Page
+----------------------------------------------------- */
+
+.btn-create{
+    width: 130px;
+}
+button.btn-create:focus{
+    box-shadow: 0 0 1px #43B049;
+}
+.project-right-property select.form-select{
+    top: 1px;
+    position: relative;
+    width: 120px;
+    height: 30px;
+    margin-top: 0px;
+    margin-right: 2px;
+    background-color: #EFEFEF;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+    border:0px;
+    outline:0px;
+}
+.project-right-property label{
+    margin-left: 1px;
+    position: absolute;
+    top: -19px;
+    font-size: 12px;
+}
+button.ip-btn, button.ip-btn:hover{
+    color: #FFFFFF;
+    background-color: #2E5CAE;
+}
+button.c-btn, button.c-btn:hover{
+    color: #3F3F3F; 
+    border: 1px solid #2E5CAE;
+    background-color: #FFFFFF;
+}
+button.ip-btn:focus,button.c-btn:focus{
+    box-shadow: inset 0 0 2px #2E5CAE;
+}
+
+
+/* ---------------------------------------------------
+    Component Page
+----------------------------------------------------- */
+
+.btn-component{
+    width: 150px;
+}
+.project-right-property input{
+    top: 2px;
+    position: relative;
+    width: 120px;
+    height: 30px;
+    margin-top: 0px;
+    margin-right: 7px;
+    background-color: #EFEFEF;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+    border: 0px;
+    outline: 0px;
+    padding: 10px;
+    color: #B7B7B7;
+}
+.project-right-property input::placeholder 
+{
+  color: #B7B7B7;
+}
+
+.component-table-style{
+    background-color: #FFFFFF;
+}
+.component-table-style thead tr th{
+    border-bottom: 1px solid #454545;
+    border-top: none;
+    color: #454545;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------
+    Adding Component Page
+----------------------------------------------------- */
+
+#component-style{
+    font-size: 12px;
+}
+#component-style .form-group input{
+    background-color: #FAFAFA;
+    border: 1px solid #DBDBDB;
+    font-size: 12px;
+}
+#component-style .form-group input:focus{
+     box-shadow: inset 0 0 5px #DBDBDB;
+}
+#component-style select, #component-style select:focus{
+    background-color: #FAFAFA;
+    border: 1px solid #DBDBDB;
+    font-size: 12px;   
+    box-shadow: inset 0 0 5px #DBDBDB;
+}
+#component-style .form-group input[type="file" i]::-webkit-file-upload-button {
+    border: 1px solid #DBDBDB!important;
+    background-color: #DEDEDE;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    height: calc(1.5em + .75rem + 2px)!important;
+}
+#component-style .form-group input[type="file" i]{
+    border-radius: 4px;
+    height: calc(1.5em + .75rem + 2px)!important;
+}
+.panel, .panel2, .panel3{
+    display: none;
+}
+#component-style button.btn{
+    background-color: #2E5CAE;
+    color: #FFFFFF;
+    width: 180px;
+}
+
+/* ---------------------------------------------------
+    Utility Classes
+----------------------------------------------------- */
+#content {
+    width: 100vw!important;
+    padding-left: 17px;
+    padding-right: 17px;
+    padding-bottom: 10px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+#content-section{
+     margin-left: 11px;
+     margin-right: 11px;
+}
+.web-bg{
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    padding: 30px;
+}
+
+h2{
+    color: #000000;
+    font-weight: 1000;   
+    font-family: 'Arimo', sans-serif;
+}
+h5{
+    color: #454545;
+    font-weight: bold;   
+    font-family: 'Arimo', sans-serif;
+}
+
+.btn-bg{
+    background-color: #1EA74D;
+    color: white;
+}
+.btn-bg:hover{
+    background-color: #1EA74D;
+    color: white;
+}
+.modal-body .alert-danger{
+    padding: 5.5px 10px 5.5px 10px;
+    font-size: 12px;
+}
+.modal-body .alert-success{
+    padding: 6px 10px 6px 10px;
+    font-size: 12px;
+    color: #1EA74D;
+    background-color: rgba(30, 167, 77, 0.1);
+}
+.modal-header button.close{
+    color: #000000!important; 
+    opacity: 1!important;
+}
+.modal-body{
+    font-size: 12px;
+}
+
+.modal-body .form-group label{
+    color: #454545;
+}
+.modal-body .form-group input,.modal-body .form-group textarea{
+    background-color: #FAFAFA;
+    border: 1px solid #DBDBDB;
+   /* color: #CFCFCF!important;*/
+    font-size: 12px;
+}
+.modal-body .form-group input:focus,.modal-body .form-group textarea:focus{
+     box-shadow: inset 0 0 5px #DBDBDB;
+}
+.modal-body .form-group input[type="file" i]{
+    border-radius: 4px;
+    height: calc(1.5em + .75rem + 2px)!important;
+}
+.modal-body .form-group input[type="file" i]::-webkit-file-upload-button {
+    border: 1px solid #DBDBDB!important;
+    background-color: #DEDEDE;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    height: calc(1.5em + .75rem + 2px)!important;
+}
+.modal-body button.btn-submit, .modal-body button.btn-submit:hover{
+    background-color: #2E5CAE;
+    color: #FFFFFF;
+    width: 120px;
+ }
+.modal-body button{
+    font-size: 12px;
+}
+.modal-body select{
+    background-color: #FAFAFA;
+    border: 1px solid #DBDBDB;
+    font-size: 12px;
+
+}
+.modal-body select:focus{
+    box-shadow: inset 0 0 5px #DBDBDB;
+}
+.modal-body a{
+    color: #454545;
+    text-decoration: none;
+    font-size: 12px;
+    margin-bottom: 20px!important;
+}
+button.close{
+      font-size: 20px!important;
+      border: none;
+      outline: none;
+}
+.second-platform, .third-platform{
+    display: none;
+}
+.removeOptions{
+    display: none;
+}
+
+.u_second-platform, .u_third-platform{
+    display: none;
+}
+.u_removeOptions{
+    display: none;
+}
+/* ---------------------------------------------------
+    MEDIA QUERIES
+----------------------------------------------------- */
+@media only screen and (max-width: 1250px) {
+
+/* ---------------------------------------------------
+    CARD MQ
+----------------------------------------------------- */
+
+.card-box:after {
+    background-color: #FFFFFF;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 16px;
+    left: 3px;
+    right: 13px;
+    bottom: 3px;
+    z-index: -1;
+}
+
+
+.card-image{
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 76px;
+}
+.card-box .card-icon img{
+   position: absolute;
+    right: 35px;
+    top: 48%;
+    width: 26px;
+    height: 33px;
+}
+
+
+
+/* ---------------------------------------------------
+    RECENT PROJECT CARD SECTION MQ
+----------------------------------------------------- */
+
+.progress-report{
+    background-color: #2E5CAE;
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    border-top-left-radius: 5px;
+}
+.progress-box{
+     margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.progress-bg2{   
+    width: 76px;
+    height: 76px;
+    background-color: #C4C4C4;
+    display: -webkit-inline-box;
+}
+.progress-content{
+    position: absolute;
+    top: 94px;
+    left: 25px;
+}
+.progress-content p{
+      font-size: 11px;
+}
+
+.progress-content p strong{
+      font-size: 13px;
+}
+
+.progress-next-content{
+    position: absolute;
+    top: 94px;
+    right: 38px;
+}
+.progress-next-content p{
+      font-size: 11px;
+}
+.progress-next-content p strong{
+      font-size: 13px;
+}
+.progress-bg2{   
+    width: 56px;
+    height: 56px;
+    background-color: #C4C4C4;
+    display: -webkit-inline-box;
+}
+
+/* ---------------------------------------------------
+    Account Setting Page MQ
+----------------------------------------------------- */
+
+.setting-image button{
+    width: 100px;
+    margin-top: 10px;
+        padding-left: 2px!important;
+    padding-right: 2px;
+    
+}
+.setting-image .project-detail-box{
+    margin-top: 6px;
+    width: 100px;
+    height: 100px;
+    background-color: #C4C4C4;
+    border-radius: 3px;
+}
+.account-style button{
+      width: 100px;
+        padding-left: 2px!important;
+    padding-right: 2px;
+}
+/* ---------------------------------------------------
+    PROJECT PAGE MQ
+----------------------------------------------------- */
+
+#project-page p{
+    font-size: 11px;
+}
+#project-page button{
+      font-size: 11px;
+}
+#project-page  p strong{
+      font-size: 13px;
+      font-weight: 600!important;
+}
+#project-page .progress-next-content {
+    position: absolute;
+    top: 94px;
+    right: 23px;
+}
+#project-page .progress-report {
+    background-color: #2E5CAE;
+    position: absolute;
+    top: 34px;
+    left: 10px;
+    border-top-left-radius: 5px;
+     padding: 7px 15px 7px 15px;
+}
+#project-page .completed-progress-report{
+   padding: 7px 15px 7px 15px;
+}
+}

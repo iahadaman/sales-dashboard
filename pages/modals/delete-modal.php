@@ -1,0 +1,23 @@
+ <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content p-4">
+      <div class="modal-header pl-0">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Delete item Permanently?
+		</h5>
+      </div>
+      <div class="text-center modal-body mx-auto">
+        	<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M26.6714 3.86328H37.3677V5.66309H41.2305V3.61133C41.231 1.62012 39.6118 0 37.6216 0H26.4175C24.4272 0 22.8081 1.62012 22.8081 3.61133V5.66309H26.6714V3.86328Z" fill="#D6D6D6"/>
+			<path d="M50.1511 20.9688H13.8875C12.8938 20.9688 12.1116 21.8164 12.1917 22.8071L15.2234 60.2954C15.3924 62.3882 17.138 64 19.2351 64H44.803C46.9002 64 48.6458 62.3882 48.8147 60.2949L51.8465 22.8071C51.927 21.8164 51.1448 20.9688 50.1511 20.9688ZM22.6682 60.0015C22.6277 60.0039 22.5872 60.0054 22.5471 60.0054C21.5345 60.0054 20.6844 59.2168 20.6214 58.1924L18.7215 27.4165C18.656 26.3516 19.4661 25.4351 20.5305 25.3696C21.5916 25.3052 22.512 26.1133 22.5774 27.1787L24.4768 57.9546C24.5428 59.0195 23.7327 59.9355 22.6682 60.0015ZM33.9724 58.0737C33.9724 59.1401 33.1077 60.0049 32.0408 60.0049C30.9739 60.0049 30.1092 59.1401 30.1092 58.0737V27.2974C30.1092 26.2305 30.9739 25.3657 32.0408 25.3657C33.1072 25.3657 33.9724 26.2305 33.9724 27.2974V58.0737ZM45.3172 27.4111L43.5032 58.187C43.4431 59.2134 42.5916 60.0049 41.5769 60.0049C41.5388 60.0049 41.5003 60.0039 41.4617 60.002C40.3968 59.939 39.5843 59.0249 39.6472 57.96L41.4607 27.1836C41.5232 26.1187 42.4344 25.3062 43.5022 25.3691C44.5672 25.4316 45.3797 26.3462 45.3172 27.4111Z" fill="#D6D6D6"/>
+			<path d="M56.831 15.0078L55.5624 11.2051C55.228 10.2026 54.2895 9.52637 53.2324 9.52637H10.8061C9.74945 9.52637 8.81048 10.2026 8.4765 11.2051L7.20794 15.0078C6.96331 15.7412 7.28167 16.4893 7.87591 16.8623C8.1181 17.0142 8.40472 17.1055 8.71966 17.1055H55.3193C55.6342 17.1055 55.9213 17.0142 56.163 16.8618C56.7573 16.4888 57.0756 15.7407 56.831 15.0078Z" fill="#D6D6D6"/>
+			</svg>
+			<p class="mt-3 mb-3">Are you sure you want to delete this item? </p>
+
+      </div>
+       <div class="modal-footer float-right">
+       	 <button style="background-color: #C8C5C5; color:#FFFFFF" type="button" class="float-right btn" data-dismiss="modal" aria-label="Close">Cancel</button>
+       	 <button id="deleteBtn" type="submit" class="float-right btn btn-danger">Delete</button>
+       </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+/* ---------------------------------------------------
+    NAVBAR STYLE
+----------------------------------------------------- */
+
+.profile-name{
+    font-size: 10px;
+}
+.role-style{
+     font-size: 7px;    
+     margin-left: 4px;  
+     color: #A9A7A7;
+}
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+#sidebar {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+    margin-left: -80px !important;
+    overflow: hidden;
+}
+.dropdown-toggle::after {
+    top: auto;
+    bottom: 10px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+}
+#sidebar.active {
+    margin-left: 0 !important;
+}
+
+#sidebar .dashboard-logo img{
+width: 60px;
+height: 30px;
+padding: 2px!important;
+}
+#sidebar ul li a {
+    padding: 20px 10px;
+     padding-left: 10px!important;
+}
+#sidebar ul li a span {
+    font-size: 0.85em;
+}
+#sidebar ul li a i {
+    margin-right: 0;
+    display: block;
+     font-size: 1.3em;
+}
+#sidebar {
+    margin-left: 0;
+}
+#sidebarCollapse span {
+    display: none;
+}
+
+/* ---------------------------------------------------
+    RECENT PROJECT CARD SECTION
+----------------------------------------------------- */
+
+
+.btn-big
+{
+    margin-top: 10px;
+    height: 103px;
+    font-size: 14px;
+}
+
+/* ---------------------------------------------------
+    Project Details Page
+----------------------------------------------------- */
+
+.project-detail-content {
+    display: inline-block;
+    position: relative;
+    left: 20px;
+    top: -11px;
+}
+/* ---------------------------------------------------
+    PROJECT PAGE 
+----------------------------------------------------- */
+
+.project-right-property select.form-select{
+    top: 1px;
+    position: relative;
+       width: 80px;
+    height: 26px;
+    margin-top: 0px;
+    margin-right: 7px;
+    background-color: #EFEFEF;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+   border:0px;
+   outline:0px;
+    font-size: 11px;
+
+}
+.project-right-property label{
+    position: absolute;
+    top: -17px;
+    font-size: 11px;
+}
