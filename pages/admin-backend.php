@@ -53,7 +53,7 @@ if($_POST['type']==2){
 
 		$filename = $_FILES['img_file']['name'];
 		$extension = pathinfo($filename, PATHINFO_EXTENSION);
-		$valid_extensions = array("jpg", "jpeg", "png");
+		$valid_extensions = array("jpg", "jpeg", "png", "PNG", "JPG");
 		if(in_array($extension, $valid_extensions)) {
 			$new_name = rand() . $date .  "." . $extension;
 			$path = "images/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
@@ -104,7 +104,7 @@ if($_POST['type']==3){
    		 while($allclients = mysqli_fetch_array($getAllClients)){
 
 	     $allClientData .= '<tr>
-	                            <td><img src="'.$allclients['user_profile'].'"></td>
+								<td><div style="background-image: url('.$allclients['user_profile'].'); height: 35px; width: 35px; background-position: center; background-size: cover; border-radius: 30px;"></div>
 	                            <td>'.$allclients['user_name'].'</td>
 	                            <td>'.$allclients['user_company'].'</td>
 	                            <td>'.$allclients['user_email'].'</td>
