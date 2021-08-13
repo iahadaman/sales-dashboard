@@ -11,6 +11,8 @@ if(!isset($_SESSION["admin_name"]))
   header('location: login.php');
 }
 
+include('backend/connection.php');
+$isTrue = false;
 //  if(isset($_GET['id']))
 //  {
 //     $DataExist = false;
@@ -30,9 +32,61 @@ if(!isset($_SESSION["admin_name"]))
 //       $project = mysqli_fetch_assoc($getProject);
 //      // $nameofCat = $catname['category_name'];
 //   }
+// }
    
+	if(isset($_GET['id'])) {
+		$project_id = mysqli_real_escape_string($con, $_GET['id']);
+		$getProjectData = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_id = '$project_id'");
+		if(mysqli_num_rows($getProjectData) > 0) {
+			$isTrue = true;
+		} else {
+			header('Location: dashboard.php');
+		}
+	}
 
-require_once '../partials/header.php';?>
+	if($isTrue) {	
+		function getProjectData($d) {
+			global $project_id, $con;
+			$dataGet = mysqli_query($con, "SELECT ". $d ." FROM webtrixpro_projects WHERE project_id = '$project_id'");
+			$returnData = mysqli_fetch_assoc($dataGet);
+			echo $returnData[$d];
+		}
+		function projectPlatform() {
+			global $con;
+			$getID = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '1'");
+			$platformData = mysqli_fetch_assoc($getID);
+			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '0' && $platformData['ios_platform'] == '0') {
+				echo "Web App";
+			}
+			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '0') {
+				echo "Web App, Android";
+			}
+			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '1') {
+				echo "All";
+			}
+			if($platformData['web_platform'] == '0' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '0') {
+				echo "Android";
+			}
+			if($platformData['web_platform'] == '0' && $platformData['andriod_platform'] == '0' && $platformData['ios_platform'] == '1') {
+				echo "IOS";
+			}
+			if($platformData['web_platform'] == '0' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '1') {
+				echo "IOS & Android";
+			}
+			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '0' && $platformData['ios_platform'] == '1') {
+				echo "IOS & Web";
+			}
+			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '0') {
+				echo "Android & Web";
+			}
+			if($platformData['web_platform'] == '0' && $platformData['andriod_platform'] == '0' && $platformData['ios_platform'] == '1') {
+				echo "Android & IOS";
+			}
+		}
+	}
+
+
+require_once '../partials/header.php'; ?>
     <div class="wrapper">      
        <?php require_once '../partials/sidebar.php';?>
         <!-- Page Content  -->
@@ -59,14 +113,14 @@ require_once '../partials/header.php';?>
 	                	    <div class="col-md-6 col-sm-12">
 		                	    <div class="project-detail-box"></div>
 			                	<div class="project-detail-content">
-				                	<p>Project Name<br><strong>webtricpro</strong></p>
-			                        <p>Project Platform<br><strong>Web Development</strong></p>
-			                        <p>Current Status<br><strong style="color:#2E5CAE">In progress</strong></p>
+				                	<p>Project Name<br><strong><?php echo getProjectData('project_name'); ?></strong></p>
+			                        <p>Project Platform<br><strong><?php echo projectPlatform(); ?></strong></p>
+			                        <p>Current Status<br><strong style="color:#2E5CAE"><?php echo getProjectData('project_label'); ?></strong></p>
 		                        </div>
 							</div>
 							<div class="col-md-6 col-sm-6">
-			                	<p>Project Start Date<br><strong>03/02/2021</strong></p>
-		                        <p>Client<br><strong class="profile-image-style"><img src="../images/profile.jpg"> Ali Aman</strong></p>
+			                	<p>Project Start Date<br><strong><?php echo getProjectData('project_date'); ?></strong></p>
+		                        <p>Client<br><strong class="profile-image-style"><img src="../images/profile.jpg" style="margin-right: 10px;"><?php echo getProjectData('project_client'); ?></strong></p>
 								<p>Final Version<br><strong class="link-style"><a href="https://finalversion.com">https://finalversion.com</a><i class="ml-2 fa fa-link" aria-hidden="true"></i></strong></p>
 							</div>
 						</div>
