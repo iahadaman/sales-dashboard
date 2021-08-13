@@ -1,6 +1,5 @@
 <?php require_once '../partials/header.php';?>
 
-<body>
 	<div class="logo-style">
 		<img class="mt-4 ml-5" src="../images/logo.png" alt="Webtrixpro"/>
 	</div>

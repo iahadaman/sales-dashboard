@@ -18,6 +18,7 @@ if($_POST['type']==1)
 	{
 		while($admin = mysqli_fetch_array($query)) {
 			$_SESSION['admin_name'] = $admin['user_name'];
+			$_SESSION['admin_id'] = $admin['user_id'];
 		}
 		
 	    // Login time is stored in a session variable
@@ -573,4 +574,51 @@ if($_POST['type']==13){
 			echo $allClientData;         
 		}
 	}
+
+	 // UPDATE ADMIN ACCOUNT
+
+if($_POST['type']==100){
+	  $adminName = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_name']));
+	  $adminEmail = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_email']));
+	  $adminPassword = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_password']));
+  	  $old_image = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_OldProfile']));
+
+  	    $adminId =  $_SESSION['admin_id'];
+ 
+		$datetime_variable = new DateTime();			 
+		$datetime_variable = date_format($datetime_variable, 'Y-m-d H:i:s');
+		$date = new DateTime();
+		$date = date_format($date, 'ymd');
+
+		if($_FILES['admin_updateProfile']['name'] != '')
+	    {
+		    $filename = $_FILES['admin_updateProfile']['name'];
+		    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+		    $valid_extensions = array("jpg", "jpeg", "png", "PNG", "JPG");
+		   if(in_array($extension, $valid_extensions)) {
+				$new_name = rand() . $date .  "." . $extension;
+				$admin_update_filename = "images/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
+				move_uploaded_file($_FILES['admin_updateProfile']['tmp_name'], $admin_update_filename);
+			}
+			else {
+				echo "Invalid Format";
+			}
+		}
+		else{
+
+			 $admin_update_filename = $old_image;
+		}
+
+		$adminPassword = md5($adminPassword);  
+		$updateUser =  "UPDATE `webtrixpro_users` SET `user_name`='$adminName', `user_email`='$adminEmail',`user_password`='$adminPassword',`user_profile`='$admin_update_filename' WHERE user_id = '$adminId'";
+        $query = mysqli_query($con, $updateUser);
+		if($query) {
+		  $_SESSION['admin_name'] = $adminName;
+		  echo 1;
+		}
+		else{
+			echo 0;
+		}		
+		
+}	
 ?>

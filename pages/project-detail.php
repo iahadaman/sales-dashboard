@@ -13,27 +13,7 @@ if(!isset($_SESSION["admin_name"]))
 
 include('backend/connection.php');
 $isTrue = false;
-//  if(isset($_GET['id']))
-//  {
-//     $DataExist = false;
-//     $idOfProject = mysqli_real_escape_string($link, $_GET['id']);
-//     $getIds = "SELECT project_id from `Webtrixpro_projects`";
-//     $query = mysqli_query($link, $getIds);
-//     while($ids = mysqli_fetch_array($query)){
-//       if( $ids['id'] == $idOfProject )
-//       {
-//         $DataExist = true;
-//       }
-// }  
 
-//  if( $DataExist == true )
-//   {
-//       $getProject = mysqli_query($link, "SELECT * FROM Webtrixpro_projects WHERE id = '$idOfProject'");
-//       $project = mysqli_fetch_assoc($getProject);
-//      // $nameofCat = $catname['category_name'];
-//   }
-// }
-   
 	if(isset($_GET['id'])) {
 		$project_id = mysqli_real_escape_string($con, $_GET['id']);
 		$getProjectData = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_id = '$project_id'");
@@ -111,7 +91,7 @@ require_once '../partials/header.php'; ?>
 	                	<hr>
 	                	<div class="project-detail-section row">  
 	                	    <div class="col-md-6 col-sm-12">
-		                	    <div class="project-detail-box"></div>
+		                	    <div class="project-detail-boxEmpty"></div>
 			                	<div class="project-detail-content">
 				                	<p>Project Name<br><strong><?php echo getProjectData('project_name'); ?></strong></p>
 			                        <p>Project Platform<br><strong><?php echo projectPlatform(); ?></strong></p>
