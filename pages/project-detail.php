@@ -120,7 +120,7 @@ require_once '../partials/header.php'; ?>
 							</div>
 							<div class="col-md-6 col-sm-6">
 			                	<p>Project Start Date<br><strong><?php echo getProjectData('project_date'); ?></strong></p>
-		                        <p>Client<br><strong class="profile-image-style"><img src="../images/profile.jpg" style="margin-right: 10px;"><?php echo getProjectData('project_client'); ?></strong></p>
+		                        <p>Client<br><strong class="profile-image-style"><img src="<?php echo getProjectData('project_clientProfile'); ?>" style="margin-right: 10px;height: 30px; width: 32px;"><?php echo getProjectData('project_client'); ?></strong></p>
 								<p>Final Version<br><strong class="link-style"><a href="https://finalversion.com">https://finalversion.com</a><i class="ml-2 fa fa-link" aria-hidden="true"></i></strong></p>
 							</div>
 						</div>
