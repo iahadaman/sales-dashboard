@@ -10,6 +10,11 @@
 
 $(document).ready(function(){	 
 
+	// Get Total Projects
+	getTotalProjects();
+	getTotalInProgressProjects();
+	getTotalCompletedProjects();
+
 	//select more option functionality on modal
 
 	$('.addMoreOptions').click(function() {
@@ -285,6 +290,39 @@ function getClientsData()
 				$('#manageClientsData').html(data);
 			}
 		});
+}
+
+function getTotalProjects() {
+	$.ajax({
+		type: 'POST',
+		url: 'admin-backend.php',
+		data: { type: 14 },
+		success: function( data ) {
+			$("#totalProjectsNumber").html(data);
+		}
+	})
+}
+
+function getTotalInProgressProjects() {
+	$.ajax({
+		type: "POST",
+		url: 'admin-backend.php',
+		data: { type: 15 },
+		success: function( data ) {
+			$("#totalProgressProjectsNumber").html(data);
+		}
+	})
+}
+
+function getTotalCompletedProjects() {
+	$.ajax({
+		type: "POST",
+		url: 'admin-backend.php',
+		data: { type: 16 },
+		success: function( data ) {
+			$("#totalCompletedProjectNumber").html(data);
+		}
+	})
 }
 
 // EDIT CLIENT 

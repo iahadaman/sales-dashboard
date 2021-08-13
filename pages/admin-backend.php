@@ -521,4 +521,23 @@ if($_POST['type']==13){
 	 }
 }  
 
+	// Get total number of projects - dashboard
+	if($_POST['type'] == 14) {
+			$query = "SELECT * FROM webtrixpro_projects";
+			$result = mysqli_query($con, $query);
+			echo mysqli_num_rows($result);
+	}
+
+	// Get total number of in progress projects - dashboard
+	if($_POST['type'] == 15) {
+		$query = "SELECT * FROM webtrixpro_projects WHERE project_label = 'In Progress'";
+		$result = mysqli_query($con, $query);
+		echo mysqli_num_rows($result);
+	}
+	// Get total number of completed projects - dashboard.
+	if($_POST['type'] == 16) {
+		$query = "SELECT * FROM webtrixpro_projects WHERE project_label = 'Completed'";
+		$result = mysqli_query($con, $query);
+		echo mysqli_num_rows($result); 
+	}
 ?>

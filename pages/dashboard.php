@@ -39,7 +39,7 @@ require_once '../partials/header.php';?>
                       </svg>
                     </div>   
                     <div class="card-content my-auto ml-3">
-                        <p>Total Projects<br><strong>146</strong></p>
+                        <p>Total Projects<br><strong id="totalProjectsNumber"></strong></p>
                     </div> 
                     <div class="card-icon my-auto">  
 
@@ -88,7 +88,7 @@ require_once '../partials/header.php';?>
 
                     </div>   
                     <div class="card-content my-auto ml-3">
-                        <p>In Progress Projects<br><strong>20</strong></p>
+                        <p>In Progress Projects<br><strong id="totalProgressProjectsNumber"></strong></p>
                     </div> 
                     <div class="card-icon my-auto">  
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -112,7 +112,7 @@ require_once '../partials/header.php';?>
 
                     </div>   
                     <div class="card-content my-auto ml-3">
-                        <p>Completed Projects<br><strong>126</strong></p>
+                        <p>Completed Projects<br><strong id="totalCompletedProjectNumber"></strong></p>
                     </div> 
                     <div class="card-icon my-auto">  
                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
