@@ -15,6 +15,14 @@ $(document).ready(function(){
 	getTotalInProgressProjects();
 	getTotalCompletedProjects();
 
+	// Search Client Filter
+	$("#searchClientFilter").on("keyup", function() {
+		let value = $(this).val().toLowerCase();
+		$("#clientsTable tr").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		})
+	})
+
 	//select more option functionality on modal
 
 	$('.addMoreOptions').click(function() {

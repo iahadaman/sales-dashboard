@@ -27,8 +27,8 @@ require_once '../partials/header.php'; ?>
 	                	
 	                	 <div class="float-right project-right-property">
 	                	 	 
-						    <label for="exampleInputSearch">Search</label>
-						    <input type="text" id="exampleInputSearch" placeholder="Search">
+						    <label for="exampleInputSearch" id="">Search</label>
+						    <input type="text" id="searchClientFilter" placeholder="Search">
 						
 	                	 	
 	                	 	<button type="button" data-toggle="modal" data-target="#addClient" class="btn btn-bg btn-component"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp Add Client</button> 

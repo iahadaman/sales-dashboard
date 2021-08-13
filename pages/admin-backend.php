@@ -99,12 +99,12 @@ if($_POST['type']==3){
 	                            <th>Actions</th>                         
 	                          </tr>
 	                        </thead>	                       
-	                        <tbody>';       
+	                        <tbody id="clientsTable">';       
     	$getAllClients = mysqli_query($con, "SELECT * FROM webtrixpro_users WHERE user_isAdmin !=1 ORDER BY user_id desc");
    		 while($allclients = mysqli_fetch_array($getAllClients)){
 
 	     $allClientData .= '<tr>
-								<td><div style="background-image: url('.$allclients['user_profile'].'); height: 35px; width: 35px; background-position: center; background-size: cover; border-radius: 30px;"></div>
+								<td><div style="background-image: url('.$allclients['user_profile'].'); height: 30px; width: 30px; background-position: center; background-size: cover; border-radius: 30px;"></div>
 	                            <td>'.$allclients['user_name'].'</td>
 	                            <td>'.$allclients['user_company'].'</td>
 	                            <td>'.$allclients['user_email'].'</td>
