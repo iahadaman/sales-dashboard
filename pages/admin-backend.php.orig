@@ -578,6 +578,35 @@ if($_POST['type']==13){
 		}
 	}
 
+<<<<<<< HEAD
+	if($_POST['type'] == '18') {
+		
+		$title = mysqli_real_escape_string($con, $_POST['title']);
+		$description = mysqli_real_escape_string($con, $_POST['description']);
+		if($_POST['link'] != "") {
+			$link = mysqli_real_escape_string($con, $_POST['link']);
+		}
+		$projectID = $_POST['projectID'];
+		$process = $_POST['process'];
+		if($_FILES['process_file']['name'] != ''){
+
+			$filename = $_FILES['process_file']['name'];
+			$extension = pathinfo($filename, PATHINFO_EXTENSION);
+			$valid_extensions = array("jpg", "jpeg", "png", "PNG", "JPG", "docx");
+			if(in_array($extension, $valid_extensions)) {
+				$new_name = rand() .  "." . $extension;
+				$path = "files/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
+	
+				if(move_uploaded_file($_FILES['process_file']['tmp_name'], $path)) {
+					$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title)values('$projectID', '$process','$description', '$path', '$title')";
+					if(mysqli_query($con, $insertquery)) {
+					 echo 1;
+					}
+					else{
+						echo 0;					
+					}
+				}
+=======
 	 // UPDATE ADMIN ACCOUNT
 
 if($_POST['type']==100){
@@ -602,10 +631,23 @@ if($_POST['type']==100){
 				$new_name = rand() . $date .  "." . $extension;
 				$admin_update_filename = "images/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
 				move_uploaded_file($_FILES['admin_updateProfile']['tmp_name'], $admin_update_filename);
+>>>>>>> 452f50969f16b9bf7c4fd667f76b917f311f5c2f
 			}
 			else {
 				echo "Invalid Format";
 			}
+<<<<<<< HEAD
+		} else { 
+			$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title)values('$projectID', '$process','$description', '$path', '$title')";
+			if(mysqli_query($con, $insertquery)) {
+			 echo 1;
+			}
+			else{
+				echo 0;					
+			}
+		}	
+	}
+=======
 		}
 		else{
 
@@ -624,45 +666,5 @@ if($_POST['type']==100){
 		}		
 		
 }	
-if($_POST['type'] == '18') {
-		
-	$title = mysqli_real_escape_string($con, $_POST['title']);
-	$description = mysqli_real_escape_string($con, $_POST['description']);
-	if($_POST['link'] != "") {
-		$link = mysqli_real_escape_string($con, $_POST['link']);
-	}
-	$projectID = $_POST['projectID'];
-	$process = $_POST['process'];
-	if($_FILES['process_file']['name'] != ''){
-
-		$filename = $_FILES['process_file']['name'];
-		$extension = pathinfo($filename, PATHINFO_EXTENSION);
-		$valid_extensions = array("jpg", "jpeg", "png", "PNG", "JPG", "docx");
-		if(in_array($extension, $valid_extensions)) {
-			$new_name = rand() .  "." . $extension;
-			$path = "files/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
-
-			if(move_uploaded_file($_FILES['process_file']['tmp_name'], $path)) {
-				$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title)values('$projectID', '$process','$description', '$path', '$title')";
-				if(mysqli_query($con, $insertquery)) {
-				 echo 1;
-				}
-				else{
-					echo 0;					
-				}
-			}
-		}
-		else {
-			echo "Invalid Format";
-		}
-	} else { 
-		$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title)values('$projectID', '$process','$description', '$path', '$title')";
-		if(mysqli_query($con, $insertquery)) {
-		 echo 1;
-		}
-		else{
-			echo 0;					
-		}
-	}	
-}
+>>>>>>> 452f50969f16b9bf7c4fd667f76b917f311f5c2f
 ?>
