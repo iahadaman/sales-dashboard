@@ -944,6 +944,98 @@ function check_session()
     });
        
 }
+// Add Item
+
+function addNewItem(projectId, process) {
+	event.preventDefault();
+	let title;
+	let description;
+	let link;
+
+	if( process == 'discovery' ) {
+		var formData = new FormData(discovery);
+		 title = $("#title").val();
+		 description = $("#description").val();
+		 link = $("#link").val();
+	}
+	if( process == 'design' ) {
+		var formData = new FormData(design);
+		title = $("#design_title").val();
+		description = $("#design_description").val();
+		link = $("#design_link").val();
+	}
+	if( process == 'coding' ) {
+		var formData = new FormData(design);
+		title = $("#coding_title").val();
+		description = $("#coding_description").val();
+		link = $("#coding_link").val();
+	}
+
+	if ( process == 'maintenance' ) {
+		var formData = new FormData(maintenance);
+		title = $("#main_title").val();
+		description = $("#main_description").val();
+		link = $("#main_link").val();
+	}
+	
+
+	formData.append('type', 18);
+	formData.append('process', process);
+	formData.append('projectID', projectId);
+	formData.append('title', title);
+	formData.append('description', description);
+	formData.append('link', link);
+	alert(title);
+
+	if(title != "" && title != "" && description != "")
+	{
+		$.ajax({
+			type: 'POST',
+			url: 'admin-backend.php',
+			data: formData,
+			mimeType:'multipart/form-data',
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function(e){
+				if(e == 1) {
+					alert('Added... Reloading');
+					location.reload();
+				}
+				// if(e==1){
+				// 	$("#client_error").css("display", "block");
+				// 	$("#client_error").removeClass("alert-danger");
+				// 	$("#client_error").addClass("alert-success");
+				// 	$("#client_error").text("Client Added Successfully!");
+				// 	setTimeout(function() {
+				//     $('#client_error').fadeOut('fast');
+				// 	}, 3000); 
+				// 	$("#clientName").val("");
+				// 	$("#companyName").val("");
+				// 	$("#clientEmail").val("");
+				// 	$("#clientPassword").val("");
+				// 	$("#clientDes").val("");
+				// 	$("#exampleFormControlFile").val("");
+				// 	getClientsData();
+				// }
+				// else{
+				// 	$("#client_error").css("display", "block");
+				// 	$("#client_error").removeClass("alert-success");
+				// 	$("#client_error").addClass("alert-danger");
+				// 	$("#client_error").text("Something went wrong, Please try again later!!");
+				// }
+			}
+		});
+	}
+	else
+	{
+		$("#client_error").css("display", "block");
+		$("#client_error").removeClass("alert-success");
+		$("#client_error").addClass("alert-danger");
+		$("#client_error").text("All Fields Are Required");
+	}
+}
+
 setInterval(function()
 {
 	check_session();

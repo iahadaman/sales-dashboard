@@ -124,45 +124,33 @@ require_once '../partials/header.php'; ?>
 	                 		<div class="col-md-3 col-sm-12">
 	                 			<div class="small-card">
 		                 			<h6 class="pull-left d-inline main-heading">DISCOVERY </h6><span class="float-right">:</span>    
-		                 			<div class="sub-small-card">           						
-			                 			<div class="row">
-			                 				<div class="col-8">		                 
-				                 				<h6>Discovery details in PDF</h6>
-				                 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque commodo gravida  </p>
-				                 				<a class="float-right" href="">View More</a>
-				                 				<br>
-				                 				<div class="card-end">
-				                 				<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
-				                 				</div>
-				                 			</div>
-			                 				<div class="col-4 mt-2">
-			                 					<div class="image-bg"><img src="../images/profile.jpg"></div>
-			                 					<div class="new-p">
-			                 						<p>New</p>
-			                 					</div>
-			                 					
-			                 				</div>
-				                 		</div>	
-		                 			</div>
 
-		                 			<div class="sub-small-card">           						
-			                 			<div class="row">
-										
-				                 				<div class="col-8">		                 
-					                 				<h6>Discovery details in PDF</h6>
-					                 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque commodo gravida  </p>
-					                 				<a class="float-right" href="">View More</a>
-					                 				<br>
-					                 				<div class="card-end">
-					                 				<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
-					                 				</div>
-					                 			</div>
-				                 				<div class="col-4 mt-2">
-				                 					<div class="image-bg"><img src="../images/profile.jpg"></div>
-				                 					
-				                 				</div>
-				                 		</div>	
-		                 			</div>
+											 <?php 
+											 	$getDiscovery = mysqli_query($con, "SELECT * FROM webtrixpro_updates WHERE project_id = '$project_id' AND process_name = 'discovery'");
+												 if(mysqli_num_rows($getDiscovery) > 0) {
+													while($discovery = mysqli_fetch_array($getDiscovery)) {
+														echo '
+														<div class="sub-small-card" style="box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
+														<div class="row">
+														<div class="col-8">		                 
+														<h6>' . $discovery['process_title'] . '</h6>
+														<p>'. $discovery['process_description'] .'</p>
+														<br>
+														<div class="card-end">
+														<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
+														</div>
+													</div>
+													<div class="col-4 mt-2">
+														<div class="image-bg"><a href="' . $discovery['process_file'] . '"><img src="files/download.svg"></a></div>
+													</div>
+														</div>	
+														</div>
+														';
+													}
+												 } else {
+													 echo 'No Data...';
+												 }
+											 ?>
 
 		                 			<div class="small-card-link">
 		                 			<a type="button" data-toggle="modal" data-target="#addUpdate" href="">Add Item</a>
@@ -172,139 +160,103 @@ require_once '../partials/header.php'; ?>
 	                 		<div class="col-md-3 col-sm-12">
 	                 			<div class="small-card">
 		                 			<h6 class="pull-left d-inline main-heading">DESIGN </h6><span class="float-right">:</span>    
-		                 			<div class="sub-small-card">           						
-			                 			<div class="row">
-										
-				                 				<div class="col-8">		                 
-					                 				<h6>Discovery details in PDF</h6>
-					                 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque commodo gravida  </p>
-					                 				<a class="float-right" href="">View More</a>
-					                 				<br>
-					                 				<div class="card-end">
-					                 				<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
-					                 				</div>
-					                 			</div>
-				                 				<div class="col-4 mt-2">
-				                 					<div class="image-bg"><img src="../images/profile.jpg"></div>
-				                 					<div class="new-p">
-				                 						<p>New</p>
-				                 					</div>
-				                 					
-				                 				</div>
-				                 		</div>	
-		                 			</div>
-
-		                 			<div class="sub-small-card">           						
-			                 			<div class="row">
-										
-				                 				<div class="col-8">		                 
-					                 				<h6>Discovery details in PDF</h6>
-					                 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque commodo gravida  </p>
-					                 				<a class="float-right" href="">View More</a>
-					                 				<br>
-					                 				<div class="card-end">
-					                 				<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
-					                 				</div>
-					                 			</div>
-				                 				<div class="col-4 mt-2">
-				                 					<div class="image-bg"><img src="../images/profile.jpg"></div>
-				                 				</div>
-				                 		</div>	
-		                 			</div>
-
+									 <?php 
+											 	$getDiscovery = mysqli_query($con, "SELECT * FROM webtrixpro_updates WHERE project_id = '$project_id' AND process_name = 'design'");
+												 if(mysqli_num_rows($getDiscovery) > 0) {
+													while($discovery = mysqli_fetch_array($getDiscovery)) {
+														echo '
+														<div class="sub-small-card" style="box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
+														<div class="row">
+														<div class="col-8">		                 
+														<h6>' . $discovery['process_title'] . '</h6>
+														<p>'. $discovery['process_description'] .'</p>
+														<br>
+														<div class="card-end">
+														<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
+														</div>
+													</div>
+													<div class="col-4 mt-2">
+														<div class="image-bg"><a href="' . $discovery['process_file'] . '"><img src="files/download.svg"></a></div>
+													</div>
+														</div>	
+														</div>
+														';
+													}
+												 } else {
+													 echo 'No Data...';
+												 }
+											 ?>
+		                 			<div class="small-card-link">
+		                 			<a type="button" data-toggle="modal" data-target="#design_addUpdate" href="">Add Item</a>
+									</div>
 		                 		</div>
 							</div>
 	                 		<div class="col-md-3 col-sm-12">
 	                 			<div class="small-card">
 		                 			<h6 class="pull-left d-inline main-heading">CODING </h6><span class="float-right">:</span>    
-		                 			<div class="sub-small-card">           						
-			                 			<div class="row">
-				                 				<div class="col-8">		                 
-					                 				<h6>Discovery details in PDF</h6>
-					                 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque commodo gravida  </p>
-					                 				<a class="float-right" href="">View More</a>
-					                 				<br>
-					                 				<div class="card-end">
-					                 				<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
-					                 				</div>
-					                 			</div>
-				                 				<div class="col-4 mt-2">
-				                 					<div class="image-bg"><img src="../images/profile.jpg"></div>
-				                 					<div class="new-p">
-				                 						<p>New</p>
-				                 					</div>
-				                 					
-				                 				</div>
-			                 				</div>	
-	                 				</div>
-		                 			<div class="sub-small-card">           						
-			                 			<div class="row">
-										
-				                 				<div class="col-8">		                 
-					                 				<h6>Discovery details in PDF</h6>
-					                 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque commodo gravida  </p>
-					                 				<a class="float-right" href="">View More</a>
-					                 				<br>
-					                 				<div class="card-end">
-					                 				<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
-					                 				</div>
-					                 			</div>
-				                 				<div class="col-4 mt-2">
-				                 					<div class="image-bg"><img src="../images/profile.jpg"></div>
-				                 					<div class="new-p">
-				                 						<p>New</p>
-				                 					</div>
-				                 					
-				                 				</div>
-				                 		</div>	
-		                 			</div>
-		                 			<div class="sub-small-card">           						
-			                 			<div class="row">
-				                 				<div class="col-8">		                 
-					                 				<h6>Discovery details in PDF</h6>
-					                 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque commodo gravida  </p>
-					                 				<a class="float-right" href="">View More</a>
-					                 				<br>
-					                 				<div class="card-end">
-					                 				<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
-					                 				</div>
-					                 			</div>
-				                 				<div class="col-4 mt-2">
-				                 					<div class="image-bg"><img src="../images/profile.jpg"></div>
-				                 					
-				                 				</div>
-				                 		</div>	
-		                 			</div>
+									 <?php 
+											 	$getDiscovery = mysqli_query($con, "SELECT * FROM webtrixpro_updates WHERE project_id = '$project_id' AND process_name = 'coding'");
+												 if(mysqli_num_rows($getDiscovery) > 0) {
+													while($discovery = mysqli_fetch_array($getDiscovery)) {
+														echo '
+														<div class="sub-small-card" style="box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
+														<div class="row">
+														<div class="col-8">		                 
+														<h6>' . $discovery['process_title'] . '</h6>
+														<p>'. $discovery['process_description'] .'</p>
+														<br>
+														<div class="card-end">
+														<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
+														</div>
+													</div>
+													<div class="col-4 mt-2">
+														<div class="image-bg"><a href="' . $discovery['process_file'] . '"><img src="files/download.svg"></a></div>
+													</div>
+														</div>	
+														</div>
+														';
+													}
+												 } else {
+													 echo 'No Data...';
+												 }
+											 ?>
 		                 			<div class="small-card-link">
-		                 			<a type="button" data-toggle="modal" data-target="#addUpdate" href="">Add Item</a>
+		                 			<a type="button" data-toggle="modal" data-target="#coding_addUpdate" href="">Add Item</a>
 									</div>
 								</div>
 	                 		</div>
 	                 		<div class="col-md-3 col-sm-12">
 	                 			<div class="small-card">
 		                 			<h6 class="pull-left d-inline main-heading">MAINTENANCE </h6><span class="float-right">:</span>    
-		                 			<div class="sub-small-card">           						
-			                 			<div class="row">
-				                 				<div class="col-8">		                 
-					                 				<h6>Discovery details in PDF</h6>
-					                 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque commodo gravida  </p>
-					                 				<a class="float-right" href="">View More</a>
-					                 				<br>
-					                 				<div class="card-end">
-					                 				<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
-					                 				</div>
-					                 			</div>
-				                 				<div class="col-4 mt-2">
-				                 					<div class="image-bg"><img src="../images/profile.jpg"></div>
-				                 					<div class="new-p">
-				                 						<p>New</p>
-				                 					</div>		                 					
-				                 				</div>
-				                 		</div>	
-		                 			</div>
+									 <?php 
+											 	$getDiscovery = mysqli_query($con, "SELECT * FROM webtrixpro_updates WHERE project_id = '$project_id' AND process_name = 'maintenance'");
+												 if(mysqli_num_rows($getDiscovery) > 0) {
+													while($discovery = mysqli_fetch_array($getDiscovery)) {
+														echo '
+														<div class="sub-small-card" style="box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
+														<div class="row">
+														<div class="col-8">		                 
+														<h6>' . $discovery['process_title'] . '</h6>
+														<p>'. $discovery['process_description'] .'</p>
+														<br>
+														<div class="card-end">
+														<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
+														</div>
+													</div>
+													<div class="col-4 mt-2">
+														<div class="image-bg"><a href="' . $discovery['process_file'] . '"><img src="files/download.svg"></a></div>
+													</div>
+														</div>	
+														</div>
+														';
+													}
+												 } else {
+													 echo 'No Data...';
+												 }
+											 ?>
 		                 			
 		                 			<div class="small-card-link">
-		                 			<a type="button" data-toggle="modal" data-target="#addUpdate" href="">Add Item</a>
+		                 			<a type="button" data-toggle="modal" data-target="#main_addUpdate" href="">Add Item</a>
 									</div>
 	                 			</div>
 	                 		</div>
@@ -314,7 +266,147 @@ require_once '../partials/header.php'; ?>
             </div>          
         </div>
     </div>
+<!-- MODAL FOR DISCOVERY -->
+	<div class="modal fade" id="addUpdate" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-5 p-4">
+      <div class="modal-header pl-0">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-0">
+        	<form name="discovery">
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Title</label>
+			    <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter your project name">
+			  </div>
+			    <div class="form-group">
+			    <label for="exampleFormControlTextarea1">Description</label>
+			    <textarea class="form-control" id="description" rows="3"></textarea>
+			  	</div>
 
-<?php require_once 'modals/delete-modal.php';?>   
-<?php require_once 'modals/add-update-modal.php';?>  
+			  	<div class="form-group">
+			    <label for="exampleFormControlFile1">Add File/Image</label>
+			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
+			   </div>
+			 <div class="form-group">
+			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
+			    <input type="email" class="form-control" id="link" aria-describedby="emailHelp" placeholder="www.example.com/">
+			  </div>
+			   <button type="button" class="btn-submit float-right btn" id="add_item_btn" onclick="addNewItem(<?php echo $project_id ?>, 'discovery');">Done</button>
+			</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DESIGN MODAL -->
+<div class="modal fade" id="design_addUpdate" tabindex="-1" role="dialog" aria-labelledby="design_addUpdate" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-5 p-4">
+      <div class="modal-header pl-0">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-0">
+        	<form name="design">
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Title</label>
+			    <input type="text" class="form-control" id="design_title" aria-describedby="emailHelp" placeholder="Enter your project name">
+			  </div>
+			    <div class="form-group">
+			    <label for="exampleFormControlTextarea1">Description</label>
+			    <textarea class="form-control" id="design_description" rows="3"></textarea>
+			  	</div>
+
+			  	<div class="form-group">
+			    <label for="exampleFormControlFile1">Add File/Image</label>
+			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
+			   </div>
+			 <div class="form-group">
+			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
+			    <input type="email" class="form-control" id="design_link" aria-describedby="emailHelp" placeholder="www.example.com/">
+			  </div>
+			   <button type="button" class="btn-submit float-right btn" id="add_item_btn" onclick="addNewItem(<?php echo $project_id ?>, 'design');">Done</button>
+			</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CODING -->
+<div class="modal fade" id="coding_addUpdate" tabindex="-1" role="dialog" aria-labelledby="coding_addUpdate" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-5 p-4">
+      <div class="modal-header pl-0">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-0">
+        	<form name="coding">
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Title</label>
+			    <input type="text" class="form-control" id="coding_title" aria-describedby="emailHelp" placeholder="Enter your project name">
+			  </div>
+			    <div class="form-group">
+			    <label for="exampleFormControlTextarea1">Description</label>
+			    <textarea class="form-control" id="coding_description" rows="3"></textarea>
+			  	</div>
+
+			  	<div class="form-group">
+			    <label for="exampleFormControlFile1">Add File/Image</label>
+			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
+			   </div>
+			 <div class="form-group">
+			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
+			    <input type="email" class="form-control" id="coding_link" aria-describedby="emailHelp" placeholder="www.example.com/">
+			  </div>
+			   <button type="button" class="btn-submit float-right btn" id="add_item_btn" onclick="addNewItem(<?php echo $project_id ?>, 'coding');">Done</button>
+			</form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MAINTENANCE -->
+<div class="modal fade" id="main_addUpdate" tabindex="-1" role="dialog" aria-labelledby="main_addUpdate" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-5 p-4">
+      <div class="modal-header pl-0">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-0">
+        	<form name="maintenance">
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Title</label>
+			    <input type="text" class="form-control" id="main_title" aria-describedby="emailHelp" placeholder="Enter your project name">
+			  </div>
+			    <div class="form-group">
+			    <label for="exampleFormControlTextarea1">Description</label>
+			    <textarea class="form-control" id="main_description" rows="3"></textarea>
+			  	</div>
+
+			  	<div class="form-group">
+			    <label for="exampleFormControlFile1">Add File/Image</label>
+			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
+			   </div>
+			 <div class="form-group">
+			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
+			    <input type="email" class="form-control" id="main_link" aria-describedby="emailHelp" placeholder="www.example.com/">
+			  </div>
+			   <button type="button" class="btn-submit float-right btn" id="add_item_btn" onclick="addNewItem(<?php echo $project_id ?>, 'maintenance');">Done</button>
+			</form>
+      </div>
+    </div>
+  </div>
+</div>
+<button onclick="addNewItem(<?php echo $project_id ?>, 'design');"></button>
 <?php require_once '../partials/footer.php';?>   

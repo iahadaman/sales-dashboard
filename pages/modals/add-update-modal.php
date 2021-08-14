@@ -8,25 +8,25 @@
         </button>
       </div>
       <div class="modal-body px-0">
-        	<form>
+        	<form name="additem">
 			  <div class="form-group">
 			    <label for="exampleInputEmail1">Title</label>
-			    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your project name">
+			    <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter your project name">
 			  </div>
 			    <div class="form-group">
 			    <label for="exampleFormControlTextarea1">Description</label>
-			    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+			    <textarea class="form-control" id="description" rows="3"></textarea>
 			  	</div>
 
 			  	<div class="form-group">
 			    <label for="exampleFormControlFile1">Add File/Image</label>
-			    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
 			   </div>
 			 <div class="form-group">
-			    <label for="exampleInputEmail1">Link (Optional)</label>
-			    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="www.example.com/">
+			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
+			    <input type="email" class="form-control" id="link" aria-describedby="emailHelp" placeholder="www.example.com/">
 			  </div>
-			   <button type="button" class="btn-submit float-right btn">Done</button>
+			   <button type="button" class="btn-submit float-right btn" id="add_item_btn">Done</button>
 			</form>
       </div>
     </div>
