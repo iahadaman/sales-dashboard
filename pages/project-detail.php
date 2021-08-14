@@ -137,7 +137,7 @@ require_once '../partials/header.php'; ?>
 														<p>'. $discovery['process_description'] .'</p>
 														<br>
 														<div class="card-end">
-														<a type="button" data-toggle="modal" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
+														<a type="button" data-toggle="modal" onclick="deleteUpdate('. $discovery['update_id'] .')" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
 														</div>
 													</div>
 													<div class="col-4 mt-2">

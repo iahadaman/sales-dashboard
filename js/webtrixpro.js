@@ -985,7 +985,6 @@ function addNewItem(projectId, process) {
 	formData.append('title', title);
 	formData.append('description', description);
 	formData.append('link', link);
-	alert(title);
 
 	if(title != "" && title != "" && description != "")
 	{
@@ -999,8 +998,21 @@ function addNewItem(projectId, process) {
 			processData: false,
 			success: function(e){
 				if(e == 1) {
-					alert('Added... Reloading');
-					location.reload();
+					Swal.fire({
+						title: 'Uploaded',
+						showDenyButton: false,
+						showCancelButton: true,
+						confirmButtonText: `Okay`,
+						denyButtonText: `Don't save`,
+					  }).then((result) => {
+						/* Read more about isConfirmed, isDenied below */
+						if (result.isConfirmed) {
+							location.reload();
+						} else if (result.isDenied) {
+						  Swal.fire('Changes are not saved', '', 'info')
+						}
+					  })
+					
 				}
 				// if(e==1){
 				// 	$("#client_error").css("display", "block");
@@ -1205,4 +1217,53 @@ function getSalesCardData()
 				$('#salesCardsData').html(data);
 			}
 	});	
+}
+
+//Delete Update
+function deleteUpdate(updateId) {
+	Swal.fire({
+		title: 'Are you sure?',
+		text: "You won't be able to revert this!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, delete it!'
+	  }).then((result) => {
+		if (result.isConfirmed) {
+		//   Swal.fire(
+		// 	'Deleted!',
+		// 	'Your file has been deleted.',
+		// 	'success'
+		//   )
+		$.ajax({
+			url: "admin-backend.php",
+			type: "POST",
+			data: { type: 19, updateId: updateId },
+			beforeSend: function() {
+				alert('Deleting...');
+			},
+			success: function(e) {
+				if(e == 1) {
+					Swal.fire(
+						'Deleted!',
+						'Your file has been deleted.',
+						'success'
+					  ).then((result) => {
+						  if(result.isConfirmed) {
+							location.reload();
+						  }
+					  })
+					  
+				} else {
+					Swal.fire(
+						'Error!',
+						e,
+						'danger'
+					  )
+				}
+			}
+		})
+		}
+	  })
 }

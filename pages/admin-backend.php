@@ -656,7 +656,7 @@ if($_POST['type'] == '18') {
 			echo "Invalid Format";
 		}
 	} else { 
-		$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title)values('$projectID', '$process','$description', '$path', '$title')";
+		$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title)values('$projectID', '$process','$description', '', '$title')";
 		if(mysqli_query($con, $insertquery)) {
 		 echo 1;
 		}
@@ -664,5 +664,15 @@ if($_POST['type'] == '18') {
 			echo 0;					
 		}
 	}	
+}
+if($_POST['type'] == 19) {
+	$updateId = mysqli_real_escape_string($con,$_POST['updateId']);
+	$deleteUpdate = mysqli_query($con, "DELETE FROM webtrixpro_updates WHERE update_id = '$updateId'");
+	if( $deleteUpdate ) {
+		echo 1;
+	} else {
+		echo "An Error Occured!";
+	}
+
 }
 ?>
