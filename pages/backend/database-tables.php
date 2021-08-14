@@ -45,4 +45,15 @@ $Platforms_Table = "CREATE TABLE `webtrixpro_platforms`(`platform_id` INT(99) NO
                                   `ios_platform` INT(100) NOT NULL,
                                   PRIMARY KEY (`platform_id`))";
 mysqli_query($con, $Platforms_Table);
+
+//WebtrixPro_Updates Table
+
+$Updates_table = "CREATE TABLE `webtrixpro_updates`(`update_id` INT(11) NOT NULL AUTO_INCREMENT,
+                                  `project_id` INT(11) NOT NULL,
+                                  `process_name` VARCHAR(500) NOT NULL,
+                                  `process_description` VARCHAR(500) NOT NULL,
+                                  `process_file` VARCHAR(500) NOT NULL,
+                                  `process_title` VARCHAR(500) NOT NULL
+                                  PRIMARY KEY (`update_id`))";
+mysqli_query($con, $Updates_table);
 ?>
