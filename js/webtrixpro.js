@@ -142,31 +142,31 @@ $(document).ready(function(){
 	  $(this).data("clicks", !clicks);
 	});
 
-	//to remove dropdown
+	//to remove dropdown in update modal
 
 	$('.u_removeOptions').click(function() {
 
-	   var clicks = $(this).data('clicks');
+	  var clicks = $(this).data('clicks');
 	  if (clicks) {
-	  	//even
-	  	$('#u_projectThirdPlatform').val('Select Project Platform').trigger("change");
-	    u_sPlatform = document.querySelector(".u_second-platform");
-	    u_sPlatform.style.display = "none";
 
+	    $('#u_projectSecondPlatform').val('Select Project Platform').trigger("change");
+	    u_tPlatform = document.querySelector(".u_third-platform");
+	    u_tPlatform.style.display = "none";
+
+	    remove = document.querySelector(".u_removeOptions");
+	    remove.style.display = "none";	    
 
 	  } else {
 	  	//odd
-	  	$('#u_projectSecondPlatform').val('Select Project Platform').trigger("change");
 
-	    tPlatform = document.querySelector(".u_third-platform");
-	    tPlatform.style.display = "none";
+	    $('#u_projectThirdPlatform').val('Select Project Platform').trigger("change");
 
-	    remove = document.querySelector(".u_removeOptions");
-	    remove.style.display = "none";
+	    u_sPlatform = document.querySelector(".u_second-platform");
+	    u_sPlatform.style.display = "none";
+
 	  }
 	  $(this).data("clicks", !clicks);
 	});
-
 
 	//modal label functionality
 
@@ -705,7 +705,7 @@ $(document).on('click', '.edit_project_data', function(){
 
 						 tPlatform = document.querySelector(".u_third-platform");
 		                 tPlatform.style.display = "block";
-						 $('#u_projectSecondPlatform').val("Andriod Development");
+						 $('#u_projectSecondPlatform').val("Android Development");
 						 remove = document.querySelector(".u_removeOptions");
 	   					 remove.style.display = "block"; 
 
@@ -716,7 +716,7 @@ $(document).on('click', '.edit_project_data', function(){
 					//when the platforms are 2
 					if(e.web_platform == 0 && e.andriod_platform == 1 && e.ios_platform == 1)
 					{
-						 $('#u_projectPlatform').val("Andriod Development");  
+						 $('#u_projectPlatform').val("Android Development");  
 
 						 tPlatform = document.querySelector(".u_third-platform");
 		                 tPlatform.style.display = "block";
@@ -735,7 +735,7 @@ $(document).on('click', '.edit_project_data', function(){
 
 						 tPlatform = document.querySelector(".u_third-platform");
 		                 tPlatform.style.display = "block";
-						 $('#u_projectSecondPlatform').val("Andriod Development");
+						 $('#u_projectSecondPlatform').val("Android Development");
 						 remove = document.querySelector(".u_removeOptions");
 	   					 remove.style.display = "block";
 
@@ -775,7 +775,7 @@ $(document).on('click', '.edit_project_data', function(){
 					}
 					else if(e.web_platform == 0 && e.andriod_platform == 1 && e.ios_platform == 0)
 					{
-						 $('#u_projectPlatform').val("Andriod Development");  
+						 $('#u_projectPlatform').val("Android Development");  
 
 						  $('#u_projectSecondPlatform').val('Select Project Platform').trigger("change");
 						 tPlatform = document.querySelector(".u_third-platform");
@@ -816,7 +816,7 @@ $(document).on('click', '.edit_project_data', function(){
             dataType:"json",  
             success:function(data){  
                 $('#u_projectName').val(data.project_name);  
-                $('#u_projectClientName').val(data.project_client);  
+               $('#u_projectClientName option:selected').text(data.user_name); 
                 $('#pplatform_Id').val(data.project_platformId); 
                 $('#u_projectDate').val(data.project_date);  
                 $('#u_projectDescription').val(data.project_description);  
@@ -1077,3 +1077,37 @@ $("#accountUpdateBtn").on("click", function() {
 	}
 });
 
+// MANAGE SALES PROJECTS
+
+setTimeout(function() {
+		$fired_main_button = "In Progress"; 		
+		$(".mainBtn button.btnLabel").click(function(){
+	     $fired_main_button = $(this).val();	
+	     readAllprojects = $fired_main_button; 
+	     $.ajax({
+			type: 'POST',
+			url: 'sales-backend.php',
+			data: { type: 3, readAllprojects: readAllprojects },
+			success: function(data, status){
+				$('#salesCardsData').html(data);
+			}
+		});	  
+		});
+}, 500);
+
+
+$(document).ready(function(){	
+getSalesCardData();
+	});
+function getSalesCardData()
+{
+	let readAllprojects = "In Progress";
+	$.ajax({
+			type: 'POST',
+			url: 'sales-backend.php',
+			data: { type: 3, readAllprojects: readAllprojects },
+			success: function(data, status){
+				$('#salesCardsData').html(data);
+			}
+	});	
+}

@@ -26,7 +26,7 @@ if ($Table_Query) {
 
 $Projects_Table = "CREATE TABLE `webtrixpro_projects`(`project_id` INT(99) NOT NULL AUTO_INCREMENT,
                                   `project_name` VARCHAR(100) NOT NULL,
-                                  `project_client` VARCHAR(100) NOT NULL,
+                                  `project_clientId` INT(100) NOT NULL,
                                   `project_platformId` INT(100) NOT NULL,
                                   `project_clientProfile` VARCHAR(100) NOT NULL,
                                   `project_date` VARCHAR(100) NOT NULL,

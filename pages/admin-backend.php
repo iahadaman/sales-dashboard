@@ -205,7 +205,7 @@ if($_POST['type']==7){
 			$path = "images/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
 
 			if(move_uploaded_file($_FILES['img_file']['tmp_name'], $path)) {
-				$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_client`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
+				$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
 				if(mysqli_query($con, $insertquery)) {
 				 echo 1;
 				}
@@ -219,7 +219,7 @@ if($_POST['type']==7){
 		}
 	} else {
 		$path = "images/profile.jpg";
-		$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_client`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
+		$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
 		if(mysqli_query($con, $insertquery)) {
 		    echo 1;
 		}
@@ -270,6 +270,9 @@ if($_POST['type']==8){
 
 
 			$gettargetPlatforms = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '".$allProjects['project_platformId']."'");
+
+			$getClientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '".$allProjects['project_clientId']."'");
+			$clientName = mysqli_fetch_array($getClientName);
    		 while($targetPlatforms = mysqli_fetch_array($gettargetPlatforms))
    		 {
    		 	if($targetPlatforms['web_platform']!=0)
@@ -278,7 +281,7 @@ if($_POST['type']==8){
    		 	}
    		 	if($targetPlatforms['andriod_platform']!=0)
    		 	{
-   		 		$allProjectData .= '<strong title = "Andriod Development" class="platform">Andriod Development</strong>';
+   		 		$allProjectData .= '<strong title = "Android Development" class="platform">Android Development</strong>';
    		 	}
    		 	if($targetPlatforms['ios_platform']!=0)
    		 	{
@@ -295,13 +298,13 @@ if($_POST['type']==8){
    		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
    		 	}
    		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']==0){
-   		 		$nextPlatform = "Andriod Development";
+   		 		$nextPlatform = "Android Development";
    		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
    		 	}
 
    		 	if($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
    		 	{
-   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
+   		 	    $allProjectData .= '<strong title = "Android Development & IOS Development" class="combinePlatform">+ 2</strong>';
    		 	}
    		 }
 
@@ -310,7 +313,7 @@ if($_POST['type']==8){
 
 
 
- $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$allProjects['project_client'].'</strong></p>
+ $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
  					</span>
                     </a>
                     <span class="pt-3 pl-2"><a type="button" class="edit_project_data" id="'.$allProjects['project_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp
@@ -328,8 +331,8 @@ if($_POST['type']==8){
 if($_POST['type']==9){
 	 if(isset($_POST["project_id"]))  
 	 { 
-	      $query = "SELECT * FROM webtrixpro_projects WHERE project_id = '".$_POST["project_id"]."'";  
-	      $result = mysqli_query($con, $query);    
+		$sql = "SELECT * FROM webtrixpro_users, webtrixpro_projects WHERE project_id = '".$_POST["project_id"]."' AND project_clientId = user_id;";
+	      $result = mysqli_query($con, $sql);    
 	      $row = mysqli_fetch_array($result); 
 	      if($row)
 	      {
@@ -364,7 +367,7 @@ if($_POST['type']==10){
 	  		$u_andriod = 0;
 	  		$u_ios = 0;
 	  	}
-	  	else if($u_webPlatform == "Andriod Development")
+	  	else if($u_webPlatform == "Android Development")
 	  	{
 	  		$u_web = 0;
 	  		$u_andriod = 1;
@@ -380,7 +383,7 @@ if($_POST['type']==10){
 	  	{
 	  		$u_web = 1;
 	  	}
-	  	else if($u_andriodPlatform == "Andriod Development")
+	  	else if($u_andriodPlatform == "Android Development")
 	  	{
 	  		$u_andriod = 1;
 	  	}
@@ -392,7 +395,7 @@ if($_POST['type']==10){
 	  	{
 	  		$u_web = 1;
 	  	}
-	  	else if($u_iosPlatform == "Andriod Development")
+	  	else if($u_iosPlatform == "Android Development")
 	  	{
 	  		$u_andriod = 1;
 	  	}
@@ -400,7 +403,7 @@ if($_POST['type']==10){
 	  		$u_ios = 1;
 	  	}
 	  
-        $updateRecord = "UPDATE webtrixpro_projects SET project_name = '$u_pName', project_client = '$u_pClient', project_date = '$u_pDate', project_description = '$u_pDescription', project_label = '$u_pLabel' WHERE project_id = '".$_POST["id"]."'";
+        $updateRecord = "UPDATE webtrixpro_projects SET project_name = '$u_pName', project_clientId = '$u_pClient', project_date = '$u_pDate', project_description = '$u_pDescription', project_label = '$u_pLabel' WHERE project_id = '".$_POST["id"]."'";
 
         $updateRecord2 = "UPDATE `webtrixpro_platforms` SET `web_platform`='$u_web',`andriod_platform`='$u_andriod',`ios_platform`='$u_ios' WHERE platform_id = '$u_pPlatformID'";
 
@@ -448,7 +451,7 @@ if($_POST['type']==12){
   		$andriod = 0;
   		$ios = 0;
   	}
-  	else if($pPlatform == "Andriod Development")
+  	else if($pPlatform == "Android Development")
   	{
   		$web = 0;
   		$andriod = 1;
@@ -464,7 +467,7 @@ if($_POST['type']==12){
   	{
   		$web = 1;
   	}
-  	else if($psPlatform == "Andriod Development")
+  	else if($psPlatform == "Android Development")
   	{
   		$andriod = 1;
   	}
@@ -476,7 +479,7 @@ if($_POST['type']==12){
   	{
   		$web = 1;
   	}
-  	else if($ptPlatform == "Andriod Development")
+  	else if($ptPlatform == "Android Development")
   	{
   		$andriod = 1;
   	}

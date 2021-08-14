@@ -65,6 +65,9 @@ html, body{
 .inprogress-card:after {     
     bottom: 14px;
 }
+.inprogress-card-sales:after {     
+    bottom: 25px;
+}
 
 .btn-big
 {
