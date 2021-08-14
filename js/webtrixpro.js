@@ -816,7 +816,10 @@ $(document).on('click', '.edit_project_data', function(){
             dataType:"json",  
             success:function(data){  
                 $('#u_projectName').val(data.project_name);  
-               $('#u_projectClientName option:selected').text(data.user_name); 
+
+              $("#u_projectClientName option:contains(" + data.user_name + ")").attr('selected', 'selected');
+
+
                 $('#pplatform_Id').val(data.project_platformId); 
                 $('#u_projectDate').val(data.project_date);  
                 $('#u_projectDescription').val(data.project_description);  

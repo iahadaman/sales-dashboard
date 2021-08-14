@@ -271,8 +271,6 @@ if($_POST['type']==8){
 
 			$gettargetPlatforms = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '".$allProjects['project_platformId']."'");
 
-			$getClientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '".$allProjects['project_clientId']."'");
-			$clientName = mysqli_fetch_array($getClientName);
    		 while($targetPlatforms = mysqli_fetch_array($gettargetPlatforms))
    		 {
    		 	if($targetPlatforms['web_platform']!=0)
@@ -310,7 +308,8 @@ if($_POST['type']==8){
 
   
                 
-
+			$getClientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '".$allProjects['project_clientId']."'");
+			$clientName = mysqli_fetch_assoc($getClientName);
 
 
  $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
@@ -352,6 +351,7 @@ if($_POST['type']==10){
 	{ 	   
 	    $u_pName = htmlspecialchars(mysqli_real_escape_string($con, $_POST['u_pName']));
 	    $u_pClient = htmlspecialchars(mysqli_real_escape_string($con, $_POST['u_pClient']));
+	    
 	  	$u_pPlatformID = htmlspecialchars(mysqli_real_escape_string($con, $_POST['u_pPlatformId']));
 	    $u_pDate = htmlspecialchars(mysqli_real_escape_string($con, $_POST['u_pDate']));
 	  	$u_pDescription = htmlspecialchars(mysqli_real_escape_string($con, $_POST['u_pDescription']));

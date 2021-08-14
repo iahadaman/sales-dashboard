@@ -82,9 +82,13 @@ if($_POST['type']==2){
 
 if($_POST['type']==3){
 	if(isset($_POST['readAllprojects'])) {  
-		$client_name = $_SESSION['client_name'];
+		$client_id = $_SESSION['client_id'];
 		$allProjectData = '<div class="row">';
-    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_client = '$client_name' ORDER BY project_id desc");
+    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' ORDER BY project_id desc");
+
+    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
+    	$clientName = mysqli_fetch_assoc($getclientName);
+
    		 while($allProjects = mysqli_fetch_array($getAllProjects)){
 
 	    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
@@ -160,7 +164,7 @@ if($_POST['type']==3){
 
 
 
- $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$allProjects['project_client'].'</strong></p>
+ $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
  					</span>
                     </a>                        
                   </div>               
