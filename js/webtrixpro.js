@@ -965,7 +965,7 @@ function addNewItem(projectId, process) {
 		link = $("#design_link").val();
 	}
 	if( process == 'coding' ) {
-		var formData = new FormData(design);
+		var formData = new FormData(coding);
 		title = $("#coding_title").val();
 		description = $("#coding_description").val();
 		link = $("#coding_link").val();

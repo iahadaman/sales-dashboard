@@ -148,7 +148,11 @@ require_once '../partials/header.php'; ?>
 														';
 													}
 												 } else {
-													 echo 'No Data...';
+													 echo '
+													 <div class="sub-small-card" style="background: #bdc3c7; padding-top: 10px;padding-bottom: 10px;box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
+													 Empty
+												  </div>
+													 ';
 												 }
 											 ?>
 
@@ -183,7 +187,11 @@ require_once '../partials/header.php'; ?>
 														';
 													}
 												 } else {
-													 echo 'No Data...';
+													 echo '
+													 <div class="sub-small-card" style="background: #bdc3c7; padding-top: 10px;padding-bottom: 10px;box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
+													 Empty
+												  </div>
+													 ';
 												 }
 											 ?>
 		                 			<div class="small-card-link">
@@ -217,7 +225,9 @@ require_once '../partials/header.php'; ?>
 														';
 													}
 												 } else {
-													 echo 'No Data...';
+													 echo '													 <div class="sub-small-card" style="background: #bdc3c7; padding-top: 10px;padding-bottom: 10px;box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
+													 Empty
+												  </div>';
 												 }
 											 ?>
 		                 			<div class="small-card-link">
@@ -251,7 +261,11 @@ require_once '../partials/header.php'; ?>
 														';
 													}
 												 } else {
-													 echo 'No Data...';
+													 echo '
+													 <div class="sub-small-card" style="background: #bdc3c7; padding-top: 10px;padding-bottom: 10px;box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
+														Empty
+													 </div>
+													 ';
 												 }
 											 ?>
 		                 			
