@@ -1,4 +1,17 @@
- <?php require_once '../partials/header.php';?>
+ 
+<?php 
+if(!isset($_SESSION)) 
+{ 
+  ini_set('session.gc_maxlifetime', 3600);
+  session_set_cookie_params(3600);
+  session_start(); 
+} 
+if(!isset($_SESSION["client_name"])) 
+{
+  header('location: sales-login.php');
+}
+
+ require_once '../partials/header.php';?>
     <div class="wrapper">      
        <?php require_once '../partials/sales-sidebar.php';?>
         <!-- Page Content  -->

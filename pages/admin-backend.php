@@ -18,6 +18,7 @@ if($_POST['type']==1)
 	{
 		while($admin = mysqli_fetch_array($query)) {
 			$_SESSION['admin_name'] = $admin['user_name'];
+			$_SESSION['admin_id'] = $admin['user_id'];
 		}
 		
 	    // Login time is stored in a session variable
@@ -204,7 +205,7 @@ if($_POST['type']==7){
 			$path = "images/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
 
 			if(move_uploaded_file($_FILES['img_file']['tmp_name'], $path)) {
-				$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_client`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
+				$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
 				if(mysqli_query($con, $insertquery)) {
 				 echo 1;
 				}
@@ -218,7 +219,7 @@ if($_POST['type']==7){
 		}
 	} else {
 		$path = "images/profile.jpg";
-		$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_client`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
+		$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
 		if(mysqli_query($con, $insertquery)) {
 		    echo 1;
 		}
@@ -269,6 +270,9 @@ if($_POST['type']==8){
 
 
 			$gettargetPlatforms = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '".$allProjects['project_platformId']."'");
+
+			$getClientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '".$allProjects['project_clientId']."'");
+			$clientName = mysqli_fetch_array($getClientName);
    		 while($targetPlatforms = mysqli_fetch_array($gettargetPlatforms))
    		 {
    		 	if($targetPlatforms['web_platform']!=0)
@@ -277,7 +281,7 @@ if($_POST['type']==8){
    		 	}
    		 	if($targetPlatforms['andriod_platform']!=0)
    		 	{
-   		 		$allProjectData .= '<strong title = "Andriod Development" class="platform">Andriod Development</strong>';
+   		 		$allProjectData .= '<strong title = "Android Development" class="platform">Android Development</strong>';
    		 	}
    		 	if($targetPlatforms['ios_platform']!=0)
    		 	{
@@ -294,13 +298,13 @@ if($_POST['type']==8){
    		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
    		 	}
    		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']==0){
-   		 		$nextPlatform = "Andriod Development";
+   		 		$nextPlatform = "Android Development";
    		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
    		 	}
 
    		 	if($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
    		 	{
-   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
+   		 	    $allProjectData .= '<strong title = "Android Development & IOS Development" class="combinePlatform">+ 2</strong>';
    		 	}
    		 }
 
@@ -309,7 +313,7 @@ if($_POST['type']==8){
 
 
 
- $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$allProjects['project_client'].'</strong></p>
+ $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
  					</span>
                     </a>
                     <span class="pt-3 pl-2"><a type="button" class="edit_project_data" id="'.$allProjects['project_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp
@@ -327,8 +331,8 @@ if($_POST['type']==8){
 if($_POST['type']==9){
 	 if(isset($_POST["project_id"]))  
 	 { 
-	      $query = "SELECT * FROM webtrixpro_projects WHERE project_id = '".$_POST["project_id"]."'";  
-	      $result = mysqli_query($con, $query);    
+		$sql = "SELECT * FROM webtrixpro_users, webtrixpro_projects WHERE project_id = '".$_POST["project_id"]."' AND project_clientId = user_id;";
+	      $result = mysqli_query($con, $sql);    
 	      $row = mysqli_fetch_array($result); 
 	      if($row)
 	      {
@@ -363,7 +367,7 @@ if($_POST['type']==10){
 	  		$u_andriod = 0;
 	  		$u_ios = 0;
 	  	}
-	  	else if($u_webPlatform == "Andriod Development")
+	  	else if($u_webPlatform == "Android Development")
 	  	{
 	  		$u_web = 0;
 	  		$u_andriod = 1;
@@ -379,7 +383,7 @@ if($_POST['type']==10){
 	  	{
 	  		$u_web = 1;
 	  	}
-	  	else if($u_andriodPlatform == "Andriod Development")
+	  	else if($u_andriodPlatform == "Android Development")
 	  	{
 	  		$u_andriod = 1;
 	  	}
@@ -391,7 +395,7 @@ if($_POST['type']==10){
 	  	{
 	  		$u_web = 1;
 	  	}
-	  	else if($u_iosPlatform == "Andriod Development")
+	  	else if($u_iosPlatform == "Android Development")
 	  	{
 	  		$u_andriod = 1;
 	  	}
@@ -399,7 +403,7 @@ if($_POST['type']==10){
 	  		$u_ios = 1;
 	  	}
 	  
-        $updateRecord = "UPDATE webtrixpro_projects SET project_name = '$u_pName', project_client = '$u_pClient', project_date = '$u_pDate', project_description = '$u_pDescription', project_label = '$u_pLabel' WHERE project_id = '".$_POST["id"]."'";
+        $updateRecord = "UPDATE webtrixpro_projects SET project_name = '$u_pName', project_clientId = '$u_pClient', project_date = '$u_pDate', project_description = '$u_pDescription', project_label = '$u_pLabel' WHERE project_id = '".$_POST["id"]."'";
 
         $updateRecord2 = "UPDATE `webtrixpro_platforms` SET `web_platform`='$u_web',`andriod_platform`='$u_andriod',`ios_platform`='$u_ios' WHERE platform_id = '$u_pPlatformID'";
 
@@ -447,7 +451,7 @@ if($_POST['type']==12){
   		$andriod = 0;
   		$ios = 0;
   	}
-  	else if($pPlatform == "Andriod Development")
+  	else if($pPlatform == "Android Development")
   	{
   		$web = 0;
   		$andriod = 1;
@@ -463,7 +467,7 @@ if($_POST['type']==12){
   	{
   		$web = 1;
   	}
-  	else if($psPlatform == "Andriod Development")
+  	else if($psPlatform == "Android Development")
   	{
   		$andriod = 1;
   	}
@@ -475,7 +479,7 @@ if($_POST['type']==12){
   	{
   		$web = 1;
   	}
-  	else if($ptPlatform == "Andriod Development")
+  	else if($ptPlatform == "Android Development")
   	{
   		$andriod = 1;
   	}
@@ -574,6 +578,7 @@ if($_POST['type']==13){
 		}
 	}
 
+<<<<<<< HEAD
 	if($_POST['type'] == '18') {
 		
 		$title = mysqli_real_escape_string($con, $_POST['title']);
@@ -601,10 +606,37 @@ if($_POST['type']==13){
 						echo 0;					
 					}
 				}
+=======
+	 // UPDATE ADMIN ACCOUNT
+
+if($_POST['type']==100){
+	  $adminName = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_name']));
+	  $adminEmail = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_email']));
+	  $adminPassword = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_password']));
+  	  $old_image = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_OldProfile']));
+
+  	    $adminId =  $_SESSION['admin_id'];
+ 
+		$datetime_variable = new DateTime();			 
+		$datetime_variable = date_format($datetime_variable, 'Y-m-d H:i:s');
+		$date = new DateTime();
+		$date = date_format($date, 'ymd');
+
+		if($_FILES['admin_updateProfile']['name'] != '')
+	    {
+		    $filename = $_FILES['admin_updateProfile']['name'];
+		    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+		    $valid_extensions = array("jpg", "jpeg", "png", "PNG", "JPG");
+		   if(in_array($extension, $valid_extensions)) {
+				$new_name = rand() . $date .  "." . $extension;
+				$admin_update_filename = "images/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
+				move_uploaded_file($_FILES['admin_updateProfile']['tmp_name'], $admin_update_filename);
+>>>>>>> 452f50969f16b9bf7c4fd667f76b917f311f5c2f
 			}
 			else {
 				echo "Invalid Format";
 			}
+<<<<<<< HEAD
 		} else { 
 			$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title)values('$projectID', '$process','$description', '$path', '$title')";
 			if(mysqli_query($con, $insertquery)) {
@@ -615,4 +647,24 @@ if($_POST['type']==13){
 			}
 		}	
 	}
+=======
+		}
+		else{
+
+			 $admin_update_filename = $old_image;
+		}
+
+		$adminPassword = md5($adminPassword);  
+		$updateUser =  "UPDATE `webtrixpro_users` SET `user_name`='$adminName', `user_email`='$adminEmail',`user_password`='$adminPassword',`user_profile`='$admin_update_filename' WHERE user_id = '$adminId'";
+        $query = mysqli_query($con, $updateUser);
+		if($query) {
+		  $_SESSION['admin_name'] = $adminName;
+		  echo 1;
+		}
+		else{
+			echo 0;
+		}		
+		
+}	
+>>>>>>> 452f50969f16b9bf7c4fd667f76b917f311f5c2f
 ?>

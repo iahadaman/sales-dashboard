@@ -65,6 +65,9 @@ html, body{
 .inprogress-card:after {     
     bottom: 14px;
 }
+.inprogress-card-sales:after {     
+    bottom: 25px;
+}
 
 .btn-big
 {
@@ -257,7 +260,14 @@ h4{
 .greeting p{
     padding-left: 0px;
 }
-.project-detail-box{
+.project-detail-box img{
+    width: 100px;
+    height: 150px;
+  /*  background-color: #C4C4C4;*/
+    display: inline-block;
+    border-radius: 3px;
+}
+.project-detail-boxEmpty img{
     width: 100px;
     height: 150px;
     background-color: #C4C4C4;

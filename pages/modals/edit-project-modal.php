@@ -24,7 +24,7 @@
 				  $getAllClients = mysqli_query($con, "SELECT * FROM webtrixpro_users WHERE user_isAdmin !=1 ORDER BY user_id desc");
    		 			while($allclients = mysqli_fetch_array($getAllClients)){
 				  ?>
-				  <option value="<?php echo $allclients['user_name'] ?>"><?php echo $allclients['user_name'] ?></option>
+				  <option value="<?php echo $allclients['user_id'] ?>"><?php echo $allclients['user_name'] ?></option>
 				  <?php } ?>
 				</select>
 			  </div>
@@ -35,7 +35,7 @@
 			     <select id = "u_projectPlatform" class="form-control">
 				  <option disabled selected>Select Project Platform</option>
 				  <option value="Web Development">Web Development</option>
-				  <option value="Andriod Development">Andriod Development</option>
+				  <option value="Android Development">Android Development</option>
 				  <option value="IOS Development">IOS Development</option>
 				</select>
 
@@ -43,7 +43,7 @@
 					<select id = "u_projectSecondPlatform" class="form-control">
 						<option disabled selected>Select Project Platform</option>
 						<option value="Web Development">Web Development</option>
-						<option value="Andriod Development">Andriod Development</option>
+						<option value="Android Development">Android Development</option>
 						<option value="IOS Development">IOS Development</option>
 					</select>
 				</div>
@@ -52,7 +52,7 @@
 					<select id = "u_projectThirdPlatform" class="form-control">
 						<option disabled selected>Select Project Platform</option>
 						<option value="Web Development">Web Development</option>
-						<option value="Andriod Development">Andriod Development</option>
+						<option value="Android Development">Android Development</option>
 						<option value="IOS Development">IOS Development</option>
 					</select>
 				</div>

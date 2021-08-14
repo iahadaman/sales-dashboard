@@ -13,32 +13,23 @@ if(!isset($_SESSION["admin_name"]))
 
 include('backend/connection.php');
 $isTrue = false;
-//  if(isset($_GET['id']))
-//  {
-//     $DataExist = false;
-//     $idOfProject = mysqli_real_escape_string($link, $_GET['id']);
-//     $getIds = "SELECT project_id from `Webtrixpro_projects`";
-//     $query = mysqli_query($link, $getIds);
-//     while($ids = mysqli_fetch_array($query)){
-//       if( $ids['id'] == $idOfProject )
-//       {
-//         $DataExist = true;
-//       }
-// }  
 
-//  if( $DataExist == true )
-//   {
-//       $getProject = mysqli_query($link, "SELECT * FROM Webtrixpro_projects WHERE id = '$idOfProject'");
-//       $project = mysqli_fetch_assoc($getProject);
-//      // $nameofCat = $catname['category_name'];
-//   }
-// }
-   
 	if(isset($_GET['id'])) {
 		$project_id = mysqli_real_escape_string($con, $_GET['id']);
 		$getProjectData = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_id = '$project_id'");
+
 		if(mysqli_num_rows($getProjectData) > 0) {
 			$isTrue = true;
+
+			$project= mysqli_fetch_assoc($getProjectData);
+			$clientId = $project['project_clientId'];
+			$platformId = $project['project_platformId'];
+
+			$getName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$clientId'");
+			$name= mysqli_fetch_assoc($getName);
+			$clientName = $name['user_name'];
+
+
 		} else {
 			header('Location: dashboard.php');
 		}
@@ -52,8 +43,8 @@ $isTrue = false;
 			echo $returnData[$d];
 		}
 		function projectPlatform() {
-			global $con;
-			$getID = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '1'");
+			global $platformId,$con;
+			$getID = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '$platformId'");
 			$platformData = mysqli_fetch_assoc($getID);
 			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '0' && $platformData['ios_platform'] == '0') {
 				echo "Web App";
@@ -111,7 +102,7 @@ require_once '../partials/header.php'; ?>
 	                	<hr>
 	                	<div class="project-detail-section row">  
 	                	    <div class="col-md-6 col-sm-12">
-		                	    <div class="project-detail-box"></div>
+		                	    <div class="project-detail-boxEmpty"></div>
 			                	<div class="project-detail-content">
 				                	<p>Project Name<br><strong><?php echo getProjectData('project_name'); ?></strong></p>
 			                        <p>Project Platform<br><strong><?php echo projectPlatform(); ?></strong></p>
@@ -120,7 +111,7 @@ require_once '../partials/header.php'; ?>
 							</div>
 							<div class="col-md-6 col-sm-6">
 			                	<p>Project Start Date<br><strong><?php echo getProjectData('project_date'); ?></strong></p>
-		                        <p>Client<br><strong class="profile-image-style"><img src="<?php echo getProjectData('project_clientProfile'); ?>" style="margin-right: 10px;height: 30px; width: 32px;"><?php echo getProjectData('project_client'); ?></strong></p>
+		                        <p>Client<br><strong class="profile-image-style"><img src="<?php echo getProjectData('project_clientProfile'); ?>" style="margin-right: 10px;height: 30px; width: 32px;"><?php echo $clientName ?></strong></p>
 								<p>Final Version<br><strong class="link-style"><a href="https://finalversion.com">https://finalversion.com</a><i class="ml-2 fa fa-link" aria-hidden="true"></i></strong></p>
 							</div>
 						</div>
