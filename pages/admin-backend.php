@@ -191,21 +191,22 @@ if($_POST['type']==7){
 	$datetime_variable = date_format($datetime_variable, 'Y-m-d H:i:s');
 	$date = new DateTime();
 	$date = date_format($date, 'ymd');
-
-
+	$client_profile = mysqli_query($con, "SELECT user_profile FROM webtrixpro_users WHERE user_id = '$pClient'");
+	$clientProfile = mysqli_fetch_assoc($client_profile);
+	$clientProfile__image = $clientProfile['user_profile'];
 	//If image selected not empty
 
 	if($_FILES['img_file']['name'] != ''){
 
 		$filename = $_FILES['img_file']['name'];
 		$extension = pathinfo($filename, PATHINFO_EXTENSION);
-		$valid_extensions = array("jpg", "jpeg", "png");
+		$valid_extensions = array("jpg", "jpeg", "png", "PNG");
 		if(in_array($extension, $valid_extensions)) {
 			$new_name = rand() . $date .  "." . $extension;
 			$path = "images/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
 
 			if(move_uploaded_file($_FILES['img_file']['tmp_name'], $path)) {
-				$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
+				$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`,`project_image`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$clientProfile__image','$path','$pDate','$pDescription','$pLabel')";
 				if(mysqli_query($con, $insertquery)) {
 				 echo 1;
 				}
@@ -219,7 +220,7 @@ if($_POST['type']==7){
 		}
 	} else {
 		$path = "images/profile.jpg";
-		$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$path','$pDate','$pDescription','$pLabel')";
+		$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`,`project_image`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$clientProfile__image','$clientProfile__image','$pDate','$pDescription','$pLabel')";
 		if(mysqli_query($con, $insertquery)) {
 		    echo 1;
 		}
@@ -241,7 +242,7 @@ if($_POST['type']==8){
 
                   <div class="progress-box">
                   <a class="design" href="project-detail.php?id='.$allProjects['project_id'].'">
-                   <div class="progress-bg2"> </div>
+                   <div class="progress-bg2" style="background-image: url('.$allProjects['project_image'].'); background-size: cover; background-position: center;"> </div>
                   </div>';
                   if($_POST['readAllprojects'] == "Completed")
 					{

@@ -29,6 +29,7 @@ $Projects_Table = "CREATE TABLE `webtrixpro_projects`(`project_id` INT(99) NOT N
                                   `project_clientId` INT(100) NOT NULL,
                                   `project_platformId` INT(100) NOT NULL,
                                   `project_clientProfile` VARCHAR(100) NOT NULL,
+                                  `project_image` VARCHAR(100) NOT NULL,
                                   `project_date` VARCHAR(100) NOT NULL,
                                   `project_label` VARCHAR(100) NULL,
                                   `project_description` VARCHAR(999) NULL,
@@ -48,12 +49,12 @@ mysqli_query($con, $Platforms_Table);
 
 //WebtrixPro_Updates Table
 
-$Updates_table = "CREATE TABLE `webtrixpro_updates`(`update_id` INT(11) NOT NULL AUTO_INCREMENT,
-                                  `project_id` INT(11) NOT NULL,
-                                  `process_name` VARCHAR(500) NOT NULL,
-                                  `process_description` VARCHAR(500) NOT NULL,
-                                  `process_file` VARCHAR(500) NOT NULL,
-                                  `process_title` VARCHAR(500) NOT NULL
-                                  PRIMARY KEY (`update_id`))";
+    $Updates_table = "CREATE TABLE `webtrixpro_updates`(`update_id` INT(11) NOT NULL AUTO_INCREMENT,
+                                    `project_id` INT(11) NOT NULL,
+                                    `process_name` VARCHAR(500) NOT NULL,
+                                    `process_description` VARCHAR(500) NOT NULL,
+                                    `process_file` VARCHAR(500) NOT NULL,
+                                    `process_title` VARCHAR(500) NOT NULL,
+                                    PRIMARY KEY (`update_id`))";
 mysqli_query($con, $Updates_table);
 ?>
