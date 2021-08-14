@@ -7,8 +7,61 @@
 
 });
 
-
 $(document).ready(function(){	 
+
+	//to show image after upload admin side
+
+	 $(document).on('change', '#admin_updateProfile', function(){
+        var property = document.getElementById("admin_updateProfile").files[0];
+        var image_name = property.name;
+
+         var form_data = new FormData();                  
+        form_data.append('file', property);
+        $.ajax({
+            url: "upload_img.php",
+            type: "POST",
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend:function(){
+                $('#admin_img_preview').html("<label class='text-success'>Image Uploading ... </label>");
+            },
+            success: function(data){
+                document.getElementById('admin_update_profile').style.display = 'none';
+                 $('#admin_img_preview').html(data);
+            }
+
+        });
+ 
+    });
+
+	//to show image after upload sales side
+
+	 $(document).on('change', '#user_updateProfile', function(){
+        var property = document.getElementById("user_updateProfile").files[0];
+        var image_name = property.name;
+
+         var form_data = new FormData();                  
+        form_data.append('file', property);
+        $.ajax({
+            url: "upload_img.php",
+            type: "POST",
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend:function(){
+                $('#img_preview').html("<label class='text-success'>Image Uploading ... </label>");
+            },
+            success: function(data){
+                document.getElementById('update_profile').style.display = 'none';
+                 $('#img_preview').html(data);
+            }
+
+        });
+ 
+    });
 
 	// Get Total Projects
 	getTotalProjects();
@@ -777,6 +830,7 @@ $(document).on('click', '.edit_project_data', function(){
     });  
 });
 
+
 // DELETE PROJECT
 
 $(document).on('click', '.delete_project_data', function(){  
@@ -803,6 +857,73 @@ $(document).on('click', '.delete_project_data', function(){
 	   });
 });
 
+//Edit Admin Account
+
+$("#aAccountUpdateBtn").on("click", function() {
+	event.preventDefault();
+	let admin_name = $("#adminName").val();
+	let admin_email = $("#adminEmail").val();
+	let admin_password = $("#adminPassword").val();
+	let admin_cEmail = $("#adminConEmail").val();
+	let admin_cPassword = $("#adminConPass").val();
+	let admin_OldProfile = $("#admin_OldProfile").val();
+
+	if(admin_email != admin_cEmail)
+	{
+		document.getElementById('admin_profile_error').style.display = 'block';
+		$("#admin_profile_error").text("Please enter the same email!!");
+	}
+	else if(admin_password != admin_cPassword)
+	{
+		document.getElementById('admin_profile_error').style.display = 'block';
+		$("#admin_profile_error").text("Please enter the same password!!");
+	}
+	else
+	{
+
+		if(admin_name != "" && admin_email != "" && admin_password != "")
+		{
+			var formData = new FormData(adminProfile);
+			formData.append('type', 100);
+			formData.append('admin_name', admin_name);
+			formData.append('admin_email', admin_email);
+			formData.append('admin_password', admin_password);
+			formData.append('admin_OldProfile', admin_OldProfile);
+
+			$.ajax({
+	            type: 'POST',
+				url: 'admin-backend.php',
+				data: formData,
+				mimeType:'multipart/form-data',
+				contentType: false,
+				cache: false,
+				processData: false,
+				success: function(e){
+					if(e==1){						
+						document.getElementById('admin_profile_error').setAttribute("class", "alert alert-success");
+						document.getElementById('admin_profile_error').style.display = 'block';
+						$("#admin_profile_error").text("Account Updated Successfully!!")
+						setTimeout(function() {
+					    $('#admin_profile_error').fadeOut('fast');
+						}, 6000); 		
+					}
+					else
+					{
+						document.getElementById('admin_profile_error').style.display = 'block';
+						$("#admin_profile_error").text("Error: Something went wrong!!");
+					}
+				}
+			});
+		}
+		else
+		{
+			document.getElementById('admin_profile_error').style.display = 'block';
+			$("#admin_profile_error").text("All Fields Are Required!!");
+		}
+	}
+});
+
+
 
 
 function check_session()
@@ -823,4 +944,136 @@ function check_session()
 setInterval(function()
 {
 	check_session();
-},5000);
+	check_SalesSession();
+},3000);
+
+////////////////////////////////////////////////////SALES WORK/////////////////////////////////////////////////
+
+function check_SalesSession()
+{          	
+    $.ajax({
+        url : 'sales-session-out.php',
+        method: 'POST',
+        success : function(data){           
+            if(data == '1')
+            {
+            	alert('Your Session has been Expired');
+            	window.location.href = "sales-login.php";
+            }
+        }
+    });
+       
+}
+// SALES LOGIN
+
+$("#salesLoginButton").on("click", function() {
+	event.preventDefault();
+	let login_email = $("#clientEmail").val();
+	let login_password = $("#clientPassword").val();
+	let n = 5;
+		function countDown() {
+			n = n - 1;
+			if(n > 0) {
+				setTimeout(countDown, 1000);
+			}else{
+				window.location.href = "sales-dashboard.php";
+			}
+		}
+
+	if(login_email !="" && login_password !="")
+	{
+		$.ajax({
+			type: 'POST',
+			url: 'sales-backend.php',
+			data: { type: 1,
+			login_email: login_email, 
+			login_password: login_password },
+			success: function(e){
+				if(e==1)
+				{~
+					$("#loginButton").attr('disabled', '');
+					document.getElementById('sales_login_error').setAttribute("class", "alert alert-success");
+					document.getElementById('sales_login_error').style.display = 'block';
+					$("#sales_login_error").text("You have been logged in! Redirecting you in " + n + " seconds");
+					setTimeout(countDown, 1000);
+					$("#clientEmail").val("");
+					$("#clientPassword").val("");
+				}
+				else{
+					document.getElementById('sales_login_error').style.display = 'block';
+					$("#sales_login_error").text("Invalid credentials are provided.");
+				}
+			}
+		})
+	}
+	else
+	{
+		document.getElementById('sales_login_error').style.display = 'block';
+	}
+});
+
+//Edit Sales User Account
+
+$("#accountUpdateBtn").on("click", function() {
+	event.preventDefault();
+	let client_name = $("#clientName").val();
+	let client_email = $("#clientEmail").val();
+	let client_password = $("#clientPassword").val();
+	let client_cEmail = $("#clientConEmail").val();
+	let client_cPassword = $("#clientConPass").val();
+	let client_OldProfile = $("#user_OldProfile").val();
+
+	if(client_email != client_cEmail)
+	{
+		document.getElementById('profile_error').style.display = 'block';
+		$("#profile_error").text("Please enter the same email!!");
+	}
+	else if(client_password != client_cPassword)
+	{
+		document.getElementById('profile_error').style.display = 'block';
+		$("#profile_error").text("Please enter the same password!!");
+	}
+	else
+	{
+		var formData = new FormData(profile);
+		formData.append('type', 2);
+		formData.append('client_name', client_name);
+		formData.append('client_email', client_email);
+		formData.append('client_password', client_password);
+		formData.append('client_OldProfile', client_OldProfile);
+
+		if(client_name != "" && client_email != "" && client_password != "")
+		{
+			$.ajax({
+	           type: 'POST',
+				url: 'sales-backend.php',
+				data: formData,
+				mimeType:'multipart/form-data',
+				contentType: false,
+				cache: false,
+				processData: false,
+				success: function(e){
+					if(e==1){						
+						document.getElementById('profile_error').setAttribute("class", "alert alert-success");
+						document.getElementById('profile_error').style.display = 'block';
+						$("#profile_error").text("Account Updated Successfully!!")
+						setTimeout(function() {
+					    $('#profile_error').fadeOut('fast');
+						}, 6000); 		
+					}
+					else
+					{
+						document.getElementById('profile_error').style.display = 'block';
+						$("#profile_error").text("Error: Something went wrong!!");
+					}
+				}
+			});
+		}
+		else
+		{
+			document.getElementById('profile_error').style.display = 'block';
+			$("#profile_error").text("All Fields Are Required!!");
+		}
+	}
+});
+

@@ -501,6 +501,12 @@ button.btn-delete, button.btn-delete:hover{
 .project-detail-box{
     width: 160px;
     height: 160px;
+    display: inline-block;
+    border-radius: 3px;
+}
+.project-detail-boxEmpty{
+    width: 160px;
+    height: 160px;
     background-color: #C4C4C4;
     display: inline-block;
     border-radius: 3px;
@@ -650,18 +656,20 @@ button.btn-delete, button.btn-delete:hover{
     Account Setting Page
 ----------------------------------------------------- */
 
-.setting-image button{
+.setting-image label{
     width: 131px;
     margin-top: 10px;
     
 }
-.setting-image .project-detail-box{
+.setting-image .project-detail-box img{
     margin-top: 6px;
     width: 130px;
     height: 130px;
-    background-color: #C4C4C4;
+/*    background-color: #C4C4C4;*/
     border-radius: 3px;
 }
+
+
 .account-style label{
  font-size: 12px;
 }
@@ -676,6 +684,35 @@ button.btn-delete, button.btn-delete:hover{
 .account-style button{
     width: 131px;
     margin-top: 50px;
+}
+
+#profile_error.alert-danger{
+    padding-left: 12px;
+    font-size: 12px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+#profile_error.alert-success{
+    padding-left:20px;
+    font-size: 12px;
+    color: #1EA74D;
+    background-color: rgba(30, 167, 77, 0.1);
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+#admin_profile_error.alert-danger{
+    padding-left: 12px;
+    font-size: 12px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+#admin_profile_error.alert-success{
+    padding-left:20px;
+    font-size: 12px;
+    color: #1EA74D;
+    background-color: rgba(30, 167, 77, 0.1);
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 
@@ -1034,11 +1071,11 @@ button.close{
     padding-right: 2px;
     
 }
-.setting-image .project-detail-box{
+.setting-image .project-detail-box img{
     margin-top: 6px;
     width: 100px;
     height: 100px;
-    background-color: #C4C4C4;
+   /* background-color: #C4C4C4;*/
     border-radius: 3px;
 }
 .account-style button{
