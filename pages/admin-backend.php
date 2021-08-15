@@ -118,8 +118,6 @@ if($_POST['type']==3){
 	}
 }
 
-
-
 //Display Record in Update CLIENT Modal
 
 if($_POST['type']==4){
@@ -207,7 +205,6 @@ if($_POST['type']==7){
 
 			if(move_uploaded_file($_FILES['img_file']['tmp_name'], $path)) {
 				$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`,`project_image`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$clientProfile__image','$path','$pDate','$pDescription','$pLabel')";
-				mysqli_query($con, $insertquery);
 				if(mysqli_query($con, $insertquery)) {
 				 echo 1;
 				}

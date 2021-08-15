@@ -125,23 +125,27 @@ require_once '../partials/header.php'; ?>
 
 													while($discovery = mysqli_fetch_array($getDiscovery)) {
 
-														if($discovery['process_description'] == "")
-														{
-															$links = "Click here to view the link";
-														}
-														else
-														{
-															$links = "No links attached";
-														}
+														
 														
 														echo '
 														<div class="sub-small-card" style="box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
 														<div class="row">
 														<div class="col-8">		                 
 														<h6>' . $discovery['process_title'] . '</h6>
-														<p>'. $discovery['process_description'] .'</p>
-														<a target = "blank" class="float-right" href="' . $discovery['process_link'] . '"> '. $links .'</a>
-														<br>
+														<p>'. $discovery['process_description'] .'</p>';
+
+														if($discovery['process_link'] != "")
+														{
+															$links = "Click here to view the link";
+															echo '<a target = "blank" class="float-right" href="' . $discovery['process_link'] . '"> '. $links .'</a>';
+														}
+														else
+														{
+															$links = "No links attached";
+															echo '<a class="float-right"> '. $links .'</a>';
+														}
+
+														echo '<br>
 														<div class="card-end">
 														<a type="button" data-toggle="modal" onclick="deleteUpdate('. $discovery['update_id'] .')" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a type="button" class="edit_discovery_data edit" id="'.$discovery['update_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
 														</div>
@@ -324,7 +328,7 @@ require_once '../partials/header.php'; ?>
 </div>
 
 <!-- UPDATE MODAL FOR DISCOVERY -->
-	<div class="modal fade" id="editUpdate" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+<div class="modal fade" id="editUpdate" tabindex="-1" role="dialog" aria-labelledby="editItem" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content m-5 p-4">
       <div class="modal-header pl-0">
@@ -334,9 +338,10 @@ require_once '../partials/header.php'; ?>
         </button>
       </div>
       <div class="modal-body px-0">
-        	<form name="">
+      	 <div id="edit_update_error" style="display: none;" class= "alert alert-danger">All Fields Are Required!!</div>
+        	<form name="update_discovery">
 			  <div class="form-group">
-			  	<input type="hidden" class="form-control" id="u_name" value = "discovery">
+			  	<input type="hidden" class="form-control" id="u_dis_name" value = "discovery">
 			    <label for="u_dis_title">Title</label>
 			    <input type="text" class="form-control" id="u_dis_title" placeholder="Enter your project name">
 			  </div>
@@ -351,16 +356,17 @@ require_once '../partials/header.php'; ?>
 			    <input type="file" class="form-control-file" id="u_dis_file" name="process_file">
 			   </div>
 			 <div class="form-group">
-			    <label for="u_link">Link (Required for designing process)</label>
-			    <input type="email" class="form-control" id="u_link" placeholder="www.example.com/">
+			    <label for="u_dis_link">Link (Required for designing process)</label>
+			    <input type="text" class="form-control" id="u_dis_link" placeholder="www.example.com/">
 			  </div>
-			   <button type="button" class="btn-submit float-right btn" id="updateDiscoveryBtn" onclick="addNewItem(<?php echo $project_id ?>, 'discovery');">Done</button>
+			 <!--  <button type="button" class="btn-submit float-right btn" id="updateDiscoveryBtn">Done</button> -->
+			  <button type="button" class="btn-submit float-right btn" id="updateDiscoveryBtn" onclick="editNewItem(<?php echo $project_id ?>, 'discovery');">Done</button>
+			  
 			</form>
       </div>
     </div>
   </div>
 </div>
-
 
 <!-- DESIGN MODAL -->
 <div class="modal fade" id="design_addUpdate" tabindex="-1" role="dialog" aria-labelledby="design_addUpdate" aria-hidden="true">
