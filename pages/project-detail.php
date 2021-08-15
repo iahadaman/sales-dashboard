@@ -125,7 +125,7 @@ require_once '../partials/header.php'; ?>
 
 													while($discovery = mysqli_fetch_array($getDiscovery)) {
 
-														if($discovery['process_description'] == "")
+														if($discovery['process_link'] != "")
 														{
 															$links = "Click here to view the link";
 														}
