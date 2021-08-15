@@ -656,7 +656,7 @@ if($_POST['type'] == '18') {
 			}
 		}
 		else {
-			echo "Invalid Format";
+			echo 2;
 		}
 	} else { 
 		$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title, process_link)values('$projectID', '$process','$description', '', '$title', '$link')";
@@ -670,8 +670,16 @@ if($_POST['type'] == '18') {
 }
 if($_POST['type'] == 19) {
 	$updateId = mysqli_real_escape_string($con,$_POST['updateId']);
+	$selectFile = mysqli_query($con, "SELECT process_file FROM webtrixpro_updates WHERE update_id = '$updateId'");
+	$file = mysqli_fetch_assoc($selectFile);
+		$targetedFile = $file['process_file'];
+
 	$deleteUpdate = mysqli_query($con, "DELETE FROM webtrixpro_updates WHERE update_id = '$updateId'");
 	if( $deleteUpdate ) {
+		if($targetedFile != '')
+		{
+			unlink($targetedFile);
+		}
 		echo 1;
 	} else {
 		echo "An Error Occured!";
@@ -697,5 +705,62 @@ if($_POST['type']==101){
 	      
 	 }
 }  
+
+//EDIT UPDATE
+if($_POST['type'] == 102) {
+		
+	$id = mysqli_real_escape_string($con, $_POST['u_id']);
+	$title = mysqli_real_escape_string($con, $_POST['u_title']);
+	$description = mysqli_real_escape_string($con, $_POST['u_description']);
+	$link = mysqli_real_escape_string($con, $_POST['u_link']);
+	$oldFileName = mysqli_real_escape_string($con, $_POST['old_fileName']);
+
+	if($_POST['u_link'] != null) {
+		$link = mysqli_real_escape_string($con, $_POST['u_link']);
+	}
+	else
+	{
+		$link = null;
+	}
+
+	if($_FILES['process_file']['name'] != ''){
+
+		$filename = $_FILES['process_file']['name'];
+		$extension = pathinfo($filename, PATHINFO_EXTENSION);
+		$valid_extensions = array("jpg", "jpeg", "png", "PNG", "JPG", "docx");
+		if(in_array($extension, $valid_extensions)) {
+			$new_name = rand() .  "." . $extension;
+			$path = "files/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
+
+			if(move_uploaded_file($_FILES['process_file']['tmp_name'], $path)) {
+				 $updatequery = "UPDATE `webtrixpro_updates` SET `process_description`= '$description',`process_file`='$path',`process_title`='$title',`process_link`='link' WHERE `update_id` = '$id'";
+
+				if(mysqli_query($con, $updatequery)) {
+					if($oldFileName != '')
+					{
+		      			unlink($oldFileName);
+		      		}
+	      		
+				   echo 1;
+				}
+				else{
+					echo 0;					
+				}
+			}
+		}
+		else {
+			echo 2;
+		}
+	} else { 
+		$updatequery = "UPDATE `webtrixpro_updates` SET `process_description`= '$description',`process_file`='$oldFileName',`process_title`='$title',`process_link`='link' WHERE `update_id` = '$id'";
+		if(mysqli_query($con, $updatequery)) {
+
+		 echo 1;
+		}
+		else{
+			echo 0;					
+		}
+	}	
+}
 
 ?>

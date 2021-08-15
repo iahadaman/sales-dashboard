@@ -178,15 +178,29 @@ require_once '../partials/header.php'; ?>
 											 	$getDiscovery = mysqli_query($con, "SELECT * FROM webtrixpro_updates WHERE project_id = '$project_id' AND process_name = 'design'");
 												 if(mysqli_num_rows($getDiscovery) > 0) {
 													while($discovery = mysqli_fetch_array($getDiscovery)) {
+														
+														
 														echo '
 														<div class="sub-small-card" style="box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
 														<div class="row">
 														<div class="col-8">		                 
 														<h6>' . $discovery['process_title'] . '</h6>
-														<p>'. $discovery['process_description'] .'</p>
-														<br>
+														<p>'. $discovery['process_description'] .'</p>';
+
+														if($discovery['process_link'] != "")
+														{
+															$links = "Click here to view the link";
+															echo '<a target = "blank" class="float-right" href="' . $discovery['process_link'] . '"> '. $links .'</a>';
+														}
+														else
+														{
+															$links = "No links attached";
+															echo '<a class="float-right"> '. $links .'</a>';
+														}
+
+														echo '<br>
 														<div class="card-end">
-														<a type="button" data-toggle="modal" data-target="#deleteModal" onclick="deleteUpdate('. $discovery['update_id'] .')" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
+													<a type="button" data-toggle="modal" onclick="deleteUpdate('. $discovery['update_id'] .')" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a type="button" class="edit_design_data edit" id="'.$discovery['update_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
 														</div>
 													</div>
 													<div class="col-4 mt-2">
@@ -216,15 +230,29 @@ require_once '../partials/header.php'; ?>
 											 	$getDiscovery = mysqli_query($con, "SELECT * FROM webtrixpro_updates WHERE project_id = '$project_id' AND process_name = 'coding'");
 												 if(mysqli_num_rows($getDiscovery) > 0) {
 													while($discovery = mysqli_fetch_array($getDiscovery)) {
+														
+														
 														echo '
 														<div class="sub-small-card" style="box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
 														<div class="row">
 														<div class="col-8">		                 
 														<h6>' . $discovery['process_title'] . '</h6>
-														<p>'. $discovery['process_description'] .'</p>
-														<br>
+														<p>'. $discovery['process_description'] .'</p>';
+
+														if($discovery['process_link'] != "")
+														{
+															$links = "Click here to view the link";
+															echo '<a target = "blank" class="float-right" href="' . $discovery['process_link'] . '"> '. $links .'</a>';
+														}
+														else
+														{
+															$links = "No links attached";
+															echo '<a class="float-right"> '. $links .'</a>';
+														}
+
+														echo '<br>
 														<div class="card-end">
-														<a type="button" data-toggle="modal" data-target="#deleteModal" onclick="deleteUpdate('. $discovery['update_id'] .')" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
+														<a type="button" data-toggle="modal" onclick="deleteUpdate('. $discovery['update_id'] .')" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a type="button" class="edit_coding_data edit" id="'.$discovery['update_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
 														</div>
 													</div>
 													<div class="col-4 mt-2">
@@ -235,7 +263,7 @@ require_once '../partials/header.php'; ?>
 														';
 													}
 												 } else {
-													 echo '													 <div class="sub-small-card" style="background: #bdc3c7; padding-top: 10px;padding-bottom: 10px;box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
+													 echo '<div class="sub-small-card" style="background: #bdc3c7; padding-top: 10px;padding-bottom: 10px;box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
 													 Empty
 												  </div>';
 												 }
@@ -251,16 +279,29 @@ require_once '../partials/header.php'; ?>
 									 <?php 
 											 	$getDiscovery = mysqli_query($con, "SELECT * FROM webtrixpro_updates WHERE project_id = '$project_id' AND process_name = 'maintenance'");
 												 if(mysqli_num_rows($getDiscovery) > 0) {
-													while($discovery = mysqli_fetch_array($getDiscovery)) {
+													
+															while($discovery = mysqli_fetch_array($getDiscovery)) {
 														echo '
 														<div class="sub-small-card" style="box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
 														<div class="row">
 														<div class="col-8">		                 
 														<h6>' . $discovery['process_title'] . '</h6>
-														<p>'. $discovery['process_description'] .'</p>
-														<br>
+														<p>'. $discovery['process_description'] .'</p>';
+
+														if($discovery['process_link'] != "")
+														{
+															$links = "Click here to view the link";
+															echo '<a target = "blank" class="float-right" href="' . $discovery['process_link'] . '"> '. $links .'</a>';
+														}
+														else
+														{
+															$links = "No links attached";
+															echo '<a class="float-right"> '. $links .'</a>';
+														}
+
+														echo '<br>
 														<div class="card-end">
-														<a type="button" data-toggle="modal" data-target="#deleteModal" onclick="deleteUpdate('. $discovery['update_id'] .')" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
+														<a type="button" data-toggle="modal" onclick="deleteUpdate('. $discovery['update_id'] .')" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a type="button" class="edit_maintenance_data edit" id="'.$discovery['update_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
 														</div>
 													</div>
 													<div class="col-4 mt-2">
@@ -269,8 +310,8 @@ require_once '../partials/header.php'; ?>
 														</div>	
 														</div>
 														';
-													}
-												 } else {
+													
+												 }} else {
 													 echo '
 													 <div class="sub-small-card" style="background: #bdc3c7; padding-top: 10px;padding-bottom: 10px;box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
 														Empty
@@ -314,6 +355,7 @@ require_once '../partials/header.php'; ?>
 
 			  	<div class="form-group">
 			    <label for="exampleFormControlFile1">Add File/Image</label>
+
 			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
 			   </div>
 			 <div class="form-group">
@@ -341,7 +383,7 @@ require_once '../partials/header.php'; ?>
       	 <div id="edit_update_error" style="display: none;" class= "alert alert-danger">All Fields Are Required!!</div>
         	<form name="update_discovery">
 			  <div class="form-group">
-			  	<input type="hidden" class="form-control" id="u_dis_name" value = "discovery">
+			  	<input type="hidden" class="form-control" id="u_dis_id">
 			    <label for="u_dis_title">Title</label>
 			    <input type="text" class="form-control" id="u_dis_title" placeholder="Enter your project name">
 			  </div>
@@ -352,7 +394,7 @@ require_once '../partials/header.php'; ?>
 
 			  	<div class="form-group">
 			    <label for="">Add File/Image</label>
-			    <p class="d-none float-right" id = "u_dis_file_name"></p>
+			    <input type="hidden" id="u_dis_file_name">
 			    <input type="file" class="form-control-file" id="u_dis_file" name="process_file">
 			   </div>
 			 <div class="form-group">
@@ -360,8 +402,8 @@ require_once '../partials/header.php'; ?>
 			    <input type="text" class="form-control" id="u_dis_link" placeholder="www.example.com/">
 			  </div>
 			 <!--  <button type="button" class="btn-submit float-right btn" id="updateDiscoveryBtn">Done</button> -->
-			  <button type="button" class="btn-submit float-right btn" id="updateDiscoveryBtn" onclick="editNewItem(<?php echo $project_id ?>, 'discovery');">Done</button>
-			  
+			  <button type="button" class="btn-submit float-right btn" id="editDiscoveryBtn" onclick="editNewItem(<?php echo $project_id ?>, 'update_discovery');">Done</button>
+
 			</form>
       </div>
     </div>
@@ -381,8 +423,8 @@ require_once '../partials/header.php'; ?>
       <div class="modal-body px-0">
         	<form name="design">
 			  <div class="form-group">
-			    <label for="exampleInputEmail1">Title</label>
-			    <input type="text" class="form-control" id="design_title" aria-describedby="emailHelp" placeholder="Enter your project name">
+			    <label for="design_title">Title</label>
+			    <input type="text" class="form-control" id="design_title" placeholder="Enter your project name">
 			  </div>
 			    <div class="form-group">
 			    <label for="exampleFormControlTextarea1">Description</label>
@@ -395,9 +437,47 @@ require_once '../partials/header.php'; ?>
 			   </div>
 			 <div class="form-group">
 			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
-			    <input type="email" class="form-control" id="design_link" aria-describedby="emailHelp" placeholder="www.example.com/">
+			    <input type="text" class="form-control" id="design_link" placeholder="www.example.com/">
 			  </div>
 			   <button type="button" class="btn-submit float-right btn" id="add_item_btn" onclick="addNewItem(<?php echo $project_id ?>, 'design');">Done</button>
+			</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL FOR DESIGN MODAL -->
+<div class="modal fade" id="editDesign" tabindex="-1" role="dialog" aria-labelledby="design_editUpdate" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-5 p-4">
+      <div class="modal-header pl-0">
+        <h5 class="modal-title" id="exampleModalCenterTitle">EDIT Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-0">
+        	<form name="update_design">
+			  <div class="form-group">
+			  	<input type="hidden" class="form-control" id="u_design_id">
+			    <label for="exampleInputEmail1">Title</label>
+			    <input type="text" class="form-control" id="u_design_title" placeholder="Enter your project name">
+			  </div>
+			    <div class="form-group">
+			    <label for="exampleFormControlTextarea1">Description</label>
+			    <textarea class="form-control" id="u_design_description" rows="3"></textarea>
+			  	</div>
+
+			  	<div class="form-group">
+			    <label for="exampleFormControlFile1">Add File/Image</label>
+			     <input type="hidden" id="u_design_file_name">
+			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
+			   </div>
+			 <div class="form-group">
+			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
+			    <input type="text" class="form-control" id="u_design_link" placeholder="www.example.com/">
+			  </div>
+			   <button type="button" class="btn-submit float-right btn" id="edit_item_btn" onclick="editNewItem(<?php echo $project_id ?>, 'update_design');">Done</button>
 			</form>
       </div>
     </div>
@@ -417,8 +497,8 @@ require_once '../partials/header.php'; ?>
       <div class="modal-body px-0">
         	<form name="coding">
 			  <div class="form-group">
-			    <label for="exampleInputEmail1">Title</label>
-			    <input type="text" class="form-control" id="coding_title" aria-describedby="emailHelp" placeholder="Enter your project name">
+			    <label for="coding_title">Title</label>
+			    <input type="text" class="form-control" id="coding_title" placeholder="Enter your project name">
 			  </div>
 			    <div class="form-group">
 			    <label for="exampleFormControlTextarea1">Description</label>
@@ -430,8 +510,8 @@ require_once '../partials/header.php'; ?>
 			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
 			   </div>
 			 <div class="form-group">
-			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
-			    <input type="email" class="form-control" id="coding_link" aria-describedby="emailHelp" placeholder="www.example.com/">
+			    <label for="coding_link">Link (Required for designing process)</label>
+			    <input type="text" class="form-control" id="coding_link" placeholder="www.example.com/">
 			  </div>
 			   <button type="button" class="btn-submit float-right btn" id="add_item_btn" onclick="addNewItem(<?php echo $project_id ?>, 'coding');">Done</button>
 			</form>
@@ -439,6 +519,45 @@ require_once '../partials/header.php'; ?>
     </div>
   </div>
 </div>
+
+<!-- EDIT CODING -->
+<div class="modal fade" id="editCoding" tabindex="-1" role="dialog" aria-labelledby="coding_addUpdate" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-5 p-4">
+      <div class="modal-header pl-0">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-0">
+        	<form name="update_coding">
+			  <div class="form-group">
+			  	<input type="hidden" class="form-control" id="u_coding_id">
+			    <label for="coding_title">Title</label>
+			    <input type="text" class="form-control" id="u_coding_title" placeholder="Enter your project name">
+			  </div>
+			    <div class="form-group">
+			    <label for="exampleFormControlTextarea1">Description</label>
+			    <textarea class="form-control" id="u_coding_description" rows="3"></textarea>
+			  	</div>
+
+			  	<div class="form-group">
+			    <label for="exampleFormControlFile1">Add File/Image</label>
+			     <input type="hidden" id="u_coding_file_name">
+			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
+			   </div>
+			 <div class="form-group">
+			    <label for="coding_link">Link (Required for designing process)</label>
+			    <input type="text" class="form-control" id="u_coding_link" placeholder="www.example.com/">
+			  </div>
+			   <button type="button" class="btn-submit float-right btn" id="edit_item_btn" onclick="editNewItem(<?php echo $project_id ?>, 'update_coding');">Done</button>
+			</form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MAINTENANCE -->
 <div class="modal fade" id="main_addUpdate" tabindex="-1" role="dialog" aria-labelledby="main_addUpdate" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -452,8 +571,8 @@ require_once '../partials/header.php'; ?>
       <div class="modal-body px-0">
         	<form name="maintenance">
 			  <div class="form-group">
-			    <label for="exampleInputEmail1">Title</label>
-			    <input type="text" class="form-control" id="main_title" aria-describedby="emailHelp" placeholder="Enter your project name">
+			    <label for="main_title">Title</label>
+			    <input type="text" class="form-control" id="main_title" placeholder="Enter your project name">
 			  </div>
 			    <div class="form-group">
 			    <label for="exampleFormControlTextarea1">Description</label>
@@ -465,8 +584,8 @@ require_once '../partials/header.php'; ?>
 			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
 			   </div>
 			 <div class="form-group">
-			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
-			    <input type="email" class="form-control" id="main_link" aria-describedby="emailHelp" placeholder="www.example.com/">
+			    <label for="main_link">Link (Required for designing process)</label>
+			    <input type="email" class="form-control" id="main_link" placeholder="www.example.com/">
 			  </div>
 			   <button type="button" class="btn-submit float-right btn" id="add_item_btn" onclick="addNewItem(<?php echo $project_id ?>, 'maintenance');">Done</button>
 			</form>
@@ -474,5 +593,44 @@ require_once '../partials/header.php'; ?>
     </div>
   </div>
 </div>
-<button onclick="addNewItem(<?php echo $project_id ?>, 'design');"></button>
+
+<!-- EDIT MAINTENANCE -->
+<div class="modal fade" id="editMaintenance" tabindex="-1" role="dialog" aria-labelledby="main_editUpdate" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-5 p-4">
+      <div class="modal-header pl-0">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Add Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-0">
+        	<form name="update_maintenance">
+			  <div class="form-group">
+			  	 <input type="hidden" class="form-control" id="u_main_id">
+			    <label for="u_main_title">Title</label>
+			    <input type="text" class="form-control" id="u_main_title" placeholder="Enter your project name">
+			  </div>
+			    <div class="form-group">
+			    <label for="u_main_description">Description</label>
+			    <textarea class="form-control" id="u_main_description" rows="3"></textarea>
+			  	</div>
+
+			  	<div class="form-group">
+			    <label for="exampleFormControlFile1">Add File/Image</label>
+			     <input type="hidden" id="u_main_file_name">
+			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
+			   </div>
+			 <div class="form-group">
+			    <label for="u_main_link">Link (Required for designing process)</label>
+			    <input type="email" class="form-control" id="u_main_link" placeholder="www.example.com/">
+			  </div>
+			   <button type="button" class="btn-submit float-right btn" id="edit_item_btn" onclick="editNewItem(<?php echo $project_id ?>, 'update_maintenance');">Done</button>
+			</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <?php require_once '../partials/footer.php';?>   
