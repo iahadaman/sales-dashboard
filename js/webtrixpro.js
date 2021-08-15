@@ -1034,6 +1034,223 @@ function addNewItem(projectId, process) {
 	}
 }
 
+// Edit Item
+
+function editNewItem(projectId, process) {
+	event.preventDefault();
+	let title;
+	let description;
+	let link;
+
+	// let name = $("#u_dis_name").val();
+			// let title = $("#u_dis_title").val();
+			// let description = $("#u_dis_description").val();
+			// let description = $("#u_dis_link").val();
+			// let id = $("#u_clientId").val();
+
+	if( process == 'update_discovery' ) {
+
+		var formData = new FormData(update_discovery);
+		 title = $("#title").val();
+		 description = $("#description").val();
+		 link = $("#link").val();
+	}
+	if( process == 'update_design' ) {
+		var formData = new FormData(design);
+		title = $("#design_title").val();
+		description = $("#design_description").val();
+		link = $("#design_link").val();
+	}
+	if( process == 'update_coding' ) {
+		var formData = new FormData(coding);
+		title = $("#coding_title").val();
+		description = $("#coding_description").val();
+		link = $("#coding_link").val();
+	}
+
+	if ( process == 'update_maintenance' ) {
+		var formData = new FormData(maintenance);
+		title = $("#main_title").val();
+		description = $("#main_description").val();
+		link = $("#main_link").val();
+	}
+	
+
+	formData.append('type', 18);
+	//formData.append('process', process);
+	formData.append('projectID', projectId);
+	formData.append('title', title);
+	formData.append('description', description);
+	formData.append('link', link);
+	
+
+	if(title != "" && description != "")
+	{
+		$.ajax({
+			type: 'POST',
+			url: 'admin-backend.php',
+			data: formData,
+			mimeType:'multipart/form-data',
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function(e){
+				if(e == 1) {
+					Swal.fire({
+						title: 'Uploaded',
+						showDenyButton: false,
+						showCancelButton: true,
+						confirmButtonText: `Okay`,
+						denyButtonText: `Don't save`,
+					  }).then((result) => {
+						/* Read more about isConfirmed, isDenied below */
+						if (result.isConfirmed) {
+							location.reload();
+						} else if (result.isDenied) {
+						  Swal.fire('Changes are not saved', '', 'info')
+						}
+					  })
+					
+				}
+				else{
+					$("#update_error").css("display", "block");
+					$("#update_error").addClass("alert-danger");
+					$("#update_error").text("Something went wrong");
+				}
+
+			}
+		});
+	}
+	else
+	{
+		$("#update_error").css("display", "block");
+		$("#update_error").removeClass("alert-success");
+		$("#update_error").addClass("alert-danger");
+		$("#update_error").text("All Fields Are Required");
+	}
+}
+
+
+
+//Delete Update
+function deleteUpdate(updateId) {
+	Swal.fire({
+		title: 'Are you sure?',
+		text: "You won't be able to revert this!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes, delete it!'
+	  }).then((result) => {
+		if (result.isConfirmed) {
+		//   Swal.fire(
+		// 	'Deleted!',
+		// 	'Your file has been deleted.',
+		// 	'success'
+		//   )
+		$.ajax({
+			url: "admin-backend.php",
+			type: "POST",
+			data: { type: 19, updateId: updateId },
+			beforeSend: function() {
+				alert('Deleting...');
+			},
+			success: function(e) {
+				if(e == 1) {
+					Swal.fire(
+						'Deleted!',
+						'Your file has been deleted.',
+						'success'
+					  ).then((result) => {
+						  if(result.isConfirmed) {
+							location.reload();
+						  }
+					  })
+					  
+				} else {
+					Swal.fire(
+						'Error!',
+						e,
+						'danger'
+					  )
+				}
+			}
+		})
+		}
+	  })
+}
+
+//Edit Discovery modal
+
+$(document).on('click', '.edit_discovery_data', function(){  
+	   event.preventDefault();
+	   jQuery.noConflict();
+	       $("#updateDiscoveryBtn").on("click", function(){
+			event.preventDefault();
+			jQuery.noConflict();
+			// let name = $("#u_dis_name").val();
+			// let title = $("#u_dis_title").val();
+			// let description = $("#u_dis_description").val();
+			// let description = $("#u_dis_link").val();
+			// let id = $("#u_clientId").val();
+			
+			// if(name != "" && company != "" && email != "" && password != "")
+			// {
+			// 	$.ajax({
+			// 		type: 'POST',
+			// 		url: 'admin-backend.php',
+			// 		data: {type: 5, id: id , name: name, company: company, email: email, password: password, description: description},
+			// 		success: function(e){
+			// 			if(e==1){
+			// 				document.getElementById('update_client_error').setAttribute("class", "alert alert-success");
+			// 				document.getElementById('update_client_error').style.display = 'block';
+			// 				$("#update_client_error").text("Client Data Updated Successfully!!");
+			// 				setTimeout(function() {
+			// 			    $('#edit_update_error').fadeOut('fast');
+			// 			    	$('#editClient').modal('hide');  
+			// 				}, 2000); 
+			// 				getClientsData();
+			// 			}
+			// 			else 
+			// 			{
+			// 				document.getElementById('edit_update_error').style.display = 'block';
+			// 				$("#edit_update_error").text("Error: Something went wrong!!");
+			// 			}
+			// 		}
+			// 	});
+			//}
+			// else
+			// {
+			// 	document.getElementById('edit_update_error').style.display = 'block';
+			// 	$("#edit_update_error").text("All Fields Are Required!!");
+			// }
+	   });
+
+       var discovery_id = $(this).attr("id");  
+      	$.ajax({
+            url:"admin-backend.php",  
+            method:"POST",  
+            data:{type: 101,
+            	discovery_id:discovery_id},  
+            dataType:"json",  
+            success:function(data){  
+                $('#u_dis_title').val(data.process_name);  
+
+                $('#u_dis_description').val(data.process_description);  
+
+                $('#u_dis_file_name').html(data.process_file);  
+             
+                $('#editUpdate').modal('show');  
+            },
+            fail: function( jqXHR, textStatus, errorThrown ) {
+       		console.log( 'Could not get posts, server response: ' + textStatus + ': ' + errorThrown );
+    }
+    });  
+});
+
+
+
 setInterval(function()
 {
 	check_session();
@@ -1206,127 +1423,5 @@ function getSalesCardData()
 			}
 	});	
 }
-
-//Delete Update
-function deleteUpdate(updateId) {
-	Swal.fire({
-		title: 'Are you sure?',
-		text: "You won't be able to revert this!",
-		icon: 'warning',
-		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
-		confirmButtonText: 'Yes, delete it!'
-	  }).then((result) => {
-		if (result.isConfirmed) {
-		//   Swal.fire(
-		// 	'Deleted!',
-		// 	'Your file has been deleted.',
-		// 	'success'
-		//   )
-		$.ajax({
-			url: "admin-backend.php",
-			type: "POST",
-			data: { type: 19, updateId: updateId },
-			beforeSend: function() {
-				alert('Deleting...');
-			},
-			success: function(e) {
-				if(e == 1) {
-					Swal.fire(
-						'Deleted!',
-						'Your file has been deleted.',
-						'success'
-					  ).then((result) => {
-						  if(result.isConfirmed) {
-							location.reload();
-						  }
-					  })
-					  
-				} else {
-					Swal.fire(
-						'Error!',
-						e,
-						'danger'
-					  )
-				}
-			}
-		})
-		}
-	  })
-}
-
-//Edit Discovery modal
-
-$(document).on('click', '.edit_discovery_data', function(){  
-	   event.preventDefault();
-	   jQuery.noConflict();
-	    $('#editUpdate').modal('show');  
-
-	       $("#updateDiscoveryBtn").on("click", function(){
-			event.preventDefault();
-			jQuery.noConflict();
-			let name = $("#u_clientName").val();
-			let company = $("#u_companyName").val();
-			let email = $("#u_clientEmail").val();
-			let password = $("#u_clientPassword").val();
-			let description = $("#u_clientDes").val();
-			let id = $("#u_clientId").val();
-			
-			if(name != "" && company != "" && email != "" && password != "")
-			{
-				$.ajax({
-					type: 'POST',
-					url: 'admin-backend.php',
-					data: {type: 5, id: id , name: name, company: company, email: email, password: password, description: description},
-					success: function(e){
-						if(e==1){
-							document.getElementById('update_client_error').setAttribute("class", "alert alert-success");
-							document.getElementById('update_client_error').style.display = 'block';
-							$("#update_client_error").text("Client Data Updated Successfully!!");
-							setTimeout(function() {
-						    $('#update_client_error').fadeOut('fast');
-						    	$('#editClient').modal('hide');  
-							}, 2000); 
-							getClientsData();
-						}
-						else 
-						{
-							document.getElementById('update_client_error').style.display = 'block';
-							$("#update_client_error").text("Error: Try Again Later!!");
-						}
-					}
-				});
-			}
-			else
-			{
-				document.getElementById('update_client_error').style.display = 'block';
-				$("#update_client_error").text("All Fields Are Required!!");
-			}
-	   });
-
-       var discovery_id = $(this).attr("id");  
-      	$.ajax({
-            url:"admin-backend.php",  
-            method:"POST",  
-            data:{type: 101,
-            	discovery_id:discovery_id},  
-            dataType:"json",  
-            success:function(data){  
-                $('#u_dis_title').val(data.process_name);  
-
-                $('#u_dis_description').val(data.process_description);  
-
-                $('#u_dis_file_name').html(data.process_file);  
-             
-                $('#editUpdate').modal('show');  
-            },
-            fail: function( jqXHR, textStatus, errorThrown ) {
-       		console.log( 'Could not get posts, server response: ' + textStatus + ': ' + errorThrown );
-    }
-    });  
-
-});
-
 
 
