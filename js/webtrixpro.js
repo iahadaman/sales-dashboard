@@ -953,6 +953,7 @@ function addNewItem(projectId, process) {
 	let link;
 
 	if( process == 'discovery' ) {
+
 		var formData = new FormData(discovery);
 		 title = $("#title").val();
 		 description = $("#description").val();
@@ -985,8 +986,9 @@ function addNewItem(projectId, process) {
 	formData.append('title', title);
 	formData.append('description', description);
 	formData.append('link', link);
+	
 
-	if(title != "" && title != "" && description != "")
+	if(title != "" && description != "")
 	{
 		$.ajax({
 			type: 'POST',
@@ -1014,37 +1016,21 @@ function addNewItem(projectId, process) {
 					  })
 					
 				}
-				// if(e==1){
-				// 	$("#client_error").css("display", "block");
-				// 	$("#client_error").removeClass("alert-danger");
-				// 	$("#client_error").addClass("alert-success");
-				// 	$("#client_error").text("Client Added Successfully!");
-				// 	setTimeout(function() {
-				//     $('#client_error').fadeOut('fast');
-				// 	}, 3000); 
-				// 	$("#clientName").val("");
-				// 	$("#companyName").val("");
-				// 	$("#clientEmail").val("");
-				// 	$("#clientPassword").val("");
-				// 	$("#clientDes").val("");
-				// 	$("#exampleFormControlFile").val("");
-				// 	getClientsData();
-				// }
-				// else{
-				// 	$("#client_error").css("display", "block");
-				// 	$("#client_error").removeClass("alert-success");
-				// 	$("#client_error").addClass("alert-danger");
-				// 	$("#client_error").text("Something went wrong, Please try again later!!");
-				// }
+				else{
+					$("#update_error").css("display", "block");
+					$("#update_error").addClass("alert-danger");
+					$("#update_error").text("Something went wrong");
+				}
+
 			}
 		});
 	}
 	else
 	{
-		$("#client_error").css("display", "block");
-		$("#client_error").removeClass("alert-success");
-		$("#client_error").addClass("alert-danger");
-		$("#client_error").text("All Fields Are Required");
+		$("#update_error").css("display", "block");
+		$("#update_error").removeClass("alert-success");
+		$("#update_error").addClass("alert-danger");
+		$("#update_error").text("All Fields Are Required");
 	}
 }
 
@@ -1204,8 +1190,10 @@ setTimeout(function() {
 
 
 $(document).ready(function(){	
+
 getSalesCardData();
-	});
+
+});
 function getSalesCardData()
 {
 	let readAllprojects = "In Progress";
@@ -1267,3 +1255,78 @@ function deleteUpdate(updateId) {
 		}
 	  })
 }
+
+//Edit Discovery modal
+
+$(document).on('click', '.edit_discovery_data', function(){  
+	   event.preventDefault();
+	   jQuery.noConflict();
+	    $('#editUpdate').modal('show');  
+
+	       $("#updateDiscoveryBtn").on("click", function(){
+			event.preventDefault();
+			jQuery.noConflict();
+			let name = $("#u_clientName").val();
+			let company = $("#u_companyName").val();
+			let email = $("#u_clientEmail").val();
+			let password = $("#u_clientPassword").val();
+			let description = $("#u_clientDes").val();
+			let id = $("#u_clientId").val();
+			
+			if(name != "" && company != "" && email != "" && password != "")
+			{
+				$.ajax({
+					type: 'POST',
+					url: 'admin-backend.php',
+					data: {type: 5, id: id , name: name, company: company, email: email, password: password, description: description},
+					success: function(e){
+						if(e==1){
+							document.getElementById('update_client_error').setAttribute("class", "alert alert-success");
+							document.getElementById('update_client_error').style.display = 'block';
+							$("#update_client_error").text("Client Data Updated Successfully!!");
+							setTimeout(function() {
+						    $('#update_client_error').fadeOut('fast');
+						    	$('#editClient').modal('hide');  
+							}, 2000); 
+							getClientsData();
+						}
+						else 
+						{
+							document.getElementById('update_client_error').style.display = 'block';
+							$("#update_client_error").text("Error: Try Again Later!!");
+						}
+					}
+				});
+			}
+			else
+			{
+				document.getElementById('update_client_error').style.display = 'block';
+				$("#update_client_error").text("All Fields Are Required!!");
+			}
+	   });
+
+       var discovery_id = $(this).attr("id");  
+      	$.ajax({
+            url:"admin-backend.php",  
+            method:"POST",  
+            data:{type: 101,
+            	discovery_id:discovery_id},  
+            dataType:"json",  
+            success:function(data){  
+                $('#u_dis_title').val(data.process_name);  
+
+                $('#u_dis_description').val(data.process_description);  
+
+                $('#u_dis_file_name').html(data.process_file);  
+             
+                $('#editUpdate').modal('show');  
+            },
+            fail: function( jqXHR, textStatus, errorThrown ) {
+       		console.log( 'Could not get posts, server response: ' + textStatus + ': ' + errorThrown );
+    }
+    });  
+
+});
+
+
+

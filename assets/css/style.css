@@ -953,6 +953,7 @@ h5{
     background-color: #FAFAFA;
     border: 1px solid #DBDBDB;
     font-size: 12px;
+    padding-left: 6px;
 
 }
 .modal-body select:focus{

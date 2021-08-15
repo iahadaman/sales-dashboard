@@ -207,6 +207,7 @@ if($_POST['type']==7){
 
 			if(move_uploaded_file($_FILES['img_file']['tmp_name'], $path)) {
 				$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`,`project_image`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$clientProfile__image','$path','$pDate','$pDescription','$pLabel')";
+				mysqli_query($con, $insertquery);
 				if(mysqli_query($con, $insertquery)) {
 				 echo 1;
 				}
@@ -219,7 +220,6 @@ if($_POST['type']==7){
 			echo "Invalid Format";
 		}
 	} else {
-		$path = "images/profile.jpg";
 		$insertquery="INSERT INTO `webtrixpro_projects`(`project_name`, `project_clientId`, `project_platformId`, `project_clientProfile`,`project_image`, `project_date`, `project_description`, `project_label`) VALUES ('$pName','$pClient','$pPlatform','$clientProfile__image','$clientProfile__image','$pDate','$pDescription','$pLabel')";
 		if(mysqli_query($con, $insertquery)) {
 		    echo 1;
@@ -629,8 +629,13 @@ if($_POST['type'] == '18') {
 		
 	$title = mysqli_real_escape_string($con, $_POST['title']);
 	$description = mysqli_real_escape_string($con, $_POST['description']);
-	if($_POST['link'] != "") {
+
+	if($_POST['link'] != null) {
 		$link = mysqli_real_escape_string($con, $_POST['link']);
+	}
+	else
+	{
+		$link = null;
 	}
 	$projectID = $_POST['projectID'];
 	$process = $_POST['process'];
@@ -644,7 +649,7 @@ if($_POST['type'] == '18') {
 			$path = "files/" . htmlspecialchars( mysqli_real_escape_string($con, $new_name));
 
 			if(move_uploaded_file($_FILES['process_file']['tmp_name'], $path)) {
-				$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title)values('$projectID', '$process','$description', '$path', '$title')";
+				$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title, process_link)values('$projectID', '$process','$description', '$path', '$title', '$link')";
 				if(mysqli_query($con, $insertquery)) {
 				 echo 1;
 				}
@@ -657,7 +662,7 @@ if($_POST['type'] == '18') {
 			echo "Invalid Format";
 		}
 	} else { 
-		$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title)values('$projectID', '$process','$description', '', '$title')";
+		$insertquery="INSERT INTO webtrixpro_updates (project_id, process_name, process_description, process_file, process_title, process_link)values('$projectID', '$process','$description', '', '$title', '$link')";
 		if(mysqli_query($con, $insertquery)) {
 		 echo 1;
 		}
@@ -676,4 +681,24 @@ if($_POST['type'] == 19) {
 	}
 
 }
+
+//Display Record in EDIT DISCOVERY MODAl
+
+if($_POST['type']==101){
+	 if(isset($_POST["discovery_id"]))  
+	 { 
+	      $query = "SELECT * FROM webtrixpro_updates WHERE update_id = '".$_POST["discovery_id"]."'";  
+	      $result = mysqli_query($con, $query);    
+	      $row = mysqli_fetch_array($result); 
+	      if($row)
+	      {
+	      	echo json_encode($row);  
+	      }
+	      else{
+	      	echo 0;
+	      }
+	      
+	 }
+}  
+
 ?>

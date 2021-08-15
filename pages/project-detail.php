@@ -50,7 +50,7 @@ $isTrue = false;
 				echo "Web App";
 			}
 			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '0') {
-				echo "Web App, Android";
+				echo "Web App & Android";
 			}
 			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '1') {
 				echo "All";
@@ -61,16 +61,10 @@ $isTrue = false;
 			if($platformData['web_platform'] == '0' && $platformData['andriod_platform'] == '0' && $platformData['ios_platform'] == '1') {
 				echo "IOS";
 			}
-			if($platformData['web_platform'] == '0' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '1') {
-				echo "IOS & Android";
-			}
 			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '0' && $platformData['ios_platform'] == '1') {
 				echo "IOS & Web";
 			}
-			if($platformData['web_platform'] == '1' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '0') {
-				echo "Android & Web";
-			}
-			if($platformData['web_platform'] == '0' && $platformData['andriod_platform'] == '0' && $platformData['ios_platform'] == '1') {
+			if($platformData['web_platform'] == '0' && $platformData['andriod_platform'] == '1' && $platformData['ios_platform'] == '1') {
 				echo "Android & IOS";
 			}
 		}
@@ -128,16 +122,28 @@ require_once '../partials/header.php'; ?>
 											 <?php 
 											 	$getDiscovery = mysqli_query($con, "SELECT * FROM webtrixpro_updates WHERE project_id = '$project_id' AND process_name = 'discovery'");
 												 if(mysqli_num_rows($getDiscovery) > 0) {
+
 													while($discovery = mysqli_fetch_array($getDiscovery)) {
+
+														if($discovery['process_description'] == "")
+														{
+															$links = "Click here to view the link";
+														}
+														else
+														{
+															$links = "No links attached";
+														}
+														
 														echo '
 														<div class="sub-small-card" style="box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25)">           						
 														<div class="row">
 														<div class="col-8">		                 
 														<h6>' . $discovery['process_title'] . '</h6>
 														<p>'. $discovery['process_description'] .'</p>
+														<a target = "blank" class="float-right" href="' . $discovery['process_link'] . '"> '. $links .'</a>
 														<br>
 														<div class="card-end">
-														<a type="button" data-toggle="modal" onclick="deleteUpdate('. $discovery['update_id'] .')" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a class="edit" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
+														<a type="button" data-toggle="modal" onclick="deleteUpdate('. $discovery['update_id'] .')" data-target="#deleteModal" class="delete" href=""><i class="fas fa-trash"></i>&nbspDelete</a>&nbsp <a type="button" class="edit_discovery_data edit" id="'.$discovery['update_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit </a>
 														</div>
 													</div>
 													<div class="col-4 mt-2">
@@ -281,7 +287,7 @@ require_once '../partials/header.php'; ?>
         </div>
     </div>
 <!-- MODAL FOR DISCOVERY -->
-	<div class="modal fade" id="addUpdate" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+<div class="modal fade" id="addUpdate" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content m-5 p-4">
       <div class="modal-header pl-0">
@@ -291,10 +297,11 @@ require_once '../partials/header.php'; ?>
         </button>
       </div>
       <div class="modal-body px-0">
+      	  <div id="update_error" style="display: none;" class= "alert alert-danger">All Fields Are Required!!</div>
         	<form name="discovery">
 			  <div class="form-group">
-			    <label for="exampleInputEmail1">Title</label>
-			    <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter your project name">
+			    <label for="title">Title</label>
+			    <input type="text" class="form-control" id="title" placeholder="Enter your project name">
 			  </div>
 			    <div class="form-group">
 			    <label for="exampleFormControlTextarea1">Description</label>
@@ -306,8 +313,8 @@ require_once '../partials/header.php'; ?>
 			    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="process_file">
 			   </div>
 			 <div class="form-group">
-			    <label for="exampleInputEmail1">Link (Required for designing process)</label>
-			    <input type="email" class="form-control" id="link" aria-describedby="emailHelp" placeholder="www.example.com/">
+			    <label for="link">Link (Required for designing process)</label>
+			    <input type="text" class="form-control" id="link" placeholder="www.example.com/">
 			  </div>
 			   <button type="button" class="btn-submit float-right btn" id="add_item_btn" onclick="addNewItem(<?php echo $project_id ?>, 'discovery');">Done</button>
 			</form>
@@ -315,6 +322,45 @@ require_once '../partials/header.php'; ?>
     </div>
   </div>
 </div>
+
+<!-- UPDATE MODAL FOR DISCOVERY -->
+	<div class="modal fade" id="editUpdate" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content m-5 p-4">
+      <div class="modal-header pl-0">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-0">
+        	<form name="">
+			  <div class="form-group">
+			  	<input type="hidden" class="form-control" id="u_name" value = "discovery">
+			    <label for="u_dis_title">Title</label>
+			    <input type="text" class="form-control" id="u_dis_title" placeholder="Enter your project name">
+			  </div>
+			    <div class="form-group">
+			    <label for="u_dis_description">Description</label>
+			    <textarea class="form-control" id="u_dis_description" rows="3"></textarea>
+			  	</div>
+
+			  	<div class="form-group">
+			    <label for="">Add File/Image</label>
+			    <p class="d-none float-right" id = "u_dis_file_name"></p>
+			    <input type="file" class="form-control-file" id="u_dis_file" name="process_file">
+			   </div>
+			 <div class="form-group">
+			    <label for="u_link">Link (Required for designing process)</label>
+			    <input type="email" class="form-control" id="u_link" placeholder="www.example.com/">
+			  </div>
+			   <button type="button" class="btn-submit float-right btn" id="updateDiscoveryBtn" onclick="addNewItem(<?php echo $project_id ?>, 'discovery');">Done</button>
+			</form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- DESIGN MODAL -->
 <div class="modal fade" id="design_addUpdate" tabindex="-1" role="dialog" aria-labelledby="design_addUpdate" aria-hidden="true">

@@ -55,6 +55,7 @@ mysqli_query($con, $Platforms_Table);
                                     `process_description` VARCHAR(500) NOT NULL,
                                     `process_file` VARCHAR(500) NOT NULL,
                                     `process_title` VARCHAR(500) NOT NULL,
+                                    `process_link` VARCHAR(200) NULL,
                                     PRIMARY KEY (`update_id`))";
 mysqli_query($con, $Updates_table);
 ?>
