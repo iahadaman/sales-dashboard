@@ -495,6 +495,24 @@ function getTotalCompletedProjects() {
 	})
 }
 
+//add new question
+
+function addNewQuestion() {
+	let title = $("#title__newquestion").val();
+	let description = $("#description__newquestion").val();
+	let option = $("#addNewComponent__select :selected").val();
+	if(title != "" || description != "") {
+		$.ajax({
+			url: "admin-backend.php",
+			type: "POST",
+			data: { type: 25, title: title, description: description, option: option },
+			success: function(e) {
+				$(location).attr('href', 'edit_component.php?id=' + e);
+			}
+		})
+	}
+}
+
 // EDIT CLIENT 
 
 $(document).on('click', '.edit_client_data', function(){  

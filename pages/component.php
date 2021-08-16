@@ -31,7 +31,7 @@ require_once '../partials/header.php';?>
             							  <option selected value="1">Web</option>
             							  <option value="2">Mobile Apps</option>
       						        	</select>                            
-      	                	 	<button onClick="window.location.href='../pages/adding-component.php';" class="btn btn-bg btn-component"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp Add Component</button>   	          
+      	                	 	<button class="btn btn-bg btn-component"   data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp Add Component</button>   	          
     	                	  </div>
                       </div>       
                     </div>                	
@@ -178,6 +178,53 @@ require_once '../partials/header.php';?>
 
     </div>
 	</div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new component</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+                                    <div class="col-12">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">Title</label>
+                                        <input type="email" class="form-control" id="title__newquestion" aria-describedby="emailHelp" placeholder="eg. Small">
+                                      </div>
+                                    </div>
+                                    <div class="col-12">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">Description</label>
+                                        <input type="email" class="form-control" id="description__newquestion" aria-describedby="emailHelp" placeholder="eg.  Your app probably has around 10-15 key feature pages" >
+                                      </div>
+                                    </div>
+                                    <div class="col-12">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">Platform</label>
+                                        <select class="form-control" id="addNewComponent__select">
+                                          <option selected value="3">Web</option>
+                                          <option value="1">Mobile</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="col-5" style="display: flex; justify-content: flex-start;">
+                                    <div class="form-group">
+                                   
+                                    </div>
+                                  </div>
+                                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="addNewQuestion();">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <?php require_once 'modals/delete-modal.php';?>   
 <?php require_once '../partials/footer.php';?>   
 

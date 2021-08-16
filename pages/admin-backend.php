@@ -835,7 +835,7 @@ if($_POST['type'] == 21) {
 	if(isset($_FILES['file']['tmp_name'])) {
 		$filename = $_FILES['file']['name'];
 		$extension = pathinfo($filename, PATHINFO_EXTENSION);
-		$valid_extensions = array("jpg", "jpeg", "png", "PNG", "JPG", "docx");
+		$valid_extensions = array("svg");
 		if(in_array($extension, $valid_extensions)) {
 			$new_name = rand() .  "." . $extension;
 			$path = htmlspecialchars( mysqli_real_escape_string($con, $new_name));
@@ -928,5 +928,19 @@ if($_POST['type'] == 24) {
         </tr>
         <?php
     }
+}
+
+if($_POST['type'] == 25) {
+	$title = htmlspecialchars(mysqli_real_escape_string($con, $_POST['title']));
+	$description = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['description']));
+	$option = htmlspecialchars(mysqli_real_escape_string($con, $_POST['option']));
+	$forMobile = ($option == 1) ? "1" : "0";
+	$getLastId = mysqli_query($con, "SELECT * FROM questions ORDER BY question_id DESC LIMIT 1 ");
+	$getLastId__assoc = mysqli_fetch_assoc($getLastId);
+	$lastId = (int)$getLastId__assoc['question_id'] + 1;
+		$insertQuestion = mysqli_query($con, "INSERT INTO questions(question_id, question, description, main_id, for_mobile, single_option) VALUES('$lastId', '$title', '$description', '$option', '$forMobile', '0')");
+		if($insertQuestion) {
+			echo $lastId;
+		}
 }
 ?>
