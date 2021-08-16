@@ -626,8 +626,10 @@ if($_POST['type']==100){
 		{
 			$adminPassword = $oldData['user_password'];
 		}
+		else{
+			$adminPassword = md5($adminPassword);  
+		}
 
-		$adminPassword = md5($adminPassword);  
 		$updateUser =  "UPDATE `webtrixpro_users` SET `user_name`='$adminName', `user_email`='$adminEmail',`user_password`='$adminPassword',`user_profile`='$admin_update_filename' WHERE user_id = '$adminId'";
         $query = mysqli_query($con, $updateUser);
 		if($query) {

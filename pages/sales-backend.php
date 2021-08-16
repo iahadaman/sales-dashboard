@@ -69,7 +69,7 @@ if($_POST['type']==2){
 
 			 $update_filename = $old_image;
 		}
-		
+
 		if($clientName == '')
 		{
 			$clientName = $oldData['user_name'];
@@ -82,8 +82,11 @@ if($_POST['type']==2){
 		{
 			$clientPassword = $oldData['user_password'];
 		}
+		else{
 
-		$clientPassword = md5($clientPassword);  
+			$clientPassword = md5($clientPassword);  
+		}
+
 		$updateUser =  "UPDATE `webtrixpro_users` SET `user_name`='$clientName', `user_email`='$clientEmail',`user_password`='$clientPassword',`user_profile`='$update_filename' WHERE user_id = '$client_id'";
         $query = mysqli_query($con, $updateUser);
 		if($query) {
@@ -112,7 +115,7 @@ if($_POST['type']==3){
 	    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
 
                   <div class="progress-box">
-                  <a class="design" href="project-detail.php?id='.$allProjects['project_id'].'">
+                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
                    <div class="progress-bg2"> </div>
                   </div>';
                   if($_POST['readAllprojects'] == "Completed")
