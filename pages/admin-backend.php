@@ -576,7 +576,7 @@ if($_POST['type']==13){
 		}
 	}
 
-	 // UPDATE ADMIN ACCOUNT
+ // UPDATE ADMIN ACCOUNT
 
 if($_POST['type']==100){
 	  $adminName = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_name']));
@@ -584,7 +584,11 @@ if($_POST['type']==100){
 	  $adminPassword = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_password']));
   	  $old_image = htmlspecialchars(mysqli_real_escape_string($con, $_POST['admin_OldProfile']));
 
+
   	    $adminId =  $_SESSION['admin_id'];
+
+  	    $oldDataAdmin = mysqli_query($con, "SELECT * from webtrixpro_users WHERE user_id = '$adminId'");
+  	    $oldData = mysqli_fetch_assoc($oldDataAdmin);
  
 		$datetime_variable = new DateTime();			 
 		$datetime_variable = date_format($datetime_variable, 'Y-m-d H:i:s');
@@ -608,6 +612,19 @@ if($_POST['type']==100){
 		else{
 
 			 $admin_update_filename = $old_image;
+		}
+
+		if($adminName == '')
+		{
+			$adminName = $oldData['user_name'];
+		}
+		if($adminEmail == '')
+		{
+			$adminEmail = $oldData['user_email'];
+		}
+		if($adminPassword == '')
+		{
+			$adminPassword = $oldData['user_password'];
 		}
 
 		$adminPassword = md5($adminPassword);  

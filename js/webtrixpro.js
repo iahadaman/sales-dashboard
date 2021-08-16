@@ -263,9 +263,13 @@ $("#adminLoginButton").on("click", function() {
 					$("#exampleInputEmail").val("");
 					$("#exampleInputPassword").val("");
 				}
-				else{
+				else if(e == 0){
 					document.getElementById('login_error').style.display = 'block';
 					$("#login_error").text("Invalid credentials are provided.");
+				}
+				else{
+					document.getElementById('login_error').style.display = 'block';
+					$("#login_error").text("Something went wrong.");
 				}
 			}
 		})
@@ -884,45 +888,36 @@ $("#aAccountUpdateBtn").on("click", function() {
 	else
 	{
 
-		if(admin_name != "" && admin_email != "" && admin_password != "")
-		{
-			var formData = new FormData(adminProfile);
-			formData.append('type', 100);
-			formData.append('admin_name', admin_name);
-			formData.append('admin_email', admin_email);
-			formData.append('admin_password', admin_password);
-			formData.append('admin_OldProfile', admin_OldProfile);
-
-			$.ajax({
-	            type: 'POST',
-				url: 'admin-backend.php',
-				data: formData,
-				mimeType:'multipart/form-data',
-				contentType: false,
-				cache: false,
-				processData: false,
-				success: function(e){
-					if(e==1){						
-						document.getElementById('admin_profile_error').setAttribute("class", "alert alert-success");
-						document.getElementById('admin_profile_error').style.display = 'block';
-						$("#admin_profile_error").text("Account Updated Successfully!!")
-						setTimeout(function() {
-					    $('#admin_profile_error').fadeOut('fast');
-						}, 6000); 		
-					}
-					else
-					{
-						document.getElementById('admin_profile_error').style.display = 'block';
-						$("#admin_profile_error").text("Error: Something went wrong!!");
-					}
+		var formData = new FormData(adminProfile);
+		formData.append('type', 100);
+		formData.append('admin_name', admin_name);
+		formData.append('admin_email', admin_email);
+		formData.append('admin_password', admin_password);
+		formData.append('admin_OldProfile', admin_OldProfile);
+		$.ajax({
+            type: 'POST',
+			url: 'admin-backend.php',
+			data: formData,
+			mimeType:'multipart/form-data',
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function(e){
+				if(e==1){						
+					document.getElementById('admin_profile_error').setAttribute("class", "alert alert-success");
+					document.getElementById('admin_profile_error').style.display = 'block';
+					$("#admin_profile_error").text("Account Updated Successfully!!")
+					setTimeout(function() {
+				    $('#admin_profile_error').fadeOut('fast');
+					}, 6000); 		
 				}
-			});
-		}
-		else
-		{
-			document.getElementById('admin_profile_error').style.display = 'block';
-			$("#admin_profile_error").text("All Fields Are Required!!");
-		}
+				else
+				{
+					document.getElementById('admin_profile_error').style.display = 'block';
+					$("#admin_profile_error").text("Error: Something went wrong!!");
+				}
+			}
+		});
 	}
 });
 
@@ -1427,38 +1422,31 @@ $("#accountUpdateBtn").on("click", function() {
 		formData.append('client_password', client_password);
 		formData.append('client_OldProfile', client_OldProfile);
 
-		if(client_name != "" && client_email != "" && client_password != "")
-		{
-			$.ajax({
-	           type: 'POST',
-				url: 'sales-backend.php',
-				data: formData,
-				mimeType:'multipart/form-data',
-				contentType: false,
-				cache: false,
-				processData: false,
-				success: function(e){
-					if(e==1){						
-						document.getElementById('profile_error').setAttribute("class", "alert alert-success");
-						document.getElementById('profile_error').style.display = 'block';
-						$("#profile_error").text("Account Updated Successfully!!")
-						setTimeout(function() {
-					    $('#profile_error').fadeOut('fast');
-						}, 6000); 		
-					}
-					else
-					{
-						document.getElementById('profile_error').style.display = 'block';
-						$("#profile_error").text("Error: Something went wrong!!");
-					}
+
+		$.ajax({
+           type: 'POST',
+			url: 'sales-backend.php',
+			data: formData,
+			mimeType:'multipart/form-data',
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function(e){
+				if(e==1){						
+					document.getElementById('profile_error').setAttribute("class", "alert alert-success");
+					document.getElementById('profile_error').style.display = 'block';
+					$("#profile_error").text("Account Updated Successfully!!")
+					setTimeout(function() {
+				    $('#profile_error').fadeOut('fast');
+					}, 6000); 		
 				}
-			});
-		}
-		else
-		{
-			document.getElementById('profile_error').style.display = 'block';
-			$("#profile_error").text("All Fields Are Required!!");
-		}
+				else
+				{
+					document.getElementById('profile_error').style.display = 'block';
+					$("#profile_error").text("Error: Something went wrong!!");
+				}
+			}
+		});
 	}
 });
 

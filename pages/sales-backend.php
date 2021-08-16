@@ -40,6 +40,11 @@ if($_POST['type']==2){
   	  $old_image = htmlspecialchars(mysqli_real_escape_string($con, $_POST['client_OldProfile']));
 
   	    $client_id =  $_SESSION['client_id'];
+
+
+  	    $oldDataUsers = mysqli_query($con, "SELECT * from webtrixpro_users WHERE user_id = '$client_id'");
+  	    $oldData = mysqli_fetch_assoc($oldDataUsers);
+ 
  
 		$datetime_variable = new DateTime();			 
 		$datetime_variable = date_format($datetime_variable, 'Y-m-d H:i:s');
@@ -63,6 +68,19 @@ if($_POST['type']==2){
 		else{
 
 			 $update_filename = $old_image;
+		}
+		
+		if($clientName == '')
+		{
+			$clientName = $oldData['user_name'];
+		}
+		if($clientEmail == '')
+		{
+			$clientEmail = $oldData['user_email'];
+		}
+		if($clientPassword == '')
+		{
+			$clientPassword = $oldData['user_password'];
 		}
 
 		$clientPassword = md5($clientPassword);  
