@@ -136,7 +136,10 @@ require_once '../partials/header.php';?>
                 <div class="col-lg-8 col-md-12 col-sm-12 mt-3">
                     <h5>Recent Projects</h5>
                     <hr>
-                    <div class="row">
+                    <div id="recentProjectsDiv">
+
+                    </div>
+                    <!-- <div class="row">
                         <div class="inprogress-card col-md-6 col-sm-6">
 
                             <div class="progress-box">
@@ -193,7 +196,7 @@ require_once '../partials/header.php';?>
                         </div> 
 
                       
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- INPROGRESS CARDS END  -->  

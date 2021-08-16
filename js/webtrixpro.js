@@ -68,6 +68,7 @@ $(document).ready(function(){
 	getTotalProjects();
 	getTotalInProgressProjects();
 	getTotalCompletedProjects();
+	getRecentProjects();
 
 	// Search Client Filter
 	$("#searchClientFilter").on("keyup", function() {
@@ -1593,6 +1594,20 @@ function getSalesCardData()
 			data: { type: 3, readAllprojects: readAllprojects },
 			success: function(data, status){
 				$('#salesCardsData').html(data);
+			}
+	});	
+}
+
+//
+function getRecentProjects()
+{
+	let readAllprojects = "In Progress";
+	$.ajax({
+			type: 'POST',
+			url: 'admin-backend.php',
+			data: { type: 26, readAllprojects: readAllprojects },
+			success: function(data, status){
+				$("#recentProjectsDiv").html(data);
 			}
 	});	
 }

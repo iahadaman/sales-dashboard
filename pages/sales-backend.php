@@ -116,7 +116,7 @@ if($_POST['type']==3){
 
                   <div class="progress-box">
                   <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
-                   <div class="progress-bg2"> </div>
+                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
                   </div>';
                   if($_POST['readAllprojects'] == "Completed")
 					{
