@@ -77,6 +77,17 @@ $(document).ready(function(){
 		})
 	})
 
+	//Search Filter == Component
+	$("#componentSearch").on("keyup", function() {
+		let value = $(this).val().toLowerCase();
+		let platTable = componentTableShown + "PlatTable tr";
+		$("#" + platTable).filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		})
+		
+	})
+	
+
 	//select more option functionality on modal
 
 	$('.addMoreOptions').click(function() {
