@@ -8,26 +8,26 @@
 
     <ul class="list-unstyled">
         <li>
-            <a href="../pages/dashboard.php" class="active"> 
-                <i class="fas fa-home"></i>
-              Dashboard
+            <a href="../pages/dashboard.php" class="active" style="padding-top: 15px; padding-bottom: 15px;"> 
+                <img src="images/d_icon.svg" width="17" style="margin-right: 8px;"/>
+                Dashboard
             </a>                   
         </li>               
         <li>
-            <a href="../pages/project.php">
-                <i class="fas fa-image"></i>
+            <a href="../pages/project.php" style="padding-top: 15px; padding-bottom: 15px;">
+            <img src="images/layers.svg" width="17" style="margin-right: 8px;"/>
                 Projects
             </a>
         </li>
         <li>
-            <a href="../pages/component.php">
-                <i class="fas fa-question"></i>
+            <a href="../pages/component.php" style="padding-top: 15px; padding-bottom: 15px;">
+            <img src="images/Vector.svg" width="17" style="margin-right: 8px;"/>
                 Components
             </a>
         </li>
         <li>
-            <a href="../pages/client.php">
-                <i class="fas fa-paper-plane"></i>
+            <a href="../pages/client.php" style="padding-top: 15px; padding-bottom: 15px;">
+            <img src="images/Users.png" width="17" style="margin-right: 8px;"/>
                 Manage Clients
             </a>
         </li>
