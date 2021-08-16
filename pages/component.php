@@ -25,13 +25,11 @@ require_once '../partials/header.php';?>
                       <div class="col-9">
     	                	  <div class="float-right project-right-property">                	 	 
             						    <label for="exampleInputSearch">Search</label>
-            						    <input type="text" id="exampleInputSearch" placeholder="e.g. IOS">						
+            						    <input type="text" id="componentSearch" placeholder="e.g. IOS">						
       	                	 	<label>Platforms</label>
-      	                	 	<select class="form-select">
-            							  <option selected>All</option>
-            							  <option value="1">One</option>
-            							  <option value="2">Two</option>
-            							  <option value="3">Three</option>
+      	                	 	<select class="form-select" id="componentFilter">
+            							  <option selected value="1">Web</option>
+            							  <option value="2">Mobile Apps</option>
       						        	</select>                            
       	                	 	<button onClick="window.location.href='../pages/adding-component.php';" class="btn btn-bg btn-component"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp Add Component</button>   	          
     	                	  </div>
@@ -54,8 +52,9 @@ require_once '../partials/header.php';?>
                             <th>Action</th>                         
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
+                        <!-- WEB TABLE BODY -->
+                        <tbody id="webPlatTable">
+                          <!-- <tr>
                          
                             <td>How big is your App?</td>
                             <td>03</td>
@@ -89,9 +88,86 @@ require_once '../partials/header.php';?>
                            <td>03</td>
                             <td>Web</td>
                              <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
-                          </tr>
+                          </tr> -->
                            
                         </tbody>
+                        <tbody id="androidPlatTable" style="display: none">
+                          <!-- <tr>
+                         
+                            <td>How big is your App?</td>
+                            <td>03</td>
+                            <td>Web</td>
+                            <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr>
+                          <tr>
+                           
+                            <td>What level of UI/UX you would like?</td>
+                            <td>03</td>
+                            <td>Web</td>
+                               <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr>
+                          <tr>
+                          
+                            <td>Will your app need a login system?</td>
+                            <td>10</td>
+                            <td>Web</td>
+                             <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr>
+                           <tr>
+                            
+                            <td>User Generated Content</td>
+                            <td>03</td>
+                            <td>Web</td>
+                              <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr>
+                           <tr>
+                         
+                            <td>How big is your App?</td>
+                           <td>03</td>
+                            <td>Web</td>
+                             <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr> -->
+                           
+                        </tbody>
+                        <tbody id="iosPlatTable" style="display: none">
+                          <!-- <tr>
+                         
+                            <td>How big is your App?</td>
+                            <td>03</td>
+                            <td>Web</td>
+                            <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr>
+                          <tr>
+                           
+                            <td>What level of UI/UX you would like?</td>
+                            <td>03</td>
+                            <td>Web</td>
+                               <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr>
+                          <tr>
+                          
+                            <td>Will your app need a login system?</td>
+                            <td>10</td>
+                            <td>Web</td>
+                             <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr>
+                           <tr>
+                            
+                            <td>User Generated Content</td>
+                            <td>03</td>
+                            <td>Web</td>
+                              <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr>
+                           <tr>
+                         
+                            <td>How big is your App?</td>
+                           <td>03</td>
+                            <td>Web</td>
+                             <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
+                          </tr> -->
+                           
+                        </tbody>
+                        <!-- WEB TABLE BODY END -->
                       </table>
                       </div>
                 </div>

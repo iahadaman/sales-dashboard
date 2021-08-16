@@ -8,7 +8,8 @@
 });
 
 $(document).ready(function(){	 
-
+	// Get Components Table
+	getComponentsTable();
 	//to show image after upload admin side
 
 	 $(document).on('change', '#admin_updateProfile', function(){
@@ -142,6 +143,83 @@ $(document).ready(function(){
 	  $(this).data("clicks", !clicks);
 	});
 
+	// Get Components Table
+	let componentTableShown;
+
+	function getComponentsTable() {
+		$.ajax({
+			url: "admin-backend.php",
+			type: "POST",
+			data: { type: 23 },
+			success: function(e) {
+				$("#webPlatTable").html(e);
+				componentTableShown = "web";
+			}
+
+		})
+	}
+
+	// On component filter change
+	$("#componentFilter").on("change", function() {
+		if(this.value == '1') {
+			$("#webPlatTable").css({
+				"display": ""
+			})
+			$("#androidPlatTable").css({
+				"display": "none"
+			})
+			$.ajax({
+				url: "admin-backend.php",
+				type: "POST",
+				data: { type: 23 },
+				success: function(e) {
+					$("#webPlatTable").html(e);
+					componentTableShown = "web";
+				}
+	
+			})			
+		}
+		if(this.value == '2') {
+			$("#webPlatTable").css({
+				"display": "none"
+			})
+			$("#androidPlatTable").css({
+				"display": ""
+			})
+			$.ajax({
+				url: "admin-backend.php",
+				type: "POST",
+				data: { type: 24 },
+				success: function(e) {
+					$("#androidPlatTable").html(e);
+					componentTableShown = "android";
+				}
+	
+			})			
+		}
+			if(this.value == '3') {
+				$("#webPlatTable").css({
+					"display": "none"
+				})
+				$("#androidPlatTable").css({
+					"display": "none"
+				})
+				$("#iosPlatTable").css({
+					"display": ""
+				})
+				$.ajax({
+					url: "https://webtrixpro.com/estimator/admin/assets/getIosDataAPI.php",
+					type: "GET",
+					success: function(e) {
+						$("#iosPlatTable").html(e);
+						componentTableShown = "ios";
+					}
+		
+				})			
+			}
+			
+	})
+
 	//to remove dropdown in update modal
 
 	$('.u_removeOptions').click(function() {
@@ -188,16 +266,19 @@ $(document).ready(function(){
 
 	//adding-components page functionality
 
-	$(".flip").click(function() {
-		$(".panel").slideToggle('slow');  
-		if($(this).children().hasClass('fa-chevron-down'))
-		{
-			$(this).html('<i class="fas fa-chevron-up"></i>');
-		}
-		else{
-			$(this).html('<i class="fas fa-chevron-down"></i>');
-		}
-	});
+	// $(".flip").click(function() {
+	// 	$(".panel").slideToggle('slow');  
+	// 	if($(this).children().hasClass('fa-chevron-down'))
+	// 	{
+	// 		$(this).html('<i class="fas fa-chevron-up"></i>');
+	// 	}
+	// 	else{
+	// 		$(this).html('<i class="fas fa-chevron-down"></i>');
+	// 	}
+	// });
+
+
+
 	$(".flip2").click(function() {
 		$(".panel2").slideToggle('slow');  
 		if($(this).children().hasClass('fa-chevron-down'))
@@ -1370,7 +1451,7 @@ $("#salesLoginButton").on("click", function() {
 			login_password: login_password },
 			success: function(e){
 				if(e==1)
-				{~
+				{
 					$("#loginButton").attr('disabled', '');
 					document.getElementById('sales_login_error').setAttribute("class", "alert alert-success");
 					document.getElementById('sales_login_error').style.display = 'block';
@@ -1488,3 +1569,13 @@ function getSalesCardData()
 }
 
 
+function chevronArrow(id) {
+	$("#panel_"+id).slideToggle('slow');  
+		if($("#lol_"+id).children().hasClass('fa-chevron-down'))
+		{
+			$("#lol_"+id).html('<i class="fas fa-chevron-up"></i>');
+		}
+		else{
+			$("#lol_"+id).html('<i class="fas fa-chevron-down"></i>');
+		}
+}
