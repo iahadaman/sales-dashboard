@@ -165,9 +165,6 @@ require_once '../partials/header.php'; ?>
 												 }
 											 ?>
 
-		                 			<div class="small-card-link">
-		                 			<a type="button" data-toggle="modal" data-target="#addUpdate" href="">Add Item</a>
-									</div>
 								</div>
 	                 		</div>	                 		
 	                 		<div class="col-md-3 col-sm-12">
@@ -214,9 +211,6 @@ require_once '../partials/header.php'; ?>
 													 ';
 												 }
 											 ?>
-		                 			<div class="small-card-link">
-		                 			<a type="button" data-toggle="modal" data-target="#design_addUpdate" href="">Add Item</a>
-									</div>
 		                 		</div>
 							</div>
 	                 		<div class="col-md-3 col-sm-12">
@@ -261,9 +255,6 @@ require_once '../partials/header.php'; ?>
 												  </div>';
 												 }
 											 ?>
-		                 			<div class="small-card-link">
-		                 			<a type="button" data-toggle="modal" data-target="#coding_addUpdate" href="">Add Item</a>
-									</div>
 								</div>
 	                 		</div>
 	                 		<div class="col-md-3 col-sm-12">
