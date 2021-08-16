@@ -763,4 +763,151 @@ if($_POST['type'] == 102) {
 	}	
 }
 
+if($_POST['type'] == 20) {
+	$title = htmlspecialchars(mysqli_real_escape_string($con, $_POST['title']));
+	$description = htmlspecialchars(mysqli_real_escape_string($con, $_POST['description']));
+	$minCost = htmlspecialchars(mysqli_real_escape_string($con, $_POST['minCost']));
+	$maxCost = htmlspecialchars(mysqli_real_escape_string($con, $_POST['maxCost']));
+	$minHours = htmlspecialchars(mysqli_real_escape_string($con, $_POST['minHours']));
+	$maxHours = htmlspecialchars(mysqli_real_escape_string($con, $_POST['maxHours']));
+	$option_id = $_POST['option_id'];
+
+	if(isset($_FILES['file']['tmp_name'])) {
+		$filename = $_FILES['file']['name'];
+		$extension = pathinfo($filename, PATHINFO_EXTENSION);
+		$valid_extensions = array("jpg", "jpeg", "png", "PNG", "JPG", "docx");
+		if(in_array($extension, $valid_extensions)) {
+			$new_name = rand() .  "." . $extension;
+			$path = htmlspecialchars( mysqli_real_escape_string($con, $new_name));
+
+			if(move_uploaded_file($_FILES['file']['tmp_name'], 'component_images/'.$path)) {
+				 $updatequery = "UPDATE options SET name = '$title', description = '$description', image = '$path', c1 = '$minCost', c2 = '$maxCost', h1 = '$minHours', h2 = '$maxHours' WHERE option_id = '$option_id'";
+
+				if(mysqli_query($con, $updatequery)) {
+				   echo 1;
+				}
+				else{
+					echo 0;					
+				}
+			}
+		}
+	} else {
+	
+		$updateOption = mysqli_query($con, "UPDATE options SET name = '$title', description = '$description', image = 'lol', c1 = '$minCost', c2 = '$maxCost', h1 = '$minHours', h2 = '$maxHours' WHERE option_id = '$option_id'");
+		if($updateOption) {
+			echo 1;
+		}
+	}
+
+}
+
+
+if($_POST['type'] == 21) {
+	$title = htmlspecialchars(mysqli_real_escape_string($con, $_POST['title']));
+	$description = htmlspecialchars(mysqli_real_escape_string($con, $_POST['description']));
+	$minCost = htmlspecialchars(mysqli_real_escape_string($con, $_POST['minCost']));
+	$maxCost = htmlspecialchars(mysqli_real_escape_string($con, $_POST['maxCost']));
+	$minHours = htmlspecialchars(mysqli_real_escape_string($con, $_POST['minHours']));
+	$maxHours = htmlspecialchars(mysqli_real_escape_string($con, $_POST['maxHours']));
+	$q_id = $_POST['q_id'];
+	$getMainId = mysqli_query($con, "SELECT * FROM questions WHERE question_id ='$q_id'");
+	$getMainId__assoc = mysqli_fetch_assoc($getMainId);
+	$mainId = $getMainId__assoc['main_id'];
+	if(isset($_FILES['file']['tmp_name'])) {
+		$filename = $_FILES['file']['name'];
+		$extension = pathinfo($filename, PATHINFO_EXTENSION);
+		$valid_extensions = array("jpg", "jpeg", "png", "PNG", "JPG", "docx");
+		if(in_array($extension, $valid_extensions)) {
+			$new_name = rand() .  "." . $extension;
+			$path = htmlspecialchars( mysqli_real_escape_string($con, $new_name));
+
+			if(move_uploaded_file($_FILES['file']['tmp_name'], 'component_images/'.$path)) {
+				 $updatequery = "INSERT INTO options(name, description, image, parent_qid, main_id, c1, c2, h1, h2, is_hidden) VALUES('$title', '$description','$path','$q_id', '$mainId', '$minCost', '$maxCost', '$minHours', '$maxHours', '0')";
+
+				if(mysqli_query($con, $updatequery)) {
+				   echo 1;
+				}
+				else{
+					echo 0;					
+				}
+			}
+		}
+	} else {
+	
+		$updateOption = mysqli_query($con, "UPDATE options SET name = '$title', description = '$description', image = 'lol', c1 = '$minCost', c2 = '$maxCost', h1 = '$minHours', h2 = '$maxHours' WHERE option_id = '$option_id'");
+		if($updateOption) {
+			echo 1;
+		}
+	}
+
+}
+
+
+if($_POST['type'] == 22) {
+	$option_id = $_POST['option_id'];
+
+	$deleteOption = mysqli_query($con, "DELETE FROM options WHERE option_id = '$option_id'");
+	if($deleteOption) {
+		echo 1;
+	}
+}
+
+if($_POST['type'] == 23) {
+	$getAllIOSData = $con -> query("SELECT * FROM questions WHERE main_id='3' AND for_mobile='0' ORDER BY question_id ASC");
+    while($r = mysqli_fetch_array($getAllIOSData)) {
+        ?>
+        <tr>
+            <td>
+                <?php echo $r['question'] ?>
+            </td>
+            <td>
+                <?php 
+			$q__id = $r['question_id'];
+			$getOptions = $con -> query("SELECT * FROM options WHERE parent_qid='$q__id' AND main_id='3' ORDER BY option_id ASC");
+			$optionsData = mysqli_fetch_assoc($getOptions);
+			echo $getOptions -> num_rows;
+		 ?>
+            </td>
+	    <td>
+		<?php
+		   	echo ($r['main_id'] == '3') ? "Web App" : "Error";
+		?>
+	    </td>
+	    <td>
+			<a href="edit_component.php?id=<?php echo $r['question_id'] ?>"><i class="fas fa-edit"></i>&nbsp Edit </a>
+	    </td>
+        </tr>
+        <?php
+    }
+}
+
+
+if($_POST['type'] == 24) {
+	$getAllIOSData = $con -> query("SELECT * FROM questions WHERE main_id='1' ORDER BY question_id ASC");
+    while($r = mysqli_fetch_array($getAllIOSData)) {
+        ?>
+        <tr>
+            <td>
+                <?php echo $r['question'] ?>
+            </td>
+            <td>
+                <?php 
+			$q__id = $r['question_id'];
+			$getOptions = $con -> query("SELECT * FROM options WHERE parent_qid='$q__id' AND main_id='1' ORDER BY option_id ASC");
+			$optionsData = mysqli_fetch_assoc($getOptions);
+			echo $getOptions -> num_rows;
+		 ?>
+            </td>
+	    <td>
+		<?php
+		   	echo ($r['main_id'] == '1') ? "Mobile" : "Error";
+		?>
+	    </td>
+	    <td>
+			<a href="edit_component.php?id=<?php echo $r['question_id'] ?>"><i class="fas fa-edit"></i>&nbsp Edit </a>
+	    </td>
+        </tr>
+        <?php
+    }
+}
 ?>

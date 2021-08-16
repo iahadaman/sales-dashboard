@@ -148,8 +148,9 @@ $(document).ready(function(){
 
 	function getComponentsTable() {
 		$.ajax({
-			url: "https://webtrixpro.com/estimator/admin/assets/getWebDataAPI.php",
-			type: "GET",
+			url: "admin-backend.php",
+			type: "POST",
+			data: { type: 23 },
 			success: function(e) {
 				$("#webPlatTable").html(e);
 				componentTableShown = "web";
@@ -160,6 +161,24 @@ $(document).ready(function(){
 
 	// On component filter change
 	$("#componentFilter").on("change", function() {
+		if(this.value == '1') {
+			$("#webPlatTable").css({
+				"display": ""
+			})
+			$("#androidPlatTable").css({
+				"display": "none"
+			})
+			$.ajax({
+				url: "admin-backend.php",
+				type: "POST",
+				data: { type: 23 },
+				success: function(e) {
+					$("#webPlatTable").html(e);
+					componentTableShown = "web";
+				}
+	
+			})			
+		}
 		if(this.value == '2') {
 			$("#webPlatTable").css({
 				"display": "none"
@@ -168,8 +187,9 @@ $(document).ready(function(){
 				"display": ""
 			})
 			$.ajax({
-				url: "https://webtrixpro.com/estimator/admin/assets/getAndroidDataAPI.php",
-				type: "GET",
+				url: "admin-backend.php",
+				type: "POST",
+				data: { type: 24 },
 				success: function(e) {
 					$("#androidPlatTable").html(e);
 					componentTableShown = "android";
@@ -1436,7 +1456,7 @@ $("#salesLoginButton").on("click", function() {
 			login_password: login_password },
 			success: function(e){
 				if(e==1)
-				{~
+				{
 					$("#loginButton").attr('disabled', '');
 					document.getElementById('sales_login_error').setAttribute("class", "alert alert-success");
 					document.getElementById('sales_login_error').style.display = 'block';

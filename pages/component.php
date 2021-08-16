@@ -29,8 +29,7 @@ require_once '../partials/header.php';?>
       	                	 	<label>Platforms</label>
       	                	 	<select class="form-select" id="componentFilter">
             							  <option selected value="1">Web</option>
-            							  <option value="2">Android</option>
-            							  <option value="3">IOS</option>
+            							  <option value="2">Mobile Apps</option>
       						        	</select>                            
       	                	 	<button onClick="window.location.href='../pages/adding-component.php';" class="btn btn-bg btn-component"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp Add Component</button>   	          
     	                	  </div>
