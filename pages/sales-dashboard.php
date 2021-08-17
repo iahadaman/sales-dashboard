@@ -28,7 +28,7 @@ if(!isset($_SESSION["client_name"]))
                         <img class="" src="../images/cardicon.jpg">
                     </div>   
                     <div class="card-content my-auto ml-3">
-                        <p>Total Projects<br><strong>146</strong></p>
+                        <p>Total Projects<br><strong id="usersTotalProjectsNumber"></strong></p>
                     </div> 
                     <div class="card-icon my-auto">  
 
@@ -51,7 +51,7 @@ if(!isset($_SESSION["client_name"]))
                         <img class="" src="../images/cardicon.jpg">
                     </div>   
                     <div class="card-content my-auto ml-3">
-                        <p>In Progress Projects<br><strong>20</strong></p>
+                        <p>In Progress Projects<br><strong id="usersTotalProgressProjectsNumber"></strong></p>
                     </div> 
                     <div class="card-icon my-auto">  
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -72,7 +72,7 @@ if(!isset($_SESSION["client_name"]))
                      <img class="" src="../images/cardicon.jpg">
                     </div>   
                     <div class="card-content my-auto ml-3">
-                        <p>Completed Projects<br><strong>126</strong></p>
+                        <p>Completed Projects<br><strong id="usersTotalCompletedProjectNumber"></strong></p>
                     </div> 
                     <div class="card-icon my-auto">  
                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -96,63 +96,8 @@ if(!isset($_SESSION["client_name"]))
                 <div class="col-lg-8 col-md-12 col-sm-12 mt-3">
                     <h5>Recent Projects</h5>
                     <hr>
-                    <div class="row">
-                        <div class="inprogress-card col-md-6 col-sm-12">
+                       <div id="recentUsersProjectsDiv">
 
-                            <div class="progress-box">
-                             <div class="progress-bg2"> </div>
-                            </div>
-
-                            <div class="align-self-start progress-report">
-                              In Progress
-                            </div>
-
-                  
-                             <div class="progress-content">
-                                    <p>Project Name<br><strong>Webtrixpro</strong></p>
-                                    <p>Project Start Date<br><strong>03/02/2021</strong></p>
-                                     
-                            </div>     
-
-                            <div class="progress-next-content">
-                                     <p>Project Platform<br><strong>Web Development</strong></p>            
-                                     <p>Client<br><strong><img style="border-radius:50%;" src="../images/profile.jpg" width="20" height="18"> Ahad Aman</strong></p>
-                               <span class="pt-3 pl-2"><a href="#"><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp
-                                      <a type="button" data-toggle="modal" data-target="#deleteModal" href="#"> <i class="fas fa-trash"></i>&nbspDelete</a> </span>    
-                                  
-                            </div>               
-                        </div>
-
-                        <div class="inprogress-card col-md-6 col-sm-12">
-
-                            <div class="progress-box">
-                             <div class="progress-bg2"> </div>
-                            </div>
-
-                            <div class="align-self-start progress-report">
-                              In Progress
-                            </div>
-
-                  
-                             <div class="progress-content">
-                                    <p>Project Name<br><strong>Webtrixpro</strong></p>
-                                    <p>Project Start Date<br><strong>03/02/2021</strong></p>                                  
-                            </div>     
-
-                            <div class="progress-next-content">
-                                    <p>Project Platform<br><strong>Web Development</strong></p>
-                                    <p>Client<br><strong> <img style="border-radius:50%;" src="../images/profile.jpg" width="20" height="18"> Ahad Aman</strong></p>
-                                    <span class="pt-3 pl-2"><a href="#"><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp
-                                      <a type="button" data-toggle="modal" data-target="#deleteModal" href="#"> <i class="fas fa-trash"></i>&nbspDelete</a> </span>      
-
-                            </div>                                         
-                        </div>
-
-                        <div class="col-md-12 col-sm-12 text-right mt-2 pr-4">   
-                        <a href="#">View All</a>                         
-                        </div> 
-
-                      
                     </div>
                 </div>
 

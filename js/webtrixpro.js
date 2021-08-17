@@ -9,13 +9,14 @@
 
 $(document).ready(function(){	 
 	// Get Components Table
+
 	getComponentsTable();
+	
 	//to show image after upload admin side
 
 	 $(document).on('change', '#admin_updateProfile', function(){
         var property = document.getElementById("admin_updateProfile").files[0];
         var image_name = property.name;
-
          var form_data = new FormData();                  
         form_data.append('file', property);
         $.ajax({
@@ -69,6 +70,10 @@ $(document).ready(function(){
 	getTotalInProgressProjects();
 	getTotalCompletedProjects();
 	getRecentProjects();
+	getUsersRecentProjects();
+	getUsersTotalProjects();
+	getUsersTotalInProgressProjects();
+	getUsersTotalCompletedProjects();
 
 	// Search Client Filter
 	$("#searchClientFilter").on("keyup", function() {
@@ -495,6 +500,38 @@ function getTotalCompletedProjects() {
 		}
 	})
 }
+function getUsersTotalProjects() {
+	$.ajax({
+		type: 'POST',
+		url: 'sales-backend.php',
+		data: { type: 5 },
+		success: function( data ) {
+			$("#usersTotalProjectsNumber").html(data);
+		}
+	})
+}
+
+function getUsersTotalInProgressProjects() {
+	$.ajax({
+		type: "POST",
+		url: 'sales-backend.php',
+		data: { type: 6 },
+		success: function( data ) {
+			$("#usersTotalProgressProjectsNumber").html(data);
+		}
+	})
+}
+
+function getUsersTotalCompletedProjects() {
+	$.ajax({
+		type: "POST",
+		url: 'sales-backend.php',
+		data: { type: 7 },
+		success: function( data ) {
+			$("#usersTotalCompletedProjectNumber").html(data);
+		}
+	})
+}
 
 //add new question
 
@@ -573,7 +610,6 @@ $(document).on('click', '.edit_client_data', function(){
                 $('#u_clientName').val(data.user_name);  
                 $('#u_companyName').val(data.user_company);  
                 $('#u_clientEmail').val(data.user_email);  
-                $('#u_clientPassword').val(data.user_password);  
                 $('#u_clientDes').val(data.user_description);  
                 $('#u_clientId').val(data.user_id);  
                 $('#editClient').modal('show');  
@@ -1608,6 +1644,19 @@ function getRecentProjects()
 			data: { type: 26, readAllprojects: readAllprojects },
 			success: function(data, status){
 				$("#recentProjectsDiv").html(data);
+			}
+	});	
+}
+
+function getUsersRecentProjects()
+{
+	let readAllprojects = "In Progress";
+	$.ajax({
+			type: 'POST',
+			url: 'sales-backend.php',
+			data: { type: 4, readAllprojects: readAllprojects },
+			success: function(data, status){
+				$("#recentUsersProjectsDiv").html(data);
 			}
 	});	
 }
