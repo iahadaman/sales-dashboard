@@ -27,12 +27,16 @@ if(!isset($_SESSION["client_name"]))
 			              <div class="col-9">               	
 			              	<span class="float-right project-right-property">
 	                	 	<label>Platforms</label>
-	                	 	<select class="form-select">
-          						  <option selected>All</option>
+	                	 	<select id="selectedPlatform" class="form-select">
+          						  <option value = "all" selected>All</option>
                          <?php
-                          //$client_id =  $_SESSION['client_id'];
-                        $getPlatforms = mysqli_query($con, "SELECT project_platformId FROM webtrixpro_projects WHERE project_client = '$client_id'");
-                         $platforms = mysqli_fetch_array($getPlatforms);
+                          $check = true;
+                          $check2 = true;
+                          $check3 = true;
+                          $client_id =  $_SESSION['client_id'];
+                         $getPlatforms = mysqli_query($con, "SELECT project_platformId FROM webtrixpro_projects WHERE project_clientId = '$client_id'");
+                         while($platforms = mysqli_fetch_array($getPlatforms))
+                         {
                           $platformid = $platforms['project_platformId'];
 
                           $getTargetedPlatform = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '$platformid'");
@@ -40,31 +44,40 @@ if(!isset($_SESSION["client_name"]))
 
                           if($p_platforms['web_platform'] == 1)
                           {
-                            ?>
-
-                               <option value="<?php $p_platforms['web_platform'] ?>">Web App</option>
-
-                            <?php
+                            if($check == true)
+                            {
+                              ?>
+                                 <option value="webApp">Web App</option>
+                              <?php
+                                 $check = false;
+                            }
 
                           }
                           if($p_platforms['andriod_platform'] == 1)
                           {
-                            ?>
+                             if($check2 == true)
+                            {
+                              ?>
+                               <option value="androidApp">Android App</option>
+                             <?php
+                                 $check2 = false;
+                            }
 
-                               <option value="<?php $p_platforms['andriod_platform'] ?>">Android App</option>
-
-                            <?php
                           }
                             if($p_platforms['ios_platform'] == 1)
                           {
-                            ?>
+                            if($check3 == true)
+                            {
+                              ?>
 
-                               <option value="<?php $p_platforms['ios_platform'] ?>">IOS App</option>
+                               <option value="iosApp">IOS App</option>
 
                             <?php
+                             $check3 = false;
+                           }
                           }
                         
-                      }
+                      }   }
                         ?>
 					            </select>        
 	                	 	<div class="btn-group ml-2 mainBtn">

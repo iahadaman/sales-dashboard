@@ -105,89 +105,366 @@ $client_id = $_SESSION['client_id'];
 
 if($_POST['type']==3){
 	if(isset($_POST['readAllprojects'])) {  
-		$allProjectData = '<div class="row">';
-    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' ORDER BY project_id desc");
+		$selectedValue = htmlspecialchars(mysqli_real_escape_string($con, $_POST['selectedValue'])); 
+		if($selectedValue == "all")
+		{
+			$allProjectData = '<div class="row">';
+	    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' ORDER BY project_id desc");
 
-    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
-    	$clientName = mysqli_fetch_assoc($getclientName);
+	    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
+	    	$clientName = mysqli_fetch_assoc($getclientName);
 
-   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
+	   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-	    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
+		    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
 
-                  <div class="progress-box">
-                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
-                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
-                  </div>';
-                  if($_POST['readAllprojects'] == "Completed")
-					{
-						$allProjectData .='<div class="align-self-start completed-progress-report">
-	                   '.$allProjects['project_label'].'
+	                  <div class="progress-box">
+	                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
+	                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
 	                  </div>';
+	                  if($_POST['readAllprojects'] == "Completed")
+						{
+							$allProjectData .='<div class="align-self-start completed-progress-report">
+		                   '.$allProjects['project_label'].'
+		                  </div>';
 
-					}
-					else
-					{
-						$allProjectData .= '<div class="align-self-start progress-report">
-	                 	'.$allProjects['project_label'].'
-	                  	</div>';
-					}
-        
-       $allProjectData .= '<div class="progress-content">
-                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
-                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
-                           
-                  </div>     
+						}
+						else
+						{
+							$allProjectData .= '<div class="align-self-start progress-report">
+		                 	'.$allProjects['project_label'].'
+		                  	</div>';
+						}
+	        
+	       $allProjectData .= '<div class="progress-content">
+	                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
+	                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
+	                           
+	                  </div>     
 
-                  <div class="progress-next-content">
-                  <span class = "forClickPurpose">
-                  <p class="mainplatform">Project Platform<br>';
+	                  <div class="progress-next-content">
+	                  <span class = "forClickPurpose">
+	                  <p class="mainplatform">Project Platform<br>';
 
 
 
-			$gettargetPlatforms = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '".$allProjects['project_platformId']."'");
-   		 while($targetPlatforms = mysqli_fetch_array($gettargetPlatforms))
-   		 {
-   		 	if($targetPlatforms['web_platform']!=0)
-   		 	{
-   		 		$allProjectData .= '<strong title = "Web Development" class="platform">Web Development</strong>';
-   		 	}
-   		 	if($targetPlatforms['andriod_platform']!=0)
-   		 	{
-   		 		$allProjectData .= '<strong title = "Andriod Development" class="platform">Andriod Development</strong>';
-   		 	}
-   		 	if($targetPlatforms['ios_platform']!=0)
-   		 	{
-   		 		$allProjectData .= '<strong title = "IOS Development" class="platform">IOS Development</strong>';
-   		 	} 
-   		 	if($targetPlatforms['web_platform']==0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
-   		 	{
-   		 		$nextPlatform = "IOS Development";
-   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
-   		 	}
-   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']==0 && $targetPlatforms['ios_platform']!=0)
-   		 	{
-   		 		$nextPlatform = "IOS Development";
-   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
-   		 	}
-   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']==0){
-   		 		$nextPlatform = "Andriod Development";
-   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
-   		 	}
+				$gettargetPlatforms = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '".$allProjects['project_platformId']."'");
+	   		while($targetPlatforms = mysqli_fetch_array($gettargetPlatforms))
+	   		{
+	   		 	if($targetPlatforms['web_platform']!=0)
+	   		 	{
+	   		 		$allProjectData .= '<strong title = "Web Development" class="platform">Web Development</strong>';
+	   		 	}
+	   		 	if($targetPlatforms['andriod_platform']!=0)
+	   		 	{
+	   		 		$allProjectData .= '<strong title = "Andriod Development" class="platform">Andriod Development</strong>';
+	   		 	}
+	   		 	if($targetPlatforms['ios_platform']!=0)
+	   		 	{
+	   		 		$allProjectData .= '<strong title = "IOS Development" class="platform">IOS Development</strong>';
+	   		 	} 
+	   		 	if($targetPlatforms['web_platform']==0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
+	   		 	{
+	   		 		$nextPlatform = "IOS Development";
+	   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+	   		 	}
+	   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']==0 && $targetPlatforms['ios_platform']!=0)
+	   		 	{
+	   		 		$nextPlatform = "IOS Development";
+	   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+	   		 	}
+	   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']==0){
+	   		 		$nextPlatform = "Andriod Development";
+	   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+	   		 	}
 
-   		 	if($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
-   		 	{
-   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
-   		 	}
-   		 }
- $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
- 					</span>
-                    </a>                        
-                  </div>               
-          			</div>';           
-        }
-        $allProjectData .= '</div>';
-	    echo $allProjectData;         
+	   		 	if($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
+	   		 	{
+	   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
+	   		 	}
+	   		 }
+			 $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
+	 					</span>
+	                    </a>                        
+	                  </div>               
+	          			</div>';           
+	        }
+	        $allProjectData .= '</div>';
+		    echo $allProjectData;      
+		}
+		else if($selectedValue == "webApp")
+		{
+			$allProjectData = '<div class="row">';
+			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE web_platform = 1");
+
+			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
+			{
+		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
+
+		    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
+		    	$clientName = mysqli_fetch_assoc($getclientName);
+
+		   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
+
+			    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
+
+		                  <div class="progress-box">
+		                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
+		                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
+		                  </div>';
+		                  if($_POST['readAllprojects'] == "Completed")
+							{
+								$allProjectData .='<div class="align-self-start completed-progress-report">
+			                   '.$allProjects['project_label'].'
+			                  </div>';
+
+							}
+							else
+							{
+								$allProjectData .= '<div class="align-self-start progress-report">
+			                 	'.$allProjects['project_label'].'
+			                  	</div>';
+							}
+		        
+		       $allProjectData .= '<div class="progress-content">
+		                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
+		                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
+		                           
+		                  </div>     
+
+		                  <div class="progress-next-content">
+		                  <span class = "forClickPurpose">
+		                  <p class="mainplatform">Project Platform<br>';
+
+
+
+					$gettargetPlatforms = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '".$allProjects['project_platformId']."'");
+		   		while($targetPlatforms = mysqli_fetch_array($gettargetPlatforms))
+		   		{
+		   		 	if($targetPlatforms['web_platform']!=0)
+		   		 	{
+		   		 		$allProjectData .= '<strong title = "Web Development" class="platform">Web Development</strong>';
+		   		 	}
+		   		 	if($targetPlatforms['andriod_platform']!=0)
+		   		 	{
+		   		 		$allProjectData .= '<strong title = "Andriod Development" class="platform">Andriod Development</strong>';
+		   		 	}
+		   		 	if($targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 		$allProjectData .= '<strong title = "IOS Development" class="platform">IOS Development</strong>';
+		   		 	} 
+		   		 	if($targetPlatforms['web_platform']==0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 		$nextPlatform = "IOS Development";
+		   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+		   		 	}
+		   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']==0 && $targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 		$nextPlatform = "IOS Development";
+		   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+		   		 	}
+		   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']==0){
+		   		 		$nextPlatform = "Andriod Development";
+		   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+		   		 	}
+
+		   		 	if($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
+		   		 	}
+		   		 }
+				 $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
+		 					</span>
+		                    </a>                        
+		                  </div>               
+		          			</div>';           
+		        }
+		    }
+	        $allProjectData .= '</div>';
+		    echo $allProjectData;      
+		}	
+		else if($selectedValue == "androidApp")
+		{
+			$allProjectData = '<div class="row">';
+			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE andriod_platform = 1");
+
+			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
+			{
+		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
+
+		    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
+		    	$clientName = mysqli_fetch_assoc($getclientName);
+
+		   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
+
+			    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
+
+		                  <div class="progress-box">
+		                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
+		                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
+		                  </div>';
+		                  if($_POST['readAllprojects'] == "Completed")
+							{
+								$allProjectData .='<div class="align-self-start completed-progress-report">
+			                   '.$allProjects['project_label'].'
+			                  </div>';
+
+							}
+							else
+							{
+								$allProjectData .= '<div class="align-self-start progress-report">
+			                 	'.$allProjects['project_label'].'
+			                  	</div>';
+							}
+		        
+		       $allProjectData .= '<div class="progress-content">
+		                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
+		                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
+		                           
+		                  </div>     
+
+		                  <div class="progress-next-content">
+		                  <span class = "forClickPurpose">
+		                  <p class="mainplatform">Project Platform<br>';
+
+
+
+					$gettargetPlatforms = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '".$allProjects['project_platformId']."'");
+		   		while($targetPlatforms = mysqli_fetch_array($gettargetPlatforms))
+		   		{
+		   		 	if($targetPlatforms['web_platform']!=0)
+		   		 	{
+		   		 		$allProjectData .= '<strong title = "Web Development" class="platform">Web Development</strong>';
+		   		 	}
+		   		 	if($targetPlatforms['andriod_platform']!=0)
+		   		 	{
+		   		 		$allProjectData .= '<strong title = "Andriod Development" class="platform">Andriod Development</strong>';
+		   		 	}
+		   		 	if($targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 		$allProjectData .= '<strong title = "IOS Development" class="platform">IOS Development</strong>';
+		   		 	} 
+		   		 	if($targetPlatforms['web_platform']==0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 		$nextPlatform = "IOS Development";
+		   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+		   		 	}
+		   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']==0 && $targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 		$nextPlatform = "IOS Development";
+		   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+		   		 	}
+		   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']==0){
+		   		 		$nextPlatform = "Andriod Development";
+		   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+		   		 	}
+
+		   		 	if($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
+		   		 	}
+		   		 }
+				 $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
+		 					</span>
+		                    </a>                        
+		                  </div>               
+		          			</div>';           
+		        }
+		    }
+	        $allProjectData .= '</div>';
+		    echo $allProjectData;      
+		}
+		else if($selectedValue == "iosApp")
+		{
+			$allProjectData = '<div class="row">';
+			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE ios_platform = 1");
+
+			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
+			{
+		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
+
+		    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
+		    	$clientName = mysqli_fetch_assoc($getclientName);
+
+		   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
+
+			    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
+
+		                  <div class="progress-box">
+		                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
+		                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
+		                  </div>';
+		                  if($_POST['readAllprojects'] == "Completed")
+							{
+								$allProjectData .='<div class="align-self-start completed-progress-report">
+			                   '.$allProjects['project_label'].'
+			                  </div>';
+
+							}
+							else
+							{
+								$allProjectData .= '<div class="align-self-start progress-report">
+			                 	'.$allProjects['project_label'].'
+			                  	</div>';
+							}
+		        
+		       $allProjectData .= '<div class="progress-content">
+		                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
+		                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
+		                           
+		                  </div>     
+
+		                  <div class="progress-next-content">
+		                  <span class = "forClickPurpose">
+		                  <p class="mainplatform">Project Platform<br>';
+
+
+
+					$gettargetPlatforms = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '".$allProjects['project_platformId']."'");
+		   		while($targetPlatforms = mysqli_fetch_array($gettargetPlatforms))
+		   		{
+		   		 	if($targetPlatforms['web_platform']!=0)
+		   		 	{
+		   		 		$allProjectData .= '<strong title = "Web Development" class="platform">Web Development</strong>';
+		   		 	}
+		   		 	if($targetPlatforms['andriod_platform']!=0)
+		   		 	{
+		   		 		$allProjectData .= '<strong title = "Andriod Development" class="platform">Andriod Development</strong>';
+		   		 	}
+		   		 	if($targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 		$allProjectData .= '<strong title = "IOS Development" class="platform">IOS Development</strong>';
+		   		 	} 
+		   		 	if($targetPlatforms['web_platform']==0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 		$nextPlatform = "IOS Development";
+		   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+		   		 	}
+		   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']==0 && $targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 		$nextPlatform = "IOS Development";
+		   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+		   		 	}
+		   		 	elseif($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']==0){
+		   		 		$nextPlatform = "Andriod Development";
+		   		 		$allProjectData .= '<strong title = "'. $nextPlatform.'" class="combinePlatform">+ 1</strong>';
+		   		 	}
+
+		   		 	if($targetPlatforms['web_platform']!=0 && $targetPlatforms['andriod_platform']!=0 && $targetPlatforms['ios_platform']!=0)
+		   		 	{
+		   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
+		   		 	}
+		   		 }
+				 $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
+		 					</span>
+		                    </a>                        
+		                  </div>               
+		          			</div>';           
+		        }
+		    }
+	        $allProjectData .= '</div>';
+		    echo $allProjectData;      
+		}			   
 	}
 }
 
@@ -269,10 +546,7 @@ if($_POST['type']==4){
    		 	}
    		 }
 
-  
-                
-
-
+ 
 
  $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
  					</span>
@@ -284,24 +558,24 @@ if($_POST['type']==4){
 	    echo $allProjectData;         
 	}
 }
-	// Get total number of projects - dashboard
-	if($_POST['type'] == 5) {
-			$query = "SELECT * FROM webtrixpro_projects WHERE project_clientId = '$client_id'";
-			$result = mysqli_query($con, $query);
-			echo mysqli_num_rows($result);
-	}
-
-	// Get total number of in progress projects - dashboard
-	if($_POST['type'] == 6) {
-		$query = "SELECT * FROM webtrixpro_projects WHERE project_label = 'In Progress' AND project_clientId = '$client_id'";
+// Get total number of projects - sales dashboard
+if($_POST['type'] == 5) {
+		$query = "SELECT * FROM webtrixpro_projects WHERE project_clientId = '$client_id'";
 		$result = mysqli_query($con, $query);
 		echo mysqli_num_rows($result);
-	}
-	// Get total number of completed projects - dashboard.
-	if($_POST['type'] == 7) {
-		$query = "SELECT * FROM webtrixpro_projects WHERE project_label = 'Completed' AND project_clientId = '$client_id'";
-		$result = mysqli_query($con, $query);
-		echo mysqli_num_rows($result); 
-	}
+}
+
+// Get total number of in progress projects - sales dashboard
+if($_POST['type'] == 6) {
+	$query = "SELECT * FROM webtrixpro_projects WHERE project_label = 'In Progress' AND project_clientId = '$client_id'";
+	$result = mysqli_query($con, $query);
+	echo mysqli_num_rows($result);
+}
+// Get total number of completed projects - sales dashboard
+if($_POST['type'] == 7) {
+	$query = "SELECT * FROM webtrixpro_projects WHERE project_label = 'Completed' AND project_clientId = '$client_id'";
+	$result = mysqli_query($con, $query);
+	echo mysqli_num_rows($result); 
+}
 
 ?>

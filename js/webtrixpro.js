@@ -567,36 +567,28 @@ $(document).on('click', '.edit_client_data', function(){
 			let description = $("#u_clientDes").val();
 			let id = $("#u_clientId").val();
 			
-			if(name != "" && company != "" && email != "" && password != "")
-			{
-				$.ajax({
-					type: 'POST',
-					url: 'admin-backend.php',
-					data: {type: 5, id: id , name: name, company: company, email: email, password: password, description: description},
-					success: function(e){
-						if(e==1){
-							document.getElementById('update_client_error').setAttribute("class", "alert alert-success");
-							document.getElementById('update_client_error').style.display = 'block';
-							$("#update_client_error").text("Client Data Updated Successfully!!");
-							setTimeout(function() {
-						    $('#update_client_error').fadeOut('fast');
-						    	$('#editClient').modal('hide');  
-							}, 2000); 
-							getClientsData();
-						}
-						else 
-						{
-							document.getElementById('update_client_error').style.display = 'block';
-							$("#update_client_error").text("Error: Try Again Later!!");
-						}
+			$.ajax({
+				type: 'POST',
+				url: 'admin-backend.php',
+				data: {type: 5, id: id , name: name, company: company, email: email, password: password, description: description},
+				success: function(e){
+					if(e==1){
+						document.getElementById('update_client_error').setAttribute("class", "alert alert-success");
+						document.getElementById('update_client_error').style.display = 'block';
+						$("#update_client_error").text("Client Data Updated Successfully!!");
+						setTimeout(function() {
+					    $('#update_client_error').fadeOut('fast');
+					    	$('#editClient').modal('hide');  
+						}, 2000); 
+						getClientsData();
 					}
-				});
-			}
-			else
-			{
-				document.getElementById('update_client_error').style.display = 'block';
-				$("#update_client_error").text("All Fields Are Required!!");
-			}
+					else 
+					{
+						document.getElementById('update_client_error').style.display = 'block';
+						$("#update_client_error").text("Error: Something went wrong!!");
+					}
+				}
+			});
 	   });
 
        var employee_id = $(this).attr("id");  
@@ -751,29 +743,54 @@ $("#CreateProjectForm").submit(function(event){
 
 // MANAGE PROJECTS
 
+$selectedValue = "all";
+selectedValue = $selectedValue;
+var fired_main_button = "In Progress";
+
 setTimeout(function() {
-		$fired_main_button = "In Progress"; 		
+
+		$('#selectedPlatform').on('change', function() {
+			$selectedValue = $("#selectedPlatform").val();	
+			selectedValue = $selectedValue;	
+
+		     readAllprojects = fired_main_button; 
+		     $.ajax({
+				type: 'POST',
+				url: 'admin-backend.php',
+				data: { type: 8, readAllprojects: readAllprojects, selectedValue: selectedValue},
+				success: function(data, status){
+					$('#progressCardsData').html(data);
+				}
+			});	  
+
+		});
+
 		$(".mainBtn button.btnLabel").click(function(){
-	     $fired_main_button = $(this).val();	
-	     readAllprojects = $fired_main_button; 
+
+		 selectedValue = $("#selectedPlatform").val();
+
+	     fired_main_button = $(this).val();	
+	     readAllprojects = fired_main_button; 
 	     $.ajax({
 			type: 'POST',
 			url: 'admin-backend.php',
-			data: { type: 8, readAllprojects: readAllprojects },
+			data: { type: 8, readAllprojects: readAllprojects, selectedValue: selectedValue},
 			success: function(data, status){
 				$('#progressCardsData').html(data);
 			}
-		});	  
+			});	  
 		});
 }, 500);
 
 function getProjectsData()
 {
+	let selectedValue = "all";
 	let readAllprojects = "In Progress";
+
 	$.ajax({
 			type: 'POST',
 			url: 'admin-backend.php',
-			data: { type: 8, readAllprojects: readAllprojects },
+			data: { type: 8, readAllprojects: readAllprojects, selectedValue: selectedValue },
 			success: function(data, status){
 				$('#progressCardsData').html(data);
 			}
@@ -1068,9 +1085,6 @@ $("#aAccountUpdateBtn").on("click", function() {
 	}
 });
 
-
-
-
 function check_session()
 {          	
     $.ajax({
@@ -1290,9 +1304,8 @@ function editNewItem(projectId, process) {
 	}
 }
 
-
-
 //Delete Update
+
 function deleteUpdate(updateId) {
 	Swal.fire({
 		title: 'Are you sure?',
@@ -1368,7 +1381,7 @@ $(document).on('click', '.edit_discovery_data', function(){
             },
             fail: function( jqXHR, textStatus, errorThrown ) {
        		console.log( 'Could not get posts, server response: ' + textStatus + ': ' + errorThrown );
-    }
+    	}
     });  
 });
 
@@ -1399,7 +1412,7 @@ $(document).on('click', '.edit_design_data', function(){
             },
             fail: function( jqXHR, textStatus, errorThrown ) {
        		console.log( 'Could not get posts, server response: ' + textStatus + ': ' + errorThrown );
-    }
+   		 }
     });  
 });
 
@@ -1430,7 +1443,7 @@ $(document).on('click', '.edit_coding_data', function(){
             },
             fail: function( jqXHR, textStatus, errorThrown ) {
        		console.log( 'Could not get posts, server response: ' + textStatus + ': ' + errorThrown );
-    }
+    		}
     });  
 });
 
@@ -1461,12 +1474,9 @@ $(document).on('click', '.edit_maintenance_data', function(){
             },
             fail: function( jqXHR, textStatus, errorThrown ) {
        		console.log( 'Could not get posts, server response: ' + textStatus + ': ' + errorThrown );
-    }
+    		}
     });  
 });
-
-
-
 
 setInterval(function()
 {
@@ -1599,20 +1609,39 @@ $("#accountUpdateBtn").on("click", function() {
 
 // MANAGE SALES PROJECTS
 
+$selectedValue = "all";
+selectedValue = $selectedValue;
+var fired_main_button = "In Progress";
+
 setTimeout(function() {
-		$fired_main_button = "In Progress"; 		
-		$(".mainBtn button.btnLabel").click(function(){
-	     $fired_main_button = $(this).val();	
-	     readAllprojects = $fired_main_button; 
-	     $.ajax({
+	$(".mainBtn button.btnLabel").click(function(){
+		selectedValue = $("#selectedPlatform").val();
+	    fired_main_button = $(this).val();
+	    readAllprojects = fired_main_button; 
+	    $.ajax({
 			type: 'POST',
 			url: 'sales-backend.php',
-			data: { type: 3, readAllprojects: readAllprojects },
+			data: { type: 3, readAllprojects: readAllprojects, selectedValue: selectedValue },
 			success: function(data, status){
 				$('#salesCardsData').html(data);
 			}
 		});	  
-		});
+	});
+
+	$('#selectedPlatform').on('change', function() {
+		$selectedValue = $("#selectedPlatform").val();	
+		selectedValue = $selectedValue;	
+
+	     readAllprojects = fired_main_button; 
+	      $.ajax({
+			type: 'POST',
+			url: 'sales-backend.php',
+			data: { type: 3, readAllprojects: readAllprojects, selectedValue: selectedValue },
+			success: function(data, status){
+				$('#salesCardsData').html(data);
+			}
+		});	  
+	}); 		
 }, 500);
 
 
@@ -1623,18 +1652,18 @@ getSalesCardData();
 });
 function getSalesCardData()
 {
+	let selectedValue = "all";
 	let readAllprojects = "In Progress";
 	$.ajax({
 			type: 'POST',
 			url: 'sales-backend.php',
-			data: { type: 3, readAllprojects: readAllprojects },
+			data: { type: 3, readAllprojects: readAllprojects, selectedValue: selectedValue},
 			success: function(data, status){
 				$('#salesCardsData').html(data);
 			}
 	});	
 }
 
-//
 function getRecentProjects()
 {
 	let readAllprojects = "In Progress";

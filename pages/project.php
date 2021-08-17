@@ -25,12 +25,54 @@ require_once '../partials/header.php';?>
               <div class="col-9">               	
               	<span class="float-right project-right-property">
                 	 	<label>Platforms</label>
-                	 	<select class="form-select">
-        						  <option selected>All</option>
-        						  <option value="1">One</option>
-        						  <option value="2">Two</option>
-        						  <option value="3">Three</option>
-						        </select>
+                    <select id="selectedPlatform" class="form-select">
+                        <option value = "all" selected>All</option>
+                         <?php
+                          $check = true;
+                          $check2 = true;
+                          $check3 = true;
+
+                          $getTargetedPlatform = mysqli_query($con, "SELECT * FROM webtrixpro_platforms");
+                          while($p_platforms = mysqli_fetch_array($getTargetedPlatform)){
+
+                          if($p_platforms['web_platform'] == 1)
+                          {
+                            if($check == true)
+                            {
+                              ?>
+                                 <option value="webApp">Web App</option>
+                              <?php
+                                 $check = false;
+                            }
+
+                          }
+                          if($p_platforms['andriod_platform'] == 1)
+                          {
+                             if($check2 == true)
+                            {
+                              ?>
+                               <option value="androidApp">Android App</option>
+                             <?php
+                                 $check2 = false;
+                            }
+
+                          }
+                            if($p_platforms['ios_platform'] == 1)
+                          {
+                            if($check3 == true)
+                            {
+                              ?>
+
+                               <option value="iosApp">IOS App</option>
+
+                            <?php
+                             $check3 = false;
+                           }
+                          }
+                        
+                        }
+                        ?>
+                      </select>   
                 	 	<button data-toggle="modal" data-target="#createProject" class="btn btn-bg btn-create"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp Create Project</button>              
                 	 	<div class="btn-group ml-2 mainBtn">
     				          <button value="In Progress" class="btn ip-btn btnLabel">In Progress</button>
