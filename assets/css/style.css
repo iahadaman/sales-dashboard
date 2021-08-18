@@ -889,6 +889,40 @@ h5{
     font-weight: bold;   
     font-family: 'Arimo', sans-serif;
 }
+.btn-platform{
+   width: 79%;
+    background-color: rgba(30, 167, 77, 0.2);
+    color: white;
+    height: 36px;
+    cursor: pointer;
+    color: #1EA74D;
+    font-weight: bolder;
+    font-size: 15px!important;
+}
+
+.btn-platform-main,.btn-platform-main:hover{
+    background-color: #1EA74D;
+    color: white;
+}
+.btn-platform-1{
+    margin-left: -32px;
+}
+.btn-platform-2{
+    margin-left: -65px;
+}
+.btn-platform-3{
+    margin-left: -95px;
+}
+.btn-platform-1:hover, .btn-platform-2:hover, .btn-platform-3:hover{
+   background-color: #1EA74D;
+    color: white;
+}
+
+.btn-platform-1:focus, .btn-platform-2:focus, .btn-platform-3:focus{
+   background-color: #1EA74D;
+    color: white;
+}
+
 
 .btn-bg{
     background-color: #1EA74D;

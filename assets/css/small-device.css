@@ -242,8 +242,33 @@ button.btn-delete{
 /* ---------------------------------------------------
     Utility Classes
 ----------------------------------------------------- */
+
+.btn-platform{
+   width: 79%;
+    background-color: rgba(30, 167, 77, 0.2);
+    color: white;
+    height: 36px;
+    cursor: pointer;
+    color: #1EA74D;
+    font-weight: bolder;
+    font-size: 11px!important;
+}
+
+.btn-platform-main{
+     background-color: #1EA74D;
+    color: white;
+}
+
+.btn-platform-1{
+    margin-left: 0px;
+}
+.btn-platform-2{
+    margin-left: 0px;
+}
+.btn-platform-3{
+    margin-left: 0px;
+}
 h4{
-    /*font-size: 1em;*/
     font-weight: bold;
 }
 .web-bg{
@@ -280,6 +305,21 @@ h4{
     position: relative;
     left: 30px;
     top: -34px;
+}
+.btn-platform{
+    width: 100%;
+}
+.btn-platform-1{
+    margin-top: 10px;
+    margin-left: 0px;
+}
+.btn-platform-2{
+     margin-top: 10px;
+    margin-left: 0px;
+}
+.btn-platform-3{
+     margin-top: 10px;
+    margin-left: 0px;
 }
 
 }

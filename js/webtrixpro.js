@@ -7,6 +7,7 @@
 
 });
 
+
 $(document).ready(function(){	 
 	// Get Components Table
 
@@ -70,10 +71,6 @@ $(document).ready(function(){
 	getTotalInProgressProjects();
 	getTotalCompletedProjects();
 	getRecentProjects();
-	getUsersRecentProjects();
-	getUsersTotalProjects();
-	getUsersTotalInProgressProjects();
-	getUsersTotalCompletedProjects();
 
 	// Search Client Filter
 	$("#searchClientFilter").on("keyup", function() {
@@ -281,20 +278,15 @@ $(document).ready(function(){
       jQuery(this).addClass("ip-btn");
     });
 
+ 	//for platforms btn in client side
+
+ 	jQuery('.platformButtons button.btn-platform').click(function() {
+      jQuery('.platformButtons button.btn-platform-main').removeClass('btn-platform-main');   
+      jQuery(this).addClass("btn-platform-main");
+    });
+
+
 	//adding-components page functionality
-
-	// $(".flip").click(function() {
-	// 	$(".panel").slideToggle('slow');  
-	// 	if($(this).children().hasClass('fa-chevron-down'))
-	// 	{
-	// 		$(this).html('<i class="fas fa-chevron-up"></i>');
-	// 	}
-	// 	else{
-	// 		$(this).html('<i class="fas fa-chevron-down"></i>');
-	// 	}
-	// });
-
-
 
 	$(".flip2").click(function() {
 		$(".panel2").slideToggle('slow');  
@@ -497,38 +489,6 @@ function getTotalCompletedProjects() {
 		data: { type: 16 },
 		success: function( data ) {
 			$("#totalCompletedProjectNumber").html(data);
-		}
-	})
-}
-function getUsersTotalProjects() {
-	$.ajax({
-		type: 'POST',
-		url: 'sales-backend.php',
-		data: { type: 5 },
-		success: function( data ) {
-			$("#usersTotalProjectsNumber").html(data);
-		}
-	})
-}
-
-function getUsersTotalInProgressProjects() {
-	$.ajax({
-		type: "POST",
-		url: 'sales-backend.php',
-		data: { type: 6 },
-		success: function( data ) {
-			$("#usersTotalProgressProjectsNumber").html(data);
-		}
-	})
-}
-
-function getUsersTotalCompletedProjects() {
-	$.ajax({
-		type: "POST",
-		url: 'sales-backend.php',
-		data: { type: 7 },
-		success: function( data ) {
-			$("#usersTotalCompletedProjectNumber").html(data);
 		}
 	})
 }
@@ -1609,39 +1569,42 @@ $("#accountUpdateBtn").on("click", function() {
 
 // MANAGE SALES PROJECTS
 
-$selectedValue = "all";
-selectedValue = $selectedValue;
+var selectedValue = "all";
 var fired_main_button = "In Progress";
 
 setTimeout(function() {
+
+	$("button#selectedPlatform").click(function(){
+	    selectedValue = $(this).val();	
+	    readAllprojects = fired_main_button; 
+ 	    selectedValuee = selectedValue;
+	      $.ajax({
+			type: 'POST',
+			url: 'sales-backend.php',
+			data: { type: 3, readAllprojects: readAllprojects, selectedValue: selectedValuee },
+			success: function(data, status){
+				$('#salesCardsData').html(data);
+			}
+		});	  
+	}); 
+
 	$(".mainBtn button.btnLabel").click(function(){
-		selectedValue = $("#selectedPlatform").val();
+
+      jQuery('.platformButtons button.btn-platform-main').removeClass("btn-platform-main");
+       jQuery('.platformButtons button.default').addClass("btn-platform-main");
+
 	    fired_main_button = $(this).val();
+	    selectedValuee = selectedValue;
 	    readAllprojects = fired_main_button; 
 	    $.ajax({
 			type: 'POST',
 			url: 'sales-backend.php',
-			data: { type: 3, readAllprojects: readAllprojects, selectedValue: selectedValue },
+			data: { type: 3, readAllprojects: readAllprojects, selectedValue: selectedValuee },
 			success: function(data, status){
 				$('#salesCardsData').html(data);
 			}
 		});	  
 	});
-
-	$('#selectedPlatform').on('change', function() {
-		$selectedValue = $("#selectedPlatform").val();	
-		selectedValue = $selectedValue;	
-
-	     readAllprojects = fired_main_button; 
-	      $.ajax({
-			type: 'POST',
-			url: 'sales-backend.php',
-			data: { type: 3, readAllprojects: readAllprojects, selectedValue: selectedValue },
-			success: function(data, status){
-				$('#salesCardsData').html(data);
-			}
-		});	  
-	}); 		
 }, 500);
 
 
@@ -1650,6 +1613,7 @@ $(document).ready(function(){
 getSalesCardData();
 
 });
+
 function getSalesCardData()
 {
 	let selectedValue = "all";
@@ -1676,20 +1640,6 @@ function getRecentProjects()
 			}
 	});	
 }
-
-function getUsersRecentProjects()
-{
-	let readAllprojects = "In Progress";
-	$.ajax({
-			type: 'POST',
-			url: 'sales-backend.php',
-			data: { type: 4, readAllprojects: readAllprojects },
-			success: function(data, status){
-				$("#recentUsersProjectsDiv").html(data);
-			}
-	});	
-}
-
 
 function chevronArrow(id) {
 	$("#panel_"+id).slideToggle('slow');  
