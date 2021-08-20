@@ -66,11 +66,12 @@ $(document).ready(function(){
  
     });
 
-	// Get Total Projects
+	// Get Data
 	getTotalProjects();
 	getTotalInProgressProjects();
 	getTotalCompletedProjects();
 	getRecentProjects();
+	getSalesCardData();
 
 	// Search Client Filter
 	$("#searchClientFilter").on("keyup", function() {
@@ -1442,7 +1443,7 @@ setInterval(function()
 {
 	check_session();
 	check_SalesSession();
-},3000);
+},1000);
 
 ////////////////////////////////////////////////////SALES WORK/////////////////////////////////////////////////
 
@@ -1570,13 +1571,12 @@ $("#accountUpdateBtn").on("click", function() {
 // MANAGE SALES PROJECTS
 
 var selectedValue = "all";
-var fired_main_button = "In Progress";
 
 setTimeout(function() {
 
 	$("button#selectedPlatform").click(function(){
 	    selectedValue = $(this).val();	
-	    readAllprojects = fired_main_button; 
+	    readAllprojects = "readAllprojects"; 
  	    selectedValuee = selectedValue;
 	      $.ajax({
 			type: 'POST',
@@ -1587,37 +1587,12 @@ setTimeout(function() {
 			}
 		});	  
 	}); 
-
-	$(".mainBtn button.btnLabel").click(function(){
-
-      jQuery('.platformButtons button.btn-platform-main').removeClass("btn-platform-main");
-       jQuery('.platformButtons button.default').addClass("btn-platform-main");
-
-	    fired_main_button = $(this).val();
-	    selectedValuee = selectedValue;
-	    readAllprojects = fired_main_button; 
-	    $.ajax({
-			type: 'POST',
-			url: 'sales-backend.php',
-			data: { type: 3, readAllprojects: readAllprojects, selectedValue: selectedValuee },
-			success: function(data, status){
-				$('#salesCardsData').html(data);
-			}
-		});	  
-	});
 }, 500);
-
-
-$(document).ready(function(){	
-
-getSalesCardData();
-
-});
 
 function getSalesCardData()
 {
 	let selectedValue = "all";
-	let readAllprojects = "In Progress";
+	let readAllprojects = "readAllprojects";
 	$.ajax({
 			type: 'POST',
 			url: 'sales-backend.php',

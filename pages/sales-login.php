@@ -18,9 +18,7 @@
 			  </div>
 	 
 	            <button id="salesLoginButton" type="submit" class="mt-4 btn btn-style float-right">Login</button>	 
-				<div class="clearfix mt-5">									
-					<a href = "#" class="pull-left">
-					forget password?</a>				
+				<div class="clearfix mt-5">													
 				</div>
 			</form>
 	    </div>

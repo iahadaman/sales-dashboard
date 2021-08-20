@@ -109,7 +109,7 @@ if($_POST['type']==3){
 		if($selectedValue == "all")
 		{
 			$allProjectData = '<div class="row">';
-	    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' ORDER BY project_id desc");
+	    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_clientId = '$client_id' ORDER BY project_id desc");
 
 	    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
 	    	$clientName = mysqli_fetch_assoc($getclientName);
@@ -178,7 +178,7 @@ if($_POST['type']==3){
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
 			{
 
-		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id'AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
+		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_clientId = '$client_id' AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
 
 		    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
 		    	$clientName = mysqli_fetch_assoc($getclientName);
@@ -248,7 +248,7 @@ if($_POST['type']==3){
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
 			{
 
-		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id'AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
+		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_clientId = '$client_id' AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
 
 		    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
 		    	$clientName = mysqli_fetch_assoc($getclientName);
@@ -318,7 +318,7 @@ if($_POST['type']==3){
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
 			{
 
-		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id'AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
+		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_clientId = '$client_id' AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
 
 		    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
 		    	$clientName = mysqli_fetch_assoc($getclientName);
