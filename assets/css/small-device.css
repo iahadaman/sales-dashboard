@@ -283,13 +283,15 @@ h4{
 }
 
 @media only screen and (max-width: 573px) {
+.default{
+    margin-left: 0px;
+}
 .greeting p{
     padding-left: 0px;
 }
 .project-detail-box img{
     width: 100px;
     height: 150px;
-  /*  background-color: #C4C4C4;*/
     display: inline-block;
     border-radius: 3px;
 }
