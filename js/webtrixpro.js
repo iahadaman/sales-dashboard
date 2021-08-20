@@ -280,10 +280,10 @@ $(document).ready(function(){
 
  	//for platforms btn in client side
 
- 	// jQuery('.platformButtons button.btn-platform').click(function() {
-  //     jQuery('.platformButtons button.btn-platform-main').removeClass('btn-platform-main');   
-  //     jQuery(this).addClass("btn-platform-main");
-  //   });
+ 	jQuery('.platformButtons button.btn-platform').click(function() {
+      jQuery('.platformButtons button.btn-platform-main').removeClass('btn-platform-main');   
+      jQuery(this).addClass("btn-platform-main");
+    });
 
 
 	//adding-components page functionality

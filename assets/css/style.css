@@ -927,7 +927,9 @@ h5{
 .btn-platform-main,.btn-platform-main:hover{
     background-color: #1EA74D;
     color: white;
-    margin-left: 70px;
+}
+.default{
+        margin-left: 70px;
 }
 .btn-platform-1{
     margin-left: 30px;

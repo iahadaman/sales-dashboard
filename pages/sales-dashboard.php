@@ -38,7 +38,7 @@ if(!isset($_SESSION["client_name"]))
               </div>
 
                   <!-- DATA COMINGN FROM AJAX BY ID-->
-                  <div id="salesCardsData"></div>
+                  <div class="mt-4" id="salesCardsData"></div>
 
                     </div>
                   </div>
