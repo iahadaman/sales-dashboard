@@ -20,22 +20,9 @@ if(!isset($_SESSION["client_name"]))
             <?php require_once '../partials/sales-navigation.php';?> 
 
             <div id="content-section">
-        <div class="row">  
-                  <div id="project-page" class="web-bg col-md-12 col-sm-12 mt-3">
-                    <div class="row">  
-                    <div class="col-3"><h5 class="pull-left d-inline">Projects</h5></div>
-                    <div class="col-9">                 
-                      <span class="float-right project-right-property">
-
-                      <div class="btn-group ml-2 mainBtn">
-                        <button value="In Progress" class="btn ip-btn btnLabel">In Progress</button>
-                        <button value="Completed" class="btn c-btn btnLabel">Completed</button>
-                    </div> 
-                      </span>
-                    </div> 
-                </div>
-                <hr>
-                <div class="row platformButtons">
+               
+                <div style = "display: flex;
+                justify-content: center;" class="row platformButtons mt-5">
                   <div class="col-lg-2 col-md-3 col-sm-3">
                     <button id="selectedPlatform" value = "all" class= "btn btn-platform default btn-platform-main">All</button>
                   </div>
@@ -52,6 +39,7 @@ if(!isset($_SESSION["client_name"]))
 
                   <!-- DATA COMINGN FROM AJAX BY ID-->
                   <div id="salesCardsData"></div>
+
                     </div>
                   </div>
                 </div>

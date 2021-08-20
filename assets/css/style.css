@@ -291,10 +291,6 @@ span.role-style{
 /* ---------------------------------------------------
     RECENT PROJECT CARD SECTION
 ----------------------------------------------------- */
-/*a.inprogress-card-link{
-     
-  text-decoration: none;
-}*/
 .design, .design:hover, .design:visited{
     color: inherit;
     text-decoration: none;
@@ -303,10 +299,6 @@ span.role-style{
 .inprogress-card, .inprogress-card-sales
 {
     padding-bottom: 176px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    position: relative;
     z-index: 10;
     cursor: pointer;
 }
@@ -329,9 +321,9 @@ span.role-style{
     content: '';
     display: block;
     position: absolute;
-    top: 33px;
+    top: 0;
     left: 10px;
-    right: 16px;
+    right: 10px;
     bottom: 22px;
     z-index: -1;
     border-radius: 5px;
@@ -372,6 +364,7 @@ span.role-style{
     margin-right: auto;
     text-align: center;
 }
+
 .progress-bg2{   
     width: 67px;
     height: 67px;
@@ -379,9 +372,38 @@ span.role-style{
     display: -webkit-inline-box;
     border-radius: 5px;
 }
+.progress-box-sales{
+    width:100%;
+}
+
+
+.inprogress-bg-card-sales
+{
+    padding-bottom: 176px;
+    z-index: 10;
+    cursor: pointer;
+}
+.inprogress-bg-card-sales:after {     
+    /* background-color: #C4C4C4;*/
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    right: 6px;
+    bottom: 13px;
+    z-index: -1;
+    border-radius: 5px;
+}
+
 .progress-content{
     position: absolute;
     top: 94px;
+    left: 35px;
+}
+.progress-content-sales{
+    position: absolute;
+    top: 200px;
     left: 35px;
 }
 .progress-content p{
@@ -891,27 +913,30 @@ h5{
 }
 .btn-platform{
    width: 79%;
-    background-color: rgba(30, 167, 77, 0.2);
+    background-color: transparent;
+    border: 1px solid #1EA74D;
     color: white;
     height: 36px;
     cursor: pointer;
     color: #1EA74D;
     font-weight: bolder;
     font-size: 15px!important;
+
 }
 
 .btn-platform-main,.btn-platform-main:hover{
     background-color: #1EA74D;
     color: white;
+    margin-left: 70px;
 }
 .btn-platform-1{
-    margin-left: -32px;
+    margin-left: 30px;
 }
 .btn-platform-2{
-    margin-left: -65px;
+    margin-left: -13px;
 }
 .btn-platform-3{
-    margin-left: -95px;
+    margin-left: -55px;
 }
 .btn-platform-1:hover, .btn-platform-2:hover, .btn-platform-3:hover{
    background-color: #1EA74D;
@@ -919,7 +944,7 @@ h5{
 }
 
 .btn-platform-1:focus, .btn-platform-2:focus, .btn-platform-3:focus{
-   background-color: #1EA74D;
+    background-color: #1EA74D;
     color: white;
 }
 

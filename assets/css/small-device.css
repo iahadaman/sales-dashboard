@@ -242,7 +242,7 @@ button.btn-delete{
 /* ---------------------------------------------------
     Utility Classes
 ----------------------------------------------------- */
-
+/*
 .btn-platform{
    width: 79%;
     background-color: rgba(30, 167, 77, 0.2);
@@ -267,7 +267,8 @@ button.btn-delete{
 }
 .btn-platform-3{
     margin-left: 0px;
-}
+}*/
+
 h4{
     font-weight: bold;
 }
@@ -321,9 +322,14 @@ h4{
      margin-top: 10px;
     margin-left: 0px;
 }
+.btn-platform-main{
+    margin-left: 0px;
+}
 
 }
 @media only screen and (max-width: 486px) {
+
+
 
 .project-right-property label {
     position: revert;

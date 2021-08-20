@@ -116,35 +116,14 @@ if($_POST['type']==3){
 
 	   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-		    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
+			$allProjectData .= '<div class="inprogress-card-sales col-lg-3 col-md-6 col-sm-6 mt-4">  
+               <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
+                    <div class="inprogress-bg-card-sales col-lg-12 col-md-12 col-sm-12" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center; border-radius:2px;">  
+                    </div>
 
-	                  <div class="progress-box">
-	                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
-	                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
-	                  </div>';
-	                  if($_POST['readAllprojects'] == "Completed")
-						{
-							$allProjectData .='<div class="align-self-start completed-progress-report">
-		                   '.$allProjects['project_label'].'
-		                  </div>';
-
-						}
-						else
-						{
-							$allProjectData .= '<div class="align-self-start progress-report">
-		                 	'.$allProjects['project_label'].'
-		                  	</div>';
-						}
-	        
-	       $allProjectData .= '<div class="progress-content">
-	                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
-	                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
-	                           
-	                  </div>     
-
-	                  <div class="progress-next-content">
-	                  <span class = "forClickPurpose">
-	                  <p class="mainplatform">Project Platform<br>';
+                      <div class="progress-content-sales">
+                        <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
+                         <p class="mainplatform">Project Platform<br>';
 
 
 
@@ -183,11 +162,10 @@ if($_POST['type']==3){
 	   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
 	   		 	}
 	   		 }
-			 $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
-	 					</span>
-	                    </a>                        
-	                  </div>               
-	          			</div>';           
+			 $allProjectData .='</p>
+	 					 </div>    
+                 </a>         
+              </div>';           
 	        }
 	        $allProjectData .= '</div>';
 		    echo $allProjectData;      
@@ -199,42 +177,22 @@ if($_POST['type']==3){
 
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
 			{
-		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
+
+		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id'AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
 
 		    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
 		    	$clientName = mysqli_fetch_assoc($getclientName);
 
 		   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-			    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
+				$allProjectData .= '<div class="inprogress-card-sales col-lg-3 col-md-6 col-sm-6 mt-4">  
+	               <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
+	                    <div class="inprogress-bg-card-sales col-lg-12 col-md-12 col-sm-12" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center; border-radius:2px;">  
+	                    </div>
 
-		                  <div class="progress-box">
-		                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
-		                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
-		                  </div>';
-		                  if($_POST['readAllprojects'] == "Completed")
-							{
-								$allProjectData .='<div class="align-self-start completed-progress-report">
-			                   '.$allProjects['project_label'].'
-			                  </div>';
-
-							}
-							else
-							{
-								$allProjectData .= '<div class="align-self-start progress-report">
-			                 	'.$allProjects['project_label'].'
-			                  	</div>';
-							}
-		        
-		       $allProjectData .= '<div class="progress-content">
-		                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
-		                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
-		                           
-		                  </div>     
-
-		                  <div class="progress-next-content">
-		                  <span class = "forClickPurpose">
-		                  <p class="mainplatform">Project Platform<br>';
+	                      <div class="progress-content-sales">
+	                        <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
+	                         <p class="mainplatform">Project Platform<br>';
 
 
 
@@ -273,16 +231,15 @@ if($_POST['type']==3){
 		   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
 		   		 	}
 		   		 }
-				 $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
-		 					</span>
-		                    </a>                        
-		                  </div>               
-		          			</div>';           
+				 $allProjectData .='</p>
+		 					 </div>    
+	                 </a>         
+	              </div>';           
 		        }
-		    }
+	    	}
 	        $allProjectData .= '</div>';
 		    echo $allProjectData;      
-		}	
+		}
 		else if($selectedValue == "androidApp")
 		{
 			$allProjectData = '<div class="row">';
@@ -290,42 +247,22 @@ if($_POST['type']==3){
 
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
 			{
-		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
+
+		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id'AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
 
 		    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
 		    	$clientName = mysqli_fetch_assoc($getclientName);
 
 		   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-			    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
+				$allProjectData .= '<div class="inprogress-card-sales col-lg-3 col-md-6 col-sm-6 mt-4">  
+	               <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
+	                    <div class="inprogress-bg-card-sales col-lg-12 col-md-12 col-sm-12" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center; border-radius:2px;">  
+	                    </div>
 
-		                  <div class="progress-box">
-		                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
-		                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
-		                  </div>';
-		                  if($_POST['readAllprojects'] == "Completed")
-							{
-								$allProjectData .='<div class="align-self-start completed-progress-report">
-			                   '.$allProjects['project_label'].'
-			                  </div>';
-
-							}
-							else
-							{
-								$allProjectData .= '<div class="align-self-start progress-report">
-			                 	'.$allProjects['project_label'].'
-			                  	</div>';
-							}
-		        
-		       $allProjectData .= '<div class="progress-content">
-		                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
-		                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
-		                           
-		                  </div>     
-
-		                  <div class="progress-next-content">
-		                  <span class = "forClickPurpose">
-		                  <p class="mainplatform">Project Platform<br>';
+	                      <div class="progress-content-sales">
+	                        <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
+	                         <p class="mainplatform">Project Platform<br>';
 
 
 
@@ -364,13 +301,12 @@ if($_POST['type']==3){
 		   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
 		   		 	}
 		   		 }
-				 $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
-		 					</span>
-		                    </a>                        
-		                  </div>               
-		          			</div>';           
+				 $allProjectData .='</p>
+		 					 </div>    
+	                 </a>         
+	              </div>';           
 		        }
-		    }
+	    	}
 	        $allProjectData .= '</div>';
 		    echo $allProjectData;      
 		}
@@ -381,42 +317,22 @@ if($_POST['type']==3){
 
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
 			{
-		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id' AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
+
+		    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' AND project_clientId = '$client_id'AND project_platformId = '".$targetPlatform['platform_id']."' ORDER BY project_id desc");
 
 		    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
 		    	$clientName = mysqli_fetch_assoc($getclientName);
 
 		   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-			    $allProjectData .= '<div class="inprogress-card-sales col-lg-4 col-md-6 col-sm-6 mt-4">
+				$allProjectData .= '<div class="inprogress-card-sales col-lg-3 col-md-6 col-sm-6 mt-4">  
+	               <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
+	                    <div class="inprogress-bg-card-sales col-lg-12 col-md-12 col-sm-12" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center; border-radius:2px;">  
+	                    </div>
 
-		                  <div class="progress-box">
-		                  <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
-		                   <div class="progress-bg2" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center;"> </div>
-		                  </div>';
-		                  if($_POST['readAllprojects'] == "Completed")
-							{
-								$allProjectData .='<div class="align-self-start completed-progress-report">
-			                   '.$allProjects['project_label'].'
-			                  </div>';
-
-							}
-							else
-							{
-								$allProjectData .= '<div class="align-self-start progress-report">
-			                 	'.$allProjects['project_label'].'
-			                  	</div>';
-							}
-		        
-		       $allProjectData .= '<div class="progress-content">
-		                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
-		                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
-		                           
-		                  </div>     
-
-		                  <div class="progress-next-content">
-		                  <span class = "forClickPurpose">
-		                  <p class="mainplatform">Project Platform<br>';
+	                      <div class="progress-content-sales">
+	                        <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
+	                         <p class="mainplatform">Project Platform<br>';
 
 
 
@@ -455,16 +371,16 @@ if($_POST['type']==3){
 		   		 	    $allProjectData .= '<strong title = "Andriod Development & IOS Development" class="combinePlatform">+ 2</strong>';
 		   		 	}
 		   		 }
-				 $allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '. $clientName['user_name'] .'</strong></p>
-		 					</span>
-		                    </a>                        
-		                  </div>               
-		          			</div>';           
+				 $allProjectData .='</p>
+		 					 </div>    
+	                 </a>         
+	              </div>';           
 		        }
-		    }
+	    	}
 	        $allProjectData .= '</div>';
 		    echo $allProjectData;      
-		}			   
+		}
+		
 	}
 }
 ?>

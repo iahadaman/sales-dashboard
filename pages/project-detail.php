@@ -82,14 +82,8 @@ require_once '../partials/header.php'; ?>
  				<div class="row">  
 	                <div class="web-bg col-md-12 col-sm-12 mt-3">
 	                	<div class="row">  
-		                	<div class="col-3"><h5 class="pull-left d-inline mb-0">Projects</h5></div>
-		                	<div class="col-9">
-			                	<div class="float-right">		
-			                	 	<!-- <button class="btn btn-edit"><i class="fas fa-edit"></i>&nbspEdit</button> &nbsp  
-			                	 	<button type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-delete"><i class="fas fa-trash"></i>&nbspDelete</button>  -->
-								</div>	                	 	               
-	                		</div>
-	               		 </div>
+		                	<div class="col-12"><h5 class="pull-left d-inline mb-0">Projects</h5></div>
+	               		 	</div>
 	                	
 	                	 
 
@@ -106,7 +100,6 @@ require_once '../partials/header.php'; ?>
 							<div class="col-md-6 col-sm-6">
 			                	<p>Project Start Date<br><strong><?php echo getProjectData('project_date'); ?></strong></p>
 		                        <p>Client<br><strong class="profile-image-style"><img src="<?php echo getProjectData('project_clientProfile'); ?>" style="margin-right: 10px;height: 30px; width: 32px;"><?php echo $clientName ?></strong></p>
-								<!-- <p>Final Version<br><strong class="link-style"><a href="https://finalversion.com">https://finalversion.com</a><i class="ml-2 fa fa-link" aria-hidden="true"></i></strong></p> -->
 							</div>
 						</div>
 	                </div>

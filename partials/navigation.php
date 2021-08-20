@@ -1,12 +1,12 @@
 <nav class="navbar">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 col-sm-2 pl-0">
+           <!--  <div class="col-md-2 col-sm-2 pl-0">
                 <button type="button" id="sidebarCollapse" class="btn btn-color">
                 <i class="fas fa-align-left"></i>
                 </button>     
-            </div>
-            <div class="greeting col-md-10 col-sm-10 mt-2 pl-0">
+            </div> -->
+            <div class="greeting col-md-12 col-sm-12 mt-2 pl-0">
                <p>Welcome to <strong>Admin Portal!</strong></p>
             </div>                
         </div>
