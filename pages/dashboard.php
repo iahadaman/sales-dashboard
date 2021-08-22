@@ -139,62 +139,7 @@ require_once '../partials/header.php';?>
                     <div id="recentProjectsDiv">
 
                     </div>
-                    <!-- <div class="row">
-                        <div class="inprogress-card col-md-6 col-sm-6">
-
-                            <div class="progress-box">
-                             <div class="progress-bg2"> </div>
-                            </div>
-
-                            <div class="align-self-start progress-report">
-                              In Progress
-                            </div>
-
                   
-                             <div class="progress-content">
-                                    <p>Project Name<br><strong>Webtrixpro</strong></p>
-                                    <p>Project Start Date<br><strong>03/02/2021</strong></p>
-                                     
-                            </div>     
-
-                            <div class="progress-next-content">
-                                     <p>Project Platform<br><strong>Web Development</strong></p>            
-                                     <p>Client<br><strong><img class="mb-1" style="border-radius:50%;" src="../images/profile.jpg" width="22" height="20"> Ahad Aman</strong></p>
-                               <span class="pt-3 pl-2"><a href="#"><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp
-                                      <a type="button" data-toggle="modal" data-target="#deleteModal" href="#"> <i class="fas fa-trash"></i>&nbspDelete</a> </span>    
-                                  
-                            </div>               
-                        </div>
-
-                        <div class="inprogress-card col-md-6 col-sm-6">
-
-                            <div class="progress-box">
-                             <div class="progress-bg2"> </div>
-                            </div>
-
-                            <div class="align-self-start progress-report">
-                              In Progress
-                            </div>
-
-                  
-                             <div class="progress-content">
-                                    <p>Project Name<br><strong>Webtrixpro</strong></p>
-                                    <p>Project Start Date<br><strong>03/02/2021</strong></p>                                  
-                            </div>     
-
-                            <div class="progress-next-content">
-                                    <p>Project Platform<br><strong>Web Development</strong></p>
-                                    <p>Client<br><strong> <img style="border-radius:50%;" src="../images/profile.jpg" width="20" height="18"> Ahad Aman</strong></p>
-                                    <span class="pt-3 pl-2"><a href="#"><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp
-                                      <a type="button" data-toggle="modal" data-target="#deleteModal" href="#"> <i class="fas fa-trash"></i>&nbspDelete</a> </span>      
-
-                            </div>                                         
-                        </div>
-
-                        <div class="col-md-12 col-sm-12 text-right mt-2 pr-4">   
-                        <a href="#">View All</a>                         
-                        </div>                       
-                    </div> -->
                 </div>
 
                 <!-- INPROGRESS CARDS END  -->  
@@ -206,68 +151,7 @@ require_once '../partials/header.php';?>
                     <button type="button" data-toggle="modal" data-target="#addClient" class="pr-4 btn btn-big btn-bg btn-lg btn-block"><i class="fa fa-plus-circle"></i>&nbsp Add Client</button>                   
                 </div>
 
-                <!-- DATA TABLE START  -->  
-
-                <!-- <div class="col-md-12 col-sm-12 mt-3">
-                     <h5 class="mb-3">Client Information</h5>
-                     <div class="table-style px-4 table-responsive">
-                     <table class="table table-condensed">
-                        <thead>
-                          <tr>
-                            <th>Image</th>
-                            <th>Full Name</th>
-                            <th>Company Name</th>
-                            <th>Email Address</th>
-                            <th>Actions</th>                         
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td><img src="../images/profile.jpg"></td>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                            <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
-                          </tr>
-                          <tr>
-                            <td><img src="../images/profile.jpg"></td>
-                            <td>Mary</td>
-                            <td>Moe</td>
-                            <td>mary@example.com</td>
-                               <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
-                          </tr>
-                          <tr>
-                            <td><img src="../images/profile.jpg"></td>
-                            <td>July</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                             <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
-                          </tr>
-                           <tr>
-                            <td><img src="../images/profile.jpg"></td>
-                            <td>July</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                              <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
-                          </tr>
-                           <tr>
-                            <td><img src="../images/profile.jpg"></td>
-                            <td>July</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                             <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
-                          </tr>
-                           <tr>
-                            <td><img src="../images/profile.jpg"></td>
-                            <td>July</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                             <td><a href=""><i class="fas fa-edit"></i>&nbsp Edit </a>&nbsp  <a type="button" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash"></i>&nbspDelete</a></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      </div>
-                </div> -->
+            
                 <div class="col-md-12 col-sm-12 mt-3">
                 <h5 class="mb-3">Client Information</h5>
 	                     	<div class="component-table-style table-responsive" style="padding: 20px">

@@ -283,7 +283,20 @@ if($_POST['type']==8){
 										}
 					        
 					         $allProjectData .= '<div class="progress-content">
-					                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
+					                          <p>Project Name<br><strong>';
+
+					                          if(strlen($allProjects['project_name']) > 12)
+					                          {
+												$allProjectData .= substr($allProjects['project_name'], 0, 12) . "...";
+					                          }
+					                          else
+					                          {
+					                          	$allProjectData .= $allProjects['project_name'];
+					                          }
+
+
+	                         $allProjectData .= '</strong></p>
+
 					                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
 					                           
 					                  </div>     
@@ -371,13 +384,29 @@ if($_POST['type']==8){
 	                  	</div>';
 					}
 			        
-			        $allProjectData .= '<div class="progress-content">
-		                  <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
-		                  <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>                           
-		      				</div>     
-			              <div class="progress-next-content">
-			              <span class = "forClickPurpose">
-		             	<p class="mainplatform">Project Platform<br>';
+	                $allProjectData .= '<div class="progress-content">
+			                          <p>Project Name<br><strong>';
+
+			                          if(strlen($allProjects['project_name']) > 12)
+			                          {
+										$allProjectData .= substr($allProjects['project_name'], 0, 12) . "...";
+			                          }
+			                          else
+			                          {
+			                          	$allProjectData .= $allProjects['project_name'];
+			                          }
+
+
+                    $allProjectData .= '</strong></p>
+
+			                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
+			                           
+			                  </div>     
+
+			                  <div class="progress-next-content">
+			                  <span class = "forClickPurpose">
+			                  <p class="mainplatform">Project Platform<br>';
+
 
 					$gettargetPlatforms = mysqli_query($con, "SELECT * FROM webtrixpro_platforms WHERE platform_id = '".$allProjects['project_platformId']."'");
 
@@ -459,15 +488,28 @@ if($_POST['type']==8){
 						                  	</div>';
 										}
 					        
-					         $allProjectData .= '<div class="progress-content">
-					                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
-					                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
-					                           
-					                  </div>     
+					          $allProjectData .= '<div class="progress-content">
+			                          <p>Project Name<br><strong>';
 
-					                  <div class="progress-next-content">
-					                  <span class = "forClickPurpose">
-					                  <p class="mainplatform">Project Platform<br>';
+			                          if(strlen($allProjects['project_name']) > 12)
+			                          {
+										$allProjectData .= substr($allProjects['project_name'], 0, 12) . "...";
+			                          }
+			                          else
+			                          {
+			                          	$allProjectData .= $allProjects['project_name'];
+			                          }
+
+
+	                    	 	$allProjectData .= '</strong></p>
+
+				                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
+				                           
+				                  </div>     
+
+				                  <div class="progress-next-content">
+				                  <span class = "forClickPurpose">
+			                  	<p class="mainplatform">Project Platform<br>';
 
 
 
@@ -553,15 +595,28 @@ if($_POST['type']==8){
 						                  	</div>';
 										}
 					        
-					         $allProjectData .= '<div class="progress-content">
-					                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
-					                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
-					                           
-					                  </div>     
+					          $allProjectData .= '<div class="progress-content">
+			                          <p>Project Name<br><strong>';
 
-					                  <div class="progress-next-content">
-					                  <span class = "forClickPurpose">
-					                  <p class="mainplatform">Project Platform<br>';
+			                          if(strlen($allProjects['project_name']) > 12)
+			                          {
+										$allProjectData .= substr($allProjects['project_name'], 0, 12) . "...";
+			                          }
+			                          else
+			                          {
+			                          	$allProjectData .= $allProjects['project_name'];
+			                          }
+
+
+			                    $allProjectData .= '</strong></p>
+
+						                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
+						                           
+						                  </div>     
+
+						                  <div class="progress-next-content">
+						                  <span class = "forClickPurpose">
+						                  <p class="mainplatform">Project Platform<br>';
 
 
 
@@ -1266,14 +1321,27 @@ if($_POST['type']==26){
 					}
         
        $allProjectData .= '<div class="progress-content">
-                          <p>Project Name<br><strong>'.$allProjects['project_name'].'</strong></p>
-                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
-                           
-                  </div>     
+			                          <p>Project Name<br><strong>';
 
-                  <div class="progress-next-content">
-                  <span class = "forClickPurpose">
-                  <p class="mainplatform">Project Platform<br>';
+			                          if(strlen($allProjects['project_name']) > 12)
+			                          {
+										$allProjectData .= substr($allProjects['project_name'], 0, 12) . "...";
+			                          }
+			                          else
+			                          {
+			                          	$allProjectData .= $allProjects['project_name'];
+			                          }
+
+
+			                    $allProjectData .= '</strong></p>
+
+						                          <p>Project Start Date<br><strong>'.$allProjects['project_date'].'</strong></p>
+						                           
+						                  </div>     
+
+						                  <div class="progress-next-content">
+						                  <span class = "forClickPurpose">
+						                  <p class="mainplatform">Project Platform<br>';
 
 
 

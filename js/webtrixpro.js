@@ -448,6 +448,7 @@ function getClientsData()
 			}
 		});
 }
+
 function getLimitedClientsData()
 {
  	let readAllclients= "readAllclients";
@@ -608,11 +609,11 @@ setTimeout(function() {
 });
 }, 200);
 
-$("#CreateProjectForm").submit(function(event){
+$(document).on('click', '#createProjectBtnn', function(){
 	let p_platform = $("#projectPlatform").val();
     let ps_platform = $("#projectSecondPlatform").val();
     let pt_platform = $("#projectThirdPlatform").val();
-    if(p_platform != null || ps_platform != null || pt_platform!= null)
+    if(p_platform != null || ps_platform != null || pt_platform != null)
     {
 		$.ajax({
 		type: 'POST',
@@ -628,72 +629,92 @@ $("#CreateProjectForm").submit(function(event){
 			}		
 		}
 		});
+
+	    let p_name = $("#projectName").val();
+		let p_client = $("#projectClientName").val();
+		let p_date = $("#projectDate").val();
+		let p_description = $("#projectDescription").val();
+		let p_label = $fired_button;
+		
+		var formData = new FormData(project);
+		formData.append('type', 7);
+		formData.append('p_name', p_name);
+		formData.append('p_client', p_client);
+		formData.append('p_date', p_date);
+		formData.append('p_description', p_description);
+		formData.append('p_label', p_label);
+
+		if(p_name != "" && p_client != "" && p_date != "")
+		{
+			$.ajax({
+				type: 'POST',
+				url: 'admin-backend.php',
+				data: formData,
+				mimeType:'multipart/form-data',
+				contentType: false,
+				cache: false,
+				processData: false,
+				success: function(e){
+					if(e==1){
+						$("#project_error").css("display", "block");
+						$("#project_error").removeClass("alert-danger");
+						$("#project_error").addClass("alert-success");
+						$("#project_error").text("Project Added Successfully!");
+						setTimeout(function() {
+						    $('#project_error').fadeOut('fast');
+						}, 3000); 
+
+						$("#projectName").val("");
+						$("#projectDate").val("");
+						$("#projectDescription").val("");
+						$("#projectClientProfile").val("");
+
+						let selectedValue = "all";
+						let readAllprojects = p_label;
+
+						$.ajax({
+								type: 'POST',
+								url: 'admin-backend.php',
+								data: { type: 8, readAllprojects: readAllprojects, selectedValue: selectedValue },
+								success: function(data, status){
+									$('#progressCardsData').html(data);
+								}
+						});	
+
+
+
+						$('#projectClientName').val('Select Client').trigger("change");	
+
+						$('#projectPlatform').val('Select Project Platform').trigger("change");
+						$('#projectSecondPlatform').val('Select Project Platform').trigger("change");
+						tPlatform = document.querySelector(".third-platform");
+		                tPlatform.style.display = "none";
+
+						$('#projectThirdPlatform').val('Select Project Platform').trigger("change");
+						sPlatform = document.querySelector(".second-platform");
+						sPlatform.style.display = "none";  
+
+						remove = document.querySelector(".removeOptions");
+	    				remove.style.display = "none";	   			
+					}
+					else{
+						$("#project_error").css("display", "block");
+						$("#project_error").removeClass("alert-success");
+						$("#project_error").addClass("alert-danger");
+						$("#project_error").text("Something went wrong, Please try again later!!");
+					}
+				}
+			});
+		}
+		else
+		{
+			$("#project_error").css("display", "block");
+			$("#project_error").removeClass("alert-success");
+			$("#project_error").addClass("alert-danger");
+			$("#project_error").text("All Fields Are Required");
+		}
     }
-
-    let p_name = $("#projectName").val();
-	let p_client = $("#projectClientName").val();
-	let p_date = $("#projectDate").val();
-	let p_description = $("#projectDescription").val();
-	let p_label = $fired_button;
-	
-	var formData = new FormData(project);
-	formData.append('type', 7);
-	formData.append('p_name', p_name);
-	formData.append('p_client', p_client);
-	formData.append('p_date', p_date);
-	formData.append('p_description', p_description);
-	formData.append('p_label', p_label);
-
-	if(p_name != "" && p_client != "" && p_date != "")
-	{
-		$.ajax({
-			type: 'POST',
-			url: 'admin-backend.php',
-			data: formData,
-			mimeType:'multipart/form-data',
-			contentType: false,
-			cache: false,
-			processData: false,
-			success: function(e){
-				if(e==1){
-					$("#project_error").css("display", "block");
-					$("#project_error").removeClass("alert-danger");
-					$("#project_error").addClass("alert-success");
-					$("#project_error").text("Project Added Successfully!");
-					setTimeout(function() {
-					    $('#project_error').fadeOut('fast');
-					}, 3000); 
-
-					$("#projectName").val("");
-					$("#projectDate").val("");
-					$("#projectDescription").val("");
-					$("#projectClientProfile").val("");
-					 getProjectsData();	
-
-					$('#projectClientName').val('Select Client').trigger("change");	
-
-					$('#projectPlatform').val('Select Project Platform').trigger("change");
-					$('#projectSecondPlatform').val('Select Project Platform').trigger("change");
-					tPlatform = document.querySelector(".third-platform");
-	                tPlatform.style.display = "none";
-
-					$('#projectThirdPlatform').val('Select Project Platform').trigger("change");
-					sPlatform = document.querySelector(".second-platform");
-					sPlatform.style.display = "none";  
-
-					remove = document.querySelector(".removeOptions");
-    				remove.style.display = "none";	   			
-				}
-				else{
-					$("#project_error").css("display", "block");
-					$("#project_error").removeClass("alert-success");
-					$("#project_error").addClass("alert-danger");
-					$("#project_error").text("Something went wrong, Please try again later!!");
-				}
-			}
-		});
-	}
-	else
+    else
 	{
 		$("#project_error").css("display", "block");
 		$("#project_error").removeClass("alert-success");
@@ -709,7 +730,6 @@ selectedValue = $selectedValue;
 var fired_main_button = "In Progress";
 
 setTimeout(function() {
-
 		$('#selectedPlatform').on('change', function() {
 			$selectedValue = $("#selectedPlatform").val();	
 			selectedValue = $selectedValue;	
