@@ -909,7 +909,7 @@ if($_POST['type']==13){
 								  </tr>
 								</thead>	                       
 								<tbody id="clientsTable">';       
-			$getAllClients = mysqli_query($con, "SELECT * FROM webtrixpro_users WHERE user_isAdmin !=1 ORDER BY user_id desc");
+			$getAllClients = mysqli_query($con, "SELECT * FROM webtrixpro_users WHERE user_isAdmin !=1 ORDER BY user_id desc LIMIT 3");
 				while($allclients = mysqli_fetch_array($getAllClients)){
 	
 			 $allClientData .= '<tr>

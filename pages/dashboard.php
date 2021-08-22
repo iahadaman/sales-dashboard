@@ -163,7 +163,7 @@ require_once '../partials/header.php';?>
                 		</div>
 
                 <div class="col-md-12 col-sm-12 text-right mt-2 pr-4">   
-                 <a href="#">View All</a>                         
+                 <a href="client.php">View All</a>                         
                 </div> 
                      
                 <!-- DATA TABLE END  -->  
@@ -173,6 +173,7 @@ require_once '../partials/header.php';?>
                   
         </div>
     </div>
+<?php require_once 'modals/edit-client-modal.php';?> 
 <?php require_once 'modals/delete-modal.php';?>   
 <?php require_once 'modals/add-client-modal.php';?>  
 <?php require_once 'modals/create-project-modal.php';?>  
