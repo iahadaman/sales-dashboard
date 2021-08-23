@@ -434,22 +434,13 @@ span.role-style{
 .progress-next-content p .platform:nth-child(-n+2){
     display: block;
 }
-
-/*.progress-next-content p .platform:nth-of-type(2)
-{
-    display: block;
-    text-indent: -9999px;
-    line-height: 0; 
+.progress-content-sales p .platform{
+    display: none;
 }
-.progress-next-content p .platform:nth-of-type(2):after {
-   display: block;
-   content: '+ 1';
-   text-indent: 0;
-   display: block;
-   line-height: initial;
-   position: absolute;
-   top: 35px;
-}*/
+.progress-content-sales p .platform:nth-child(-n+2){
+    display: inline-block;
+}
+
 .combinePlatform
 {
    position: absolute;
