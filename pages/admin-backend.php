@@ -255,7 +255,7 @@ if($_POST['type']==8){
 		if($selectedValue == "webApp")
 		{
 			$allProjectData = '<div class="row">';
-			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE web_platform = 1");
+			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE web_platform = 1 ORDER BY platform_id desc");
 
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
 			{
@@ -461,7 +461,7 @@ if($_POST['type']==8){
 		else if($selectedValue == "androidApp")
 		{
 			$allProjectData = '<div class="row">';
-			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE andriod_platform = 1");
+			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE andriod_platform = 1 ORDER BY platform_id desc");
 
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
 			{
@@ -568,7 +568,7 @@ if($_POST['type']==8){
 		else if($selectedValue == "iosApp")
 		{
 			$allProjectData = '<div class="row">';
-			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE ios_platform = 1");
+			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE ios_platform = 1 ORDER BY platform_id desc");
 
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
 			{
