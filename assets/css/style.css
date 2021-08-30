@@ -368,7 +368,8 @@ span.role-style{
 .progress-bg2{   
     width: 67px;
     height: 67px;
-    background-color: #C4C4C4;
+    border: 1px solid #E4E4E4;
+    box-shadow: 0 0 5px #E4E4E4;
     display: -webkit-inline-box;
     border-radius: 5px;
 }
@@ -535,7 +536,8 @@ button.btn-delete, button.btn-delete:hover{
 .project-detail-boxEmpty{
     width: 160px;
     height: 160px;
-    background-color: #C4C4C4;
+    box-shadow: 0 0 10px #1EA74D;
+    border: 1px solid #1EA74D;
     display: inline-block;
     border-radius: 3px;
 }
@@ -1091,12 +1093,6 @@ button.close{
     margin-right: auto;
     text-align: center;
 }
-.progress-bg2{   
-    width: 76px;
-    height: 76px;
-    background-color: #C4C4C4;
-    display: -webkit-inline-box;
-}
 .progress-content{
     position: absolute;
     top: 94px;
@@ -1124,7 +1120,8 @@ button.close{
 .progress-bg2{   
     width: 56px;
     height: 56px;
-    background-color: #C4C4C4;
+    border: 1px solid #E4E4E4;
+    box-shadow: 0 0 5px #E4E4E4;
     display: -webkit-inline-box;
 }
 

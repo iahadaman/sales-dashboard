@@ -76,7 +76,8 @@ html, body{
 .progress-bg2{   
     width: 56px;
     height: 56px;
-    background-color: #C4C4C4;
+    border: 1px solid #E4E4E4;
+    box-shadow: 0 0 5px #E4E4E4;
     display: -webkit-inline-box;
     margin-top: 10px;
 }
@@ -88,11 +89,6 @@ html, body{
 .progress-content p strong{
       font-size: 12px;
 }
-/*.progress-next-content{
-    position: absolute;
-    top: 94px;
-    right: 38px;
-}*/
 .progress-next-content p{
       font-size: 10px;
 }
@@ -298,7 +294,8 @@ h4{
 .project-detail-boxEmpty img{
     width: 100px;
     height: 150px;
-    background-color: #C4C4C4;
+    box-shadow: 0 0 10px #1EA74D;
+    border: 1px solid #1EA74D;
     display: inline-block;
     border-radius: 3px;
 }
