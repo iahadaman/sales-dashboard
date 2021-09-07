@@ -16,9 +16,9 @@
 			     <input type="hidden" class="form-control" id="u_projectId">
 			  </div>
 			   <div class="form-group">
-			    <label for="projectClientName">Client Name</label>
+			    <label for="projectClientName">Account Executive Name</label>
 			      <select id="u_projectClientName" class="form-control">
-				  <option disabled selected>Select Client</option>			 
+				  <option disabled selected>Select Account Executive</option>			 
 				  <?php
 				  include 'backend/connection.php';
 				  $getAllClients = mysqli_query($con, "SELECT * FROM webtrixpro_users WHERE user_isAdmin !=1 ORDER BY user_id desc");

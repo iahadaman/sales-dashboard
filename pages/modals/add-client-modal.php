@@ -12,8 +12,8 @@
         	<form method="POST" enctype="multipart/form-data" name="client">
         	  <div id="client_error" style="display: none;" class= "alert alert-danger">All Fields Are Required!!</div>
 			  <div class="form-group">
-			    <label for="clientName">Client Name</label>
-			    <input type="text" class="form-control" id="clientName" placeholder="Enter your client name">
+			    <label for="clientName">Account Executive Name</label>
+			    <input type="text" class="form-control" id="clientName" placeholder="Enter your account executive name">
 			  </div>
 			   <div class="form-group">
 			    <label for="companyName">Company Name</label>

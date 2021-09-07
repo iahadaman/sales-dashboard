@@ -12,8 +12,8 @@
         	<form method="POST">
         	  <div id="update_client_error" style="display: none;" class= "alert alert-danger">All Fields Are Required!!</div>
 			  <div class="form-group">
-			    <label for="clientName">Client Name</label>
-			    <input type="text" class="form-control" id="u_clientName" placeholder="Enter your client name">
+			    <label for="clientName">Account Executive Name</label>
+			    <input type="text" class="form-control" id="u_clientName" placeholder="Enter your account executive name">
 			    <input type="hidden" class="form-control" id="u_clientId" placeholder="Enter your client name">
 			  </div>
 			   <div class="form-group">

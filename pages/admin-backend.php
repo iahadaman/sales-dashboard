@@ -254,7 +254,7 @@ if($_POST['type']==8){
 		$selectedValue = htmlspecialchars(mysqli_real_escape_string($con, $_POST['selectedValue'])); 
 		if($selectedValue == "webApp")
 		{
-			$allProjectData = '<div class="row">';
+			$allProjectData = '<div class="row" id="projectName">';
 			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE web_platform = 1 ORDER BY platform_id desc");
 
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
@@ -262,7 +262,7 @@ if($_POST['type']==8){
 			    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_platformId = '".$targetPlatform['platform_id']."' AND project_label = '".$_POST["readAllprojects"]."' ORDER BY project_id desc");
 			   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-						    $allProjectData .= '<div class="inprogress-card col-lg-4 col-md-6 col-sm-6 mt-4">
+						    $allProjectData .= '<div class="search inprogress-card col-lg-4 col-md-6 col-sm-6 mt-4">
 
 					                  <div class="progress-box">
 					                  <a class="design" href="project-detail.php?id='.$allProjects['project_id'].'">
@@ -346,7 +346,7 @@ if($_POST['type']==8){
 							   		 	}
 							   		}
 							             
-								 		$allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
+								 		$allProjectData .='</p><p>Account Executive<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
 								 					</span>
 								                    </a>
 								                    <span class="pt-3 pl-2"><a type="button" class="edit_project_data" id="'.$allProjects['project_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp
@@ -361,11 +361,11 @@ if($_POST['type']==8){
 		}
 		elseif($selectedValue == "all")
 		{
-			$allProjectData = '<div class="row">';
+			$allProjectData = '<div class="row" id="projectName">';
 	    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_label = '".$_POST["readAllprojects"]."' ORDER BY project_id desc");
    		 	while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-			    $allProjectData .= '<div class="inprogress-card col-lg-4 col-md-6 col-sm-6 mt-4">
+			    $allProjectData .= '<div class="search inprogress-card col-lg-4 col-md-6 col-sm-6 mt-4">
                   <div class="progress-box">
                   <a class="design" href="project-detail.php?id='.$allProjects['project_id'].'">
                    <div class="progress-bg2" style="background-image: url('.$allProjects['project_image'].'); background-size: cover; background-position: center;"> </div>
@@ -447,7 +447,7 @@ if($_POST['type']==8){
 			   		 	}
 			   		}
 						             
-				 	$allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
+				 	$allProjectData .='</p><p>Account Executive<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
 				 					</span>
 				                    </a>
 				                    <span class="pt-3 pl-2"><a type="button" class="edit_project_data" id="'.$allProjects['project_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp
@@ -460,7 +460,7 @@ if($_POST['type']==8){
 		}
 		else if($selectedValue == "androidApp")
 		{
-			$allProjectData = '<div class="row">';
+			$allProjectData = '<div class="row" id="projectName">';
 			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE andriod_platform = 1 ORDER BY platform_id desc");
 
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
@@ -468,7 +468,7 @@ if($_POST['type']==8){
 			    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_platformId = '".$targetPlatform['platform_id']."' AND project_label = '".$_POST["readAllprojects"]."' ORDER BY project_id desc");
 			   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-						    $allProjectData .= '<div class="inprogress-card col-lg-4 col-md-6 col-sm-6 mt-4">
+						    $allProjectData .= '<div class="search inprogress-card col-lg-4 col-md-6 col-sm-6 mt-4">
 
 					                  <div class="progress-box">
 					                  <a class="design" href="project-detail.php?id='.$allProjects['project_id'].'">
@@ -552,7 +552,7 @@ if($_POST['type']==8){
 							   		 	}
 							   		}
 							             
-								 		$allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
+								 		$allProjectData .='</p><p>Account Executive<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
 								 					</span>
 								                    </a>
 								                    <span class="pt-3 pl-2"><a type="button" class="edit_project_data" id="'.$allProjects['project_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp
@@ -567,7 +567,7 @@ if($_POST['type']==8){
 		}
 		else if($selectedValue == "iosApp")
 		{
-			$allProjectData = '<div class="row">';
+			$allProjectData = '<div class="row" id="projectName">';
 			$getTargetPlatform = mysqli_query($con, "SELECT platform_id FROM webtrixpro_platforms WHERE ios_platform = 1 ORDER BY platform_id desc");
 
 			while($targetPlatform = mysqli_fetch_array($getTargetPlatform))
@@ -575,7 +575,7 @@ if($_POST['type']==8){
 			    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_platformId = '".$targetPlatform['platform_id']."' AND project_label = '".$_POST["readAllprojects"]."' ORDER BY project_id desc");
 			   		 while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-						    $allProjectData .= '<div class="inprogress-card col-lg-4 col-md-6 col-sm-6 mt-4">
+						    $allProjectData .= '<div class="search inprogress-card col-lg-4 col-md-6 col-sm-6 mt-4">
 
 					                  <div class="progress-box">
 					                  <a class="design" href="project-detail.php?id='.$allProjects['project_id'].'">
@@ -659,7 +659,7 @@ if($_POST['type']==8){
 							   		 	}
 							   		}
 							             
-								 		$allProjectData .='</p><p>Client<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
+								 		$allProjectData .='</p><p>Account Executive<br><strong><img style="border-radius:50%;" src="'.$allProjects['project_clientProfile'].'" width="20" height="18"> '.$clientName['user_name'].'</strong></p>
 								 					</span>
 								                    </a>
 								                    <span class="pt-3 pl-2"><a type="button" class="edit_project_data" id="'.$allProjects['project_id'].'" href=""><i class="fas fa-edit"></i>&nbsp Edit</a> &nbsp

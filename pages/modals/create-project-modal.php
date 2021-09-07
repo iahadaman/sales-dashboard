@@ -15,9 +15,9 @@
 			    <input type="text" class="form-control" id="projectName" placeholder="Enter your project name">
 			  </div>
 			   <div class="form-group">
-			    <label for="projectClientName">Client Name</label>
+			    <label for="projectClientName">Account Executive Name</label>
 			      <select id="projectClientName" class="form-control">
-				  <option disabled selected>Select Client</option>
+				  <option disabled selected>Select Account Executive</option>
 
 				  <?php
 				  include 'backend/connection.php';

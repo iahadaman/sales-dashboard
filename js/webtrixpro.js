@@ -81,6 +81,24 @@ $(document).ready(function(){
 		})
 	})
 
+	// Search Project Filter Sales Side
+	$("#searchProjectFilter").on("keyup", function() {
+		let value = $(this).val().toLowerCase();
+		$("#projectName .search").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		})
+	})
+
+	// Search Project Admin Side Filter
+	$("#searchProjectAdminFilter").on("keyup", function() {
+		let value = $(this).val().toLowerCase();
+		$("#projectName .search").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		})
+	})
+
+	
+
 	//Search Filter == Component
 	$("#componentSearch").on("keyup", function() {
 		let value = $(this).val().toLowerCase();
@@ -727,7 +745,7 @@ $(document).on('click', '#createProjectBtnn', function(){
 
 $selectedValue = "all";
 selectedValue = $selectedValue;
-var fired_main_button = "In Progress";
+var fired_main_button = "Completed";
 
 setTimeout(function() {
 		$('#selectedPlatform').on('change', function() {
@@ -766,7 +784,7 @@ setTimeout(function() {
 function getProjectsData()
 {
 	let selectedValue = "all";
-	let readAllprojects = "In Progress";
+	let readAllprojects = "Completed";
 
 	$.ajax({
 			type: 'POST',

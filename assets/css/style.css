@@ -776,6 +776,7 @@ button.btn-create:focus{
     top: -19px;
     font-size: 12px;
 }
+
 button.ip-btn, button.ip-btn:hover{
     color: #FFFFFF;
     background-color: #2E5CAE;
@@ -814,6 +815,27 @@ button.ip-btn:focus,button.c-btn:focus{
     color: #B7B7B7;
 }
 .project-right-property input::placeholder 
+{
+  color: #B7B7B7;
+}
+
+.project-sales-search input{
+    top: 2px;
+    position: relative;
+    width: 170px;
+    height: 30px;
+    margin-top: 0px;
+    margin-right: 0px;
+    background-color: #EFEFEF;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+    border: 0px;
+    outline: 0px;
+    padding: 10px;
+    color: #B7B7B7;
+}
+.project-sales-search input::placeholder 
 {
   color: #B7B7B7;
 }
@@ -905,7 +927,7 @@ h5{
     font-family: 'Arimo', sans-serif;
 }
 .btn-platform{
-   width: 79%;
+   width: 90%;
     background-color: transparent;
     border: 1px solid #1EA74D;
     color: white;
@@ -921,17 +943,17 @@ h5{
     background-color: #1EA74D;
     color: white;
 }
-.default{
-        margin-left: 70px;
-}
+/*.default{
+    margin-left: 70px;
+}*/
 .btn-platform-1{
-    margin-left: 30px;
+    margin-left: -24px;
 }
 .btn-platform-2{
-    margin-left: -13px;
+    margin-left: -48px;
 }
 .btn-platform-3{
-    margin-left: -55px;
+    margin-left: -71px;
 }
 .btn-platform-1:hover, .btn-platform-2:hover, .btn-platform-3:hover{
    background-color: #1EA74D;

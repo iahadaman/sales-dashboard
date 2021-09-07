@@ -99,7 +99,7 @@ require_once '../partials/header.php'; ?>
 							</div>
 							<div class="col-md-6 col-sm-6">
 			                	<p>Project Start Date<br><strong><?php echo getProjectData('project_date'); ?></strong></p>
-		                        <p>Client<br><strong class="profile-image-style"><img src="<?php echo getProjectData('project_clientProfile'); ?>" style="margin-right: 10px;height: 30px; width: 32px;"><?php echo $clientName ?></strong></p>
+		                        <p>Account Executive<br><strong class="profile-image-style"><img src="<?php echo getProjectData('project_clientProfile'); ?>" style="margin-right: 10px;height: 30px; width: 32px;"><?php echo $clientName ?></strong></p>
 							</div>
 						</div>
 	                </div>

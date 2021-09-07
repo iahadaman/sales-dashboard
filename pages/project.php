@@ -40,7 +40,7 @@ require_once '../partials/header.php';?>
                             if($check == true)
                             {
                               ?>
-                                 <option value="webApp">Web App</option>
+                                 <option value="webApp">Web Apps</option>
                               <?php
                                  $check = false;
                             }
@@ -51,7 +51,7 @@ require_once '../partials/header.php';?>
                              if($check2 == true)
                             {
                               ?>
-                               <option value="androidApp">Android App</option>
+                               <option value="androidApp">Android Apps</option>
                              <?php
                                  $check2 = false;
                             }
@@ -63,7 +63,7 @@ require_once '../partials/header.php';?>
                             {
                               ?>
 
-                               <option value="iosApp">IOS App</option>
+                               <option value="iosApp">IOS Apps</option>
 
                             <?php
                              $check3 = false;
@@ -74,10 +74,17 @@ require_once '../partials/header.php';?>
                         ?>
                       </select>   
                 	 	<button data-toggle="modal" data-target="#createProject" class="btn btn-bg btn-create"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp Create Project</button>              
-                	 	<div class="btn-group ml-2 mainBtn">
-    				          <button value="In Progress" class="btn ip-btn btnLabel">In Progress</button>
-    				          <button value="Completed" class="btn c-btn btnLabel">Completed</button>
+                	 	<div class="btn-group ml-1 mainBtn">
+    				          <button value="In Progress" class="btn c-btn btnLabel">In Progress</button>
+    				          <button value="Completed" class="btn ip-btn btnLabel">Completed</button>
 				            </div> 
+
+                      <div class="ml-2 float-right project-sales-search">                      
+                        
+                        <input type="text" id="searchProjectAdminFilter" placeholder="Search By Project Name">                     
+                   </div>
+
+
                 </span>
               </div> 
           </div>

@@ -108,7 +108,7 @@ if($_POST['type']==3){
 		$selectedValue = htmlspecialchars(mysqli_real_escape_string($con, $_POST['selectedValue'])); 
 		if($selectedValue == "all")
 		{
-			$allProjectData = '<div class="row">';
+			$allProjectData = '<div class="row" id="projectName">';
 	    	$getAllProjects = mysqli_query($con, "SELECT * FROM webtrixpro_projects WHERE project_clientId = '$client_id' ORDER BY project_id desc");
 
 	    	$getclientName = mysqli_query($con, "SELECT user_name FROM webtrixpro_users WHERE user_id = '$client_id'");
@@ -116,7 +116,7 @@ if($_POST['type']==3){
 
 	   		while($allProjects = mysqli_fetch_array($getAllProjects)){
 
-				$allProjectData .= '<div class="inprogress-card-sales col-lg-3 col-md-6 col-sm-6 mt-4">  
+				$allProjectData .= '<div class="search inprogress-card-sales col-lg-3 col-md-6 col-sm-6 mt-4">  
 	               <a class="design" href="sales-project-detail.php?id='.$allProjects['project_id'].'">
 	                    <div class="inprogress-bg-card-sales col-lg-12 col-md-12 col-sm-12" style="background-image: url('. $allProjects['project_image'] .'); background-size: cover; background-position: center; border-radius:2px;">  
 	                    </div>

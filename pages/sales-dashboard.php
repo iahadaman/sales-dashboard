@@ -21,21 +21,34 @@ if(!isset($_SESSION["client_name"]))
 
             <div id="content-section">
                
-                <div style = "display: flex;
-                justify-content: center;" class="row platformButtons mt-5">
+                <div class="row platformButtons mt-5">
                   <div class="col-lg-2 col-md-3 col-sm-3">
-                    <button id="selectedPlatform" value = "all" class= "btn btn-platform default btn-platform-main">All</button>
+                    <button id="selectedPlatform" value = "all" class= "btn btn-platform btn-platform-main">All</button>
                   </div>
                    <div class="col-lg-2 col-md-3 col-sm-3">
-                      <button id="selectedPlatform" value="webApp" class= "btn btn-platform btn-platform-1">Web App</button>
+                      <button id="selectedPlatform" value="webApp" class= "btn btn-platform btn-platform-1">Web Apps</button>
                   </div>
                    <div class="col-lg-2 col-md-3 col-sm-3">
-                    <button id="selectedPlatform" value="androidApp" class= "btn btn-platform btn-platform-2">Android App</button>
+                    <button id="selectedPlatform" value="androidApp" class= "btn btn-platform btn-platform-2">Android Apps</button>
                   </div>
                    <div class="col-lg-2 col-md-3 col-sm-3">
-                    <button id="selectedPlatform" value="iosApp" class= "btn btn-platform btn-platform-3">IOS App</button>
+                    <button id="selectedPlatform" value="iosApp" class= "btn btn-platform btn-platform-3">IOS Apps</button>
                   </div>
+
+                <div class="col-lg-4 col-md-3 col-sm-3">
+                     <div class="float-right project-sales-search">                      
+                        
+                        <input type="text" id="searchProjectFilter" placeholder="Search By Project Name">                     
+                   </div>
+                   
+                </div>
+
+
+
               </div>
+
+
+
 
                   <!-- DATA COMINGN FROM AJAX BY ID-->
                   <div class="mt-4" id="salesCardsData"></div>

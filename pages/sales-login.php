@@ -4,7 +4,7 @@
 	</div>
 	<div class="login-box">
 	    <div class="container mt-5 mb-5">
-	    	<h2 class="text-center">Sales Login</h2>
+	    	<h2 class="text-center">Executive Login</h2>
 	    	<p class="text-center">Please login your account</p>
 	    	<form>
 	    		<div id="sales_login_error" style="display: none;" class= "alert alert-danger">All Fields Are Required!!</div>
