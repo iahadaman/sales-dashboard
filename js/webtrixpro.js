@@ -648,7 +648,7 @@ $(document).on('click', '#createProjectBtnn', function(){
 		}
 		});
 
-	    let p_name = $("#projectName").val();
+	    let p_name = $("#projectname").val();
 		let p_client = $("#projectClientName").val();
 		let p_date = $("#projectDate").val();
 		let p_description = $("#projectDescription").val();
@@ -682,7 +682,7 @@ $(document).on('click', '#createProjectBtnn', function(){
 						    $('#project_error').fadeOut('fast');
 						}, 3000); 
 
-						$("#projectName").val("");
+						$("#projectname").val("");
 						$("#projectDate").val("");
 						$("#projectDescription").val("");
 						$("#projectClientProfile").val("");

@@ -11,8 +11,8 @@
         	<form id="CreateProjectForm" onsubmit="return false;" method="POST" enctype="multipart/form-data" name="project">
         		<div id="project_error" style="display: none;" class= "alert alert-danger">All Fields Are Required!!</div>
 			  <div class="form-group">
-			    <label for="projectName">Project Name</label>
-			    <input type="text" class="form-control" id="projectName" placeholder="Enter your project name">
+			    <label for="projectname">Project Name</label>
+			    <input type="text" class="form-control" id="projectname" placeholder="Enter your project name">
 			  </div>
 			   <div class="form-group">
 			    <label for="projectClientName">Account Executive Name</label>
